@@ -1,0 +1,60 @@
+.assembly-aasigntask-main {
+  width: 100%;
+  height: 100%;
+  /* border: 2px solid red; */
+  position: relative;
+  margin-top: 20px;
+}
+
+.assembly-assigntask-modal-main {
+  width: 100%;
+  height: 90%;
+  position: absolute;
+  top: 30px;
+  /* left: 10px; */
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 20px;
+  /* border: 2px solid red; */
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.assembly-assigntask-modal-main > :nth-child(2) {
+  width: 100%;
+  /* border: 2px solid red; */
+}
+
+.added-assembly-ps-task-card {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  /* border: 2px solid red; */
+}
+.added-assembly-ps-task-card > div {
+  width: 70%;
+  display: flex;
+  height: 300px;
+  flex-direction: column;
+  overflow-y: scroll;
+  gap: 0.6rem;
+  justify-content: flex-start;
+}
+.added-assembly-ps-task-card > div > div {
+  display: flex;
+  gap: 1rem;
+}
+.added-assembly-ps-task-card > button {
+  width: 170px;
+  height: 35px;
+  background-color: orangered;
+  border: none;
+  outline: none;
+  font-size: 17px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  /* text-decoration: line-through; */
+}
