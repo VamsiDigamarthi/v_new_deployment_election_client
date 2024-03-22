@@ -324,7 +324,7 @@ export const assemblyList = [
     ],
   },
   {
-    dist: "Barpeta",
+    dist: "07-Barpeta",
     assembly: [
       { name: "Mandia" },
       { name: "Chenga" },

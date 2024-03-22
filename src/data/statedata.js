@@ -92,7 +92,7 @@ export const stateWiseData = [
         name: "Baksa",
       },
       {
-        name: "Barpeta",
+        name: "07-Barpeta",
       },
       {
         name: "Bijni",

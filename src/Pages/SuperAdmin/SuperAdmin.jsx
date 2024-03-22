@@ -11,6 +11,8 @@ const SuperAdmin = () => {
   const [excelData, setExcelData] = useState("");
   const [typeerror, setTypeError] = useState(null);
 
+  const [loading, setLoading] = useState(false);
+
   const handleFile = (e) => {
     let fileTypes = [
       "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
@@ -47,13 +49,16 @@ const SuperAdmin = () => {
     e.preventDefault();
 
     const bulkUploadedSuperAdmin = async () => {
+      // console.log(excelData);
+      setLoading(true);
       await APIS.post("/state/bulk-upload", excelData, {
         headers: headers,
       })
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           setBulkUploadDisplayMsg(res.data);
           setExcelData("");
+          setLoading(false);
         })
         .catch((e) => {
           console.log(e?.response?.data?.msg);
@@ -82,7 +87,7 @@ const SuperAdmin = () => {
             // value={""}
           />
 
-          <button type="submit">UPLOAD</button>
+          <button type="submit">{loading ? "Loading ...!" : "UPLOAD"}</button>
         </form>
         {bulkUploadDisplayMsg && (
           <p
