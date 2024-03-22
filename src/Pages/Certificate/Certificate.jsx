@@ -60,19 +60,16 @@ const Certificate = () => {
         </div>
         <div className="certificate__text__card__container">
           <h1>For Successful Participation as Volunteer for</h1>
-          <h1>
-            General Election of {UUU?.state} Legislative Assembly 2023-2024
-            Webcasting
-          </h1>
+          <h1>General Election of {UUU?.state} 2024 Webcasting</h1>
         </div>
         <div className="certificate__left__signa">
           <span>Signature of Managing Director</span>
           <h4>Rajasekhar Papolu</h4>
         </div>
-        <div className="certificate__right__signa">
+        {/* <div className="certificate__right__signa">
           <span>Signature of District Collector</span>
           <h4>Some Name</h4>
-        </div>
+        </div> */}
       </div>
       <div className="download__button__card">
         <button onClick={downloadPdf}>Download Certificate</button>

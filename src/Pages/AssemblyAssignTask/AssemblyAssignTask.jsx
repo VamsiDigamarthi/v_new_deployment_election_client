@@ -17,6 +17,10 @@ const AssemblyAssignTask = () => {
   const [array, setArray] = useState([]);
   const [showError, setShowError] = useState("");
 
+  // filter PS number
+
+  const [onPsNumberFilter, setOnPsNumberFilter] = useState("");
+
   // open task modal
 
   const [openTaskModal, setOpenTaskModal] = useState(false);
@@ -103,6 +107,15 @@ const AssemblyAssignTask = () => {
 
   // console.log(initiallyAllPs);
 
+  //
+  const onPsNumberChangeFilterFun = (e) => {
+    setOnPsNumberFilter(e.target.value);
+    console.log(initiallyAllPs[3]);
+
+    // const l = initiallyAllPs.filter((each) => each.PS_No == "1");
+    // console.log(l);
+  };
+
   return (
     <div className="assembly-aasigntask-main">
       <div
@@ -183,28 +196,42 @@ const AssemblyAssignTask = () => {
             <span>Address : {storeModalUser?.address}</span>
             <span>Phone : {storeModalUser?.phone}</span>
           </div>
+          {/* <div className="on-modal-input-card-new">
+            <input
+              onChange={onPsNumberChangeFilterFun}
+              type="text"
+              placeholder="Enter PS Number"
+            />
+          </div> */}
           {showError && <span>{showError}</span>}
           <div>
             <div className="added-assembly-ps-task-card">
               <div>
-                {initiallyAllPs?.map((each, key) => (
-                  <div
-                    key={key}
-                    style={{
-                      textDecoration: each?.assign === "yes" && "line-through",
-                    }}
-                  >
-                    <input
-                      disabled={each?.assign === "yes" ? true : false}
-                      onChange={() => addedMulplePsUser(each)}
-                      type="checkbox"
-                    />
-                    <label>
-                      {each.PS_No} {" ,"} {each.PS_Name_and_Address} {" ,"}{" "}
-                      {each.PS_Location}
-                    </label>
-                  </div>
-                ))}
+                {initiallyAllPs
+                  ?.filter((each) =>
+                    onPsNumberFilter === ""
+                      ? each
+                      : each.PS_No == onPsNumberFilter
+                  )
+                  .map((each, key) => (
+                    <div
+                      key={key}
+                      style={{
+                        textDecoration:
+                          each?.assign === "yes" && "line-through",
+                      }}
+                    >
+                      <input
+                        disabled={each?.assign === "yes" ? true : false}
+                        onChange={() => addedMulplePsUser(each)}
+                        type="checkbox"
+                      />
+                      <label>
+                        {each.PS_No} {" ,"} {each.PS_Name_and_Address} {" ,"}{" "}
+                        {each.PS_Location}
+                      </label>
+                    </div>
+                  ))}
               </div>
               <button onClick={onAddAllTaskUser}>Add</button>
             </div>

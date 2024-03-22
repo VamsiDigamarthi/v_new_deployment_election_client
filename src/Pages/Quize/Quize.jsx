@@ -3,7 +3,7 @@ import "./Quize.css";
 import { Link } from "react-router-dom";
 import { APIS, headers } from "../../data/header";
 import { useSelector } from "react-redux";
-const questions = [
+const question = [
   {
     text: "What is the capital of America?",
     options: [
@@ -97,6 +97,8 @@ const questions = [
 ];
 
 const Quize = ({ setStartQuize }) => {
+  const [questions, setQuestions] = useState(question);
+
   const [showResults, setShowResults] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
@@ -104,12 +106,25 @@ const Quize = ({ setStartQuize }) => {
   const [questionsNumber, setQuestionsNumber] = useState([1]);
 
   const UUU = useSelector((state) => state.authReducer.authData);
-
+  const shuffleArray = () => {
+    const newArray = [...questions]; // Create a copy of the original array
+    for (let i = newArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1)); // Generate random index
+      [newArray[i], newArray[j]] = [newArray[j], newArray[i]]; // Swap elements
+    }
+    setQuestions(newArray); // Set the shuffled array in state
+  };
   const restartGame = () => {
     setScore(0);
     setCurrentQuestion(0);
     setShowResults(false);
+    shuffleArray();
+    setQuestionsNumber([1]);
   };
+
+  useEffect(() => {
+    shuffleArray();
+  }, []);
 
   const onBackToVideo = () => {
     // setSwitchVideoToQuiz(true);
@@ -241,7 +256,7 @@ const Quize = ({ setStartQuize }) => {
           </div>
           <div className="quize__right__answer">
             <div className="quize__answer__card">
-              {questions[currentQuestion].options.map((option, key) => {
+              {questions[currentQuestion].options?.map((option, key) => {
                 return (
                   <div
                     key={key}

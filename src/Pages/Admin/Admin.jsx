@@ -72,6 +72,9 @@ const Admin = () => {
   const [kitStatedImageFromFile, setKitStatedImageFromFile] = useState("");
   const [kitStartedErrorMsg, setKitStartedErrorMsg] = useState("");
 
+  // STORE ALL ASSEMBLY COORDINATOR
+  const [allAssemblyCoor, setAllAssemblyCoor] = useState([]);
+
   // INITIALLY PS-DETAILS FETCH FROM DATABASE - COORESPONDING DISTRICT COORDINATOR
   const onPsDetailsBasedOnDistrict = () => {
     let district = UUU?.district;
@@ -104,9 +107,22 @@ const Admin = () => {
       .catch((e) => console.log(e));
   };
 
+  const fetchAllAssemblyCoor = () => {
+    APIS.get(
+      `/district/fetch/all/assembly/coor/state/${UUU?.state}/district/${UUU?.district}`,
+      { headers: headers }
+    )
+      .then((res) => {
+        console.log(res.data);
+        setAllAssemblyCoor(res.data);
+      })
+      .catch((e) => console.log(e));
+  };
+
   useEffect(() => {
     onPsDetailsBasedOnDistrict();
     onFetchAllTaskDistrictCoor();
+    fetchAllAssemblyCoor();
   }, []);
 
   /*
@@ -329,7 +345,24 @@ const Admin = () => {
         console.log(e);
       });
   };
-  // console.log(firstSubTask);
+  console.log(psAcDetailsBasedOnDistrictCoor);
+
+  const filterAllAssemblyWisePsAssigned = (data) => {
+    const filters = psAcDetailsBasedOnDistrictCoor?.filter(
+      (all) => all.AC_Name === data
+    );
+    // console.log(filter);
+    const assignPs = filters.filter((each) => each.eassign === "yes");
+    return assignPs.length;
+  };
+  const filterAllAssemblyWisePsNotAssigned = (data) => {
+    const filters = psAcDetailsBasedOnDistrictCoor?.filter(
+      (all) => all.AC_Name === data
+    );
+    // console.log(filter);
+    const assignPs = filters.filter((each) => each.eassign !== "yes");
+    return assignPs.length;
+  };
 
   return (
     <div className="admin__main__page">
@@ -371,17 +404,11 @@ const Admin = () => {
             <span>{notAssignPs}</span>
             <span>Not Assigned PS</span>
           </div>
+          <div className="charts__admin__display">
+            <Chart options={options} series={update} type="pie" width="100%" />
+          </div>
         </div>
         {/* charts */}
-        <div className="charts__admin__display">
-          <Chart options={options} series={update} type="pie" width="100%" />
-          {/* <Chart
-            options={locationOptions}
-            series={updateLocations}
-            type="pie"
-            width="120%"
-          /> */}
-        </div>
       </div>
       {/* Static Tasks */}
       <div className="district__coor__static__task">
@@ -669,6 +696,33 @@ const Admin = () => {
             ))}
           </div>
         )}
+      </div>
+      <div className="all-assembly-coor-district-wise">
+        {allAssemblyCoor?.map((each, key) => (
+          <div key={key} className="single-assembly-ccors-main-card">
+            <h3>{each.assembly}</h3>
+            <div className="single-assembly-cor-container-new-new">
+              <div>
+                <span>
+                  {
+                    psAcDetailsBasedOnDistrictCoor?.filter(
+                      (all) => all.AC_Name === each.assembly
+                    ).length
+                  }
+                </span>
+                <span>No Of PS</span>
+              </div>
+              <div>
+                <span>{filterAllAssemblyWisePsAssigned(each.assembly)}</span>
+                <span>Assigned PS</span>
+              </div>
+              <div>
+                <span>{filterAllAssemblyWisePsNotAssigned(each.assembly)}</span>
+                <span>Not Assigned PS</span>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

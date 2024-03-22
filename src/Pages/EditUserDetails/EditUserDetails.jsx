@@ -13,7 +13,7 @@ const EditUserDetails = ({
 
   const [editUserDetailsState, setEditUserDetailsState] = useState({
     username: userDataFromApi?.name,
-    phone: userDataFromApi?.phone,
+    // phone: userDataFromApi?.phone,
     phonepe: userDataFromApi?.phonepe,
     address: userDataFromApi?.address,
   });
@@ -32,7 +32,7 @@ const EditUserDetails = ({
       headers: headers,
     })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         editUseSuccess();
         onOpenEditUserDetailsModal();
         getUserDataGromApis();
@@ -53,7 +53,7 @@ const EditUserDetails = ({
         />
         <span>Name</span>
       </div>
-      <div className="user__edit__signle__input__div">
+      {/* <div className="user__edit__signle__input__div">
         <input
           type="text"
           onChange={onChangeEditProfileInput}
@@ -61,7 +61,7 @@ const EditUserDetails = ({
           name="phone"
         />
         <span>Phone Number</span>
-      </div>
+      </div> */}
       <div className="user__edit__signle__input__div">
         <input
           type="text"
