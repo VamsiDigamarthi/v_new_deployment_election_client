@@ -15,12 +15,12 @@ const API = axios.create({
   baseURL: "https://v-new-deployment-election-server.onrender.com/",
 });
 
-// export const logIn = (FormData) =>
-//   API.post("/auth/login-verify-otp", FormData, {
-//     headers: headers,
-//   });
-
 export const logIn = (FormData) =>
-  API.post("/auth/login", FormData, {
+  API.post("/auth/login-verify-otp", FormData, {
     headers: headers,
   });
+
+// export const logIn = (FormData) =>
+//   API.post("/auth/login", FormData, {
+//     headers: headers,
+//   });
