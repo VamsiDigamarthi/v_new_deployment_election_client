@@ -61,6 +61,7 @@ const AssemblyAssignTask = () => {
   }, []);
 
   const onTaskModalCloseFun = (user) => {
+    console.log(user);
     setOpenTaskModal(!openTaskModal);
     setStoreModalUser(user);
     setShowError("");
@@ -87,7 +88,7 @@ const AssemblyAssignTask = () => {
     if (array.length > 0) {
       setShowError("");
       APIS.post(
-        `/assembly/assign/task/user/${storeModalUser?._id}/name/${storeModalUser?.name}/phone/${storeModalUser?.phone}`,
+        `/assembly/assign/task/user/${storeModalUser?._id}/name/${storeModalUser?.name}/phone/${storeModalUser?.phone}/bankname/${storeModalUser?.bankname}/banknumber/${storeModalUser?.banknumber}/ifsc/${storeModalUser?.IFSC}`,
         { array },
         { headers: headers }
       )
@@ -196,6 +197,7 @@ const AssemblyAssignTask = () => {
             <span>Address : {storeModalUser?.address}</span>
             <span>Phone : {storeModalUser?.phone}</span>
           </div>
+
           {/* <div className="on-modal-input-card-new">
             <input
               onChange={onPsNumberChangeFilterFun}

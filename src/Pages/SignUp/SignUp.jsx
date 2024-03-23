@@ -31,6 +31,9 @@ const SignUp = ({ onSwitchRegistor }) => {
     voterIdImage: "",
     adharIdImage: "",
     role: "3",
+    banknumber: "",
+    IFSC: "",
+    bankname: "",
   });
 
   // console.log(user);
@@ -129,6 +132,15 @@ const SignUp = ({ onSwitchRegistor }) => {
       errors.phonepe = "phonepe number must be 10 characters";
     }
 
+    if (!values.bankname) {
+      errors.bankname = "Bank Name is required!";
+    }
+    if (!values.banknumber) {
+      errors.banknumber = "Bank Number is required!";
+    }
+    if (!values.IFSC) {
+      errors.IFSC = "IFSC Number is required!";
+    }
     return errors;
   };
 
@@ -158,29 +170,29 @@ const SignUp = ({ onSwitchRegistor }) => {
 
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && gg) {
-      APIS.post(
-        "/auth/new-sign",
-        { phone: user.phone, name: user.name },
-        { headers: headers }
-      )
-        .then(() => {
-          setIsSubmit(false);
-          setSendOtpUiDesign(true);
-          seonOtp();
-        })
-        .catch((e) => {
-          console.log(e?.response?.data?.msg);
-          errorMsgApi(e?.response?.data?.msg);
-        });
-
-      // APIS.post("/auth/register", user, { headers: headers })
-      //   .then((res) => {
-      //     console.log(res.data);
+      // APIS.post(
+      //   "/auth/new-sign",
+      //   { phone: user.phone, name: user.name },
+      //   { headers: headers }
+      // )
+      //   .then(() => {
+      //     setIsSubmit(false);
+      //     setSendOtpUiDesign(true);
+      //     seonOtp();
       //   })
       //   .catch((e) => {
       //     console.log(e?.response?.data?.msg);
       //     errorMsgApi(e?.response?.data?.msg);
       //   });
+
+      APIS.post("/auth/register", user, { headers: headers })
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((e) => {
+          console.log(e?.response?.data?.msg);
+          errorMsgApi(e?.response?.data?.msg);
+        });
     }
   }, [formErrors]);
 
@@ -188,6 +200,7 @@ const SignUp = ({ onSwitchRegistor }) => {
 
   const onSubmitRegisterDataFn = (e) => {
     e.preventDefault();
+    // console.log(user);
     setFormErrors(validate(user));
     setIsSubmit(true);
     setGg(true);
@@ -214,6 +227,9 @@ const SignUp = ({ onSwitchRegistor }) => {
           phone: "",
           voterIdImage: "",
           adharIdImage: "",
+          banknumber: "",
+          IFSC: "",
+          bankname: "",
         });
         onSwitchRegistor({ phone: user.phone });
       })
@@ -603,23 +619,82 @@ const SignUp = ({ onSwitchRegistor }) => {
             />
             <span>Password</span>
           </div>
-          <div className="inputBox text__are__card">
-            <p
-              style={{
-                visibility: "visible",
-                color: "#f58b76",
-              }}
-            >
-              {formErrors.mandal ? formErrors.mandal : "."}
-            </p>
-            <input
-              onChange={usernameChange}
-              type="text"
-              required="required"
-              name="mandal"
-              value={user.mandal}
-            />
-            <span>Mandal</span>
+          <div className="multi__input__card">
+            <div className="inputBox">
+              <p
+                style={{
+                  visibility: "visible",
+                  color: "#f58b76",
+                }}
+              >
+                {formErrors.mandal ? formErrors.mandal : "."}
+              </p>
+              <input
+                onChange={usernameChange}
+                type="text"
+                required="required"
+                name="mandal"
+                value={user.mandal}
+              />
+              <span>Mandal</span>
+            </div>
+            <div className="inputBox">
+              <p
+                style={{
+                  visibility: "visible",
+                  color: "#f58b76",
+                }}
+              >
+                {formErrors.bankname ? formErrors.bankname : "."}
+              </p>
+              <input
+                onChange={usernameChange}
+                type="text"
+                name="bankname"
+                required="required"
+                value={user.bankname}
+              />
+              <span>Enter Your Bank Name</span>
+            </div>
+          </div>
+          {/* Bank Details */}
+          <div className="multi__input__card">
+            <div className="inputBox">
+              <p
+                style={{
+                  visibility: "visible",
+                  color: "#f58b76",
+                }}
+              >
+                {formErrors.banknumber ? formErrors.banknumber : "."}
+              </p>
+              <input
+                onChange={usernameChange}
+                type="text"
+                name="banknumber"
+                required="required"
+                value={user.banknumber}
+              />
+              <span>Enter Your Bank Number</span>
+            </div>
+            <div className="inputBox">
+              <p
+                style={{
+                  visibility: "visible",
+                  color: "#f58b76",
+                }}
+              >
+                {formErrors.IFSC ? formErrors.IFSC : "."}
+              </p>
+              <input
+                onChange={usernameChange}
+                type="text"
+                name="IFSC"
+                required="required"
+                value={user.IFSC}
+              />
+              <span>IFSC Code</span>
+            </div>
           </div>
           {/* <div className="signup__as__dist__coor">
             <input

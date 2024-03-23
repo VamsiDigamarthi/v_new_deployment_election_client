@@ -16,6 +16,7 @@ const DistrictCooeExel = () => {
     })
       .then((res) => {
         setLoader(false);
+        console.log(res.data);
         setData(res.data);
       })
       .catch((e) => {
@@ -67,6 +68,9 @@ const DistrictCooeExel = () => {
                 <span>Assembly Coor Phone</span>
                 <span>Employee Name</span>
                 <span>Employee Phone</span>
+                <span>Bank Name</span>
+                <span>Bank Number</span>
+                <span>IFSC CODE</span>
               </div>
               <div className="table__body__card_ex">
                 {data?.map((each, key) => (
@@ -84,6 +88,9 @@ const DistrictCooeExel = () => {
                     <span>{each.assemblyphone}</span>
                     <span>{each.name}</span>
                     <span>{each.phone}</span>
+                    <span>{each?.bankname}</span>
+                    <span>{each?.banknumber}</span>
+                    <span>{each?.ifsc}</span>
                   </div>
                 ))}
               </div>

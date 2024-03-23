@@ -92,6 +92,16 @@
   /* border: 2px solid red; */
 }
 
+.exel-table-header > :nth-child(12) {
+  width: 200px;
+}
+.exel-table-header > :nth-child(13) {
+  width: 200px;
+}
+.exel-table-header > :nth-child(14) {
+  width: 200px;
+}
+
 .table__inner__body_exel {
   display: flex;
 
@@ -152,6 +162,17 @@
 .table__inner__body_exel > :nth-child(11) {
   width: 160px;
   /* border: 2px solid red; */
+}
+
+.table__inner__body_exel > :nth-child(12) {
+  width: 200px;
+}
+.table__inner__body_exel > :nth-child(13) {
+  width: 200px;
+}
+
+.table__inner__body_exel > :nth-child(14) {
+  width: 200px;
 }
 
 /* button */

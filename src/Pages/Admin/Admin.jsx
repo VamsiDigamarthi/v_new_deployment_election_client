@@ -113,7 +113,7 @@ const Admin = () => {
       { headers: headers }
     )
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setAllAssemblyCoor(res.data);
       })
       .catch((e) => console.log(e));

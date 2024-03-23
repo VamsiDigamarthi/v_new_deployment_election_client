@@ -97,6 +97,21 @@ const PaymentModal = ({
             <span>{leftSideUserClickStoreId?.phonepe}</span>
           </span>
         </div>
+        <div className="student__details__card">
+          <span>
+            Bank Name
+            <span>{leftSideUserClickStoreId?.bankname}</span>
+          </span>
+          <span>
+            Bank Number
+            <span>{leftSideUserClickStoreId?.banknumber}</span>
+          </span>
+          <span>
+            {" "}
+            IFSC Code
+            <span>{leftSideUserClickStoreId?.IFSC}</span>
+          </span>
+        </div>
         <div className="main__payment__card">
           <div className="payment__selecet__card__main">
             <select onChange={onSelectPaymentMethodFun}>

@@ -45,27 +45,23 @@ const SuperAdmin = () => {
     }
   }, [excelFile]);
 
-  const handleFileSubmit = (e) => {
+  const handleFileSubmit = async (e) => {
     e.preventDefault();
-
-    const bulkUploadedSuperAdmin = async () => {
-      // console.log(excelData);
-      setLoading(true);
-      await APIS.post("/state/bulk-upload", excelData, {
-        headers: headers,
+    // console.log(excelData);
+    setLoading(true);
+    await APIS.post("/state/bulk-upload", excelData, {
+      headers: headers,
+    })
+      .then((res) => {
+        // console.log(res.data);
+        setBulkUploadDisplayMsg(res.data);
+        setExcelData("");
+        setLoading(false);
       })
-        .then((res) => {
-          // console.log(res.data);
-          setBulkUploadDisplayMsg(res.data);
-          setExcelData("");
-          setLoading(false);
-        })
-        .catch((e) => {
-          console.log(e?.response?.data?.msg);
-          setBulkUploadDisplayMsg(e?.response?.data);
-        });
-    };
-    bulkUploadedSuperAdmin();
+      .catch((e) => {
+        console.log(e?.response?.data?.msg);
+        setBulkUploadDisplayMsg(e?.response?.data);
+      });
   };
 
   // console.log(excelData);

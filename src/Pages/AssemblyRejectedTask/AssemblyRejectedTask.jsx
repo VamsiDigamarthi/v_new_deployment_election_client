@@ -34,7 +34,7 @@ const AssemblyRejectedTask = () => {
     )
       .then((res) => {
         setAllInitiallyUsers(res.data);
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch((e) => console.log(e));
   };
@@ -80,7 +80,7 @@ const AssemblyRejectedTask = () => {
     if (array.length > 0) {
       setShowError("");
       APIS.post(
-        `/assembly/assign/rejectedtask/user/${storeModalUser?._id}/name/${storeModalUser?.name}/phone/${storeModalUser?.phone}`,
+        `/assembly/assign/rejectedtask/user/${storeModalUser?._id}/name/${storeModalUser?.name}/phone/${storeModalUser?.phone}/bankname/${storeModalUser?.bankname}/banknumber/${storeModalUser?.banknumber}/ifsc/${storeModalUser?.IFSC}`,
         { array },
         { headers: headers }
       )
