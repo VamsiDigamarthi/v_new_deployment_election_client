@@ -16,7 +16,7 @@ const DistrictCooeExel = () => {
     })
       .then((res) => {
         setLoader(false);
-        console.log(res.data);
+        // console.log(res.data);
         setData(res.data);
       })
       .catch((e) => {

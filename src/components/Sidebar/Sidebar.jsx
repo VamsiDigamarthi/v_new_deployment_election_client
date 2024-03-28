@@ -247,6 +247,8 @@ export const Sidebar = ({ children, taskAssignAdminModalOpen }) => {
               </>
             )}
 
+            {/*  */}
+
             {UUU && (
               <>
                 {UUU?.role === "2" && (
@@ -359,6 +361,27 @@ export const Sidebar = ({ children, taskAssignAdminModalOpen }) => {
               </>
             )}
 
+            {UUU && (
+              <>
+                {UUU?.role === "2" && (
+                  <Link to="/show/user/pdf" className="all__links">
+                    <div
+                      style={{
+                        background: activeTab === 6 && "#ff6f00",
+                        borderRadius: "10px",
+                      }}
+                      className="left__side__bar__icons__card"
+                    >
+                      <div onClick={() => onTabLeftSideClick(6)}>
+                        <AiOutlineAccountBook />
+                        <span>User Details</span>
+                      </div>
+                    </div>
+                  </Link>
+                )}
+              </>
+            )}
+
             {/* {UUU && (
               <>
                 {UUU[0]?.role === 2 && (
@@ -457,6 +480,29 @@ export const Sidebar = ({ children, taskAssignAdminModalOpen }) => {
                 )}
               </>
             )}
+
+            {/* profile start */}
+            {UUU && (
+              <>
+                {UUU?.role === "3" && (
+                  <Link to="/profile/card" className="all__links">
+                    <div
+                      style={{
+                        background: activeTab === 4 && "#ff6f00",
+                        borderRadius: "10px",
+                      }}
+                      className="left__side__bar__icons__card"
+                    >
+                      <div onClick={() => onTabLeftSideClick(4)}>
+                        <FiUsers />
+                        <span>Profile Card</span>
+                      </div>
+                    </div>
+                  </Link>
+                )}
+              </>
+            )}
+            {/* profile end */}
             {/*
              */}
             {/*  */}

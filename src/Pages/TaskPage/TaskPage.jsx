@@ -49,6 +49,22 @@ const TaskPage = () => {
   const [kitFittingCertificateError, setkitFittingCertificateError] =
     useState("");
 
+  // Latitude Lon details
+
+  const [latLogSpeed, setLatLogSpeed] = useState({
+    latitude: "",
+    longitude: "",
+    airtelSpped: "",
+    jioSpeed: "",
+    bsnlSpeed: "",
+  });
+
+  const [showLatErrorMsg, setShowLatErrorMsg] = useState("");
+
+  const onSpeedChange = (e) => {
+    setLatLogSpeed({ ...latLogSpeed, [e.target.name]: e.target.value });
+  };
+
   // COLLAPS THERE TASK SHOW OR HIDE IMAGES SHOW , UPLOADED FILEDS
   const toggelCertificated = (id) => {
     if (selectedCertificate === id) {
@@ -248,6 +264,44 @@ const TaskPage = () => {
       console.log(err);
       pleaseChoosImages();
       setCompletedCertificate("");
+    }
+  };
+
+  const uploadedLogLatiSpeed = (id) => {
+    // console.log(latLogSpeed);
+    if (
+      latLogSpeed.longitude !== "" &&
+      latLogSpeed.latitude !== "" &&
+      latLogSpeed.airtelSpped !== "" &&
+      latLogSpeed.jioSpeed !== "" &&
+      latLogSpeed.bsnlSpeed !== ""
+    ) {
+      setShowLatErrorMsg("");
+      APIS.put(
+        `/user/uploaded/lon/speed/${id}`,
+        {
+          ...latLogSpeed,
+        },
+        {
+          headers: headers,
+        }
+      )
+        .then((res) => {
+          fetchAllTask();
+          setLatLogSpeed({
+            latitude: "",
+            longitude: "",
+            airtelSpped: "",
+            jioSpeed: "",
+            bsnlSpeed: "",
+          });
+        })
+        .catch((e) => {
+          console.log(e);
+          errorMsgApi(e?.response?.data?.msg);
+        });
+    } else {
+      setShowLatErrorMsg("Please Fill All Fields!");
     }
   };
 
@@ -590,6 +644,91 @@ const TaskPage = () => {
                               Upload
                             </button>
                           </div>
+                        </div>
+                        <div className="netwrok-details-main">
+                          <span className="kit__task__number">
+                            Network Details
+                          </span>
+                          {showLatErrorMsg && showLatErrorMsg}
+                          {each.longitude &&
+                          each.latitude &&
+                          each.airtelSpped &&
+                          each.jioSpeed &&
+                          each.bsnlSpeed ? (
+                            <div className="log-lat-insed-card">
+                              <div>
+                                <span>Longitude</span>
+                                <span>{each.longitude}</span>
+                              </div>
+                              <div>
+                                <span>Latitude</span>
+                                <span>{each.latitude}</span>
+                              </div>
+                              <div>
+                                <span>Airtel Speed</span>
+                                <span>{each.airtelSpped}</span>
+                              </div>
+                              <div>
+                                <span>JIO Speed</span>
+                                <span>{each.jioSpeed}</span>
+                              </div>
+                              <div>
+                                <span>BSNL Speed</span>
+                                <span>{each.bsnlSpeed}</span>
+                              </div>
+                            </div>
+                          ) : (
+                            <>
+                              <div className="netwrok-details-mainss">
+                                <input
+                                  onChange={onSpeedChange}
+                                  type="text"
+                                  placeholder="Longitude"
+                                  name="longitude"
+                                  value={latLogSpeed.longitude}
+                                />
+                                <input
+                                  onChange={onSpeedChange}
+                                  type="text"
+                                  placeholder="Latitude"
+                                  name="latitude"
+                                  value={latLogSpeed.latitude}
+                                />
+                              </div>
+                              <div className="jio-speed">
+                                <input
+                                  onChange={onSpeedChange}
+                                  type="text"
+                                  placeholder="JIO Speed"
+                                  name="jioSpeed"
+                                  value={latLogSpeed.jioSpeed}
+                                />
+                                <input
+                                  onChange={onSpeedChange}
+                                  type="text"
+                                  placeholder="Airtel Speed"
+                                  name="airtelSpped"
+                                  value={latLogSpeed.airtelSpped}
+                                />
+                                <input
+                                  onChange={onSpeedChange}
+                                  type="text"
+                                  placeholder="BSNL Speed"
+                                  name="bsnlSpeed"
+                                  value={latLogSpeed.bsnlSpeed}
+                                />
+                              </div>
+                              <div className="kit__image__uploaded__button__card">
+                                <button
+                                  onClick={() =>
+                                    uploadedLogLatiSpeed(each?._id)
+                                  }
+                                >
+                                  Upload
+                                </button>
+                              </div>
+                            </>
+                          )}{" "}
                         </div>
                         {/* third task end */}
                         {/* <div className="image__loaded__value">

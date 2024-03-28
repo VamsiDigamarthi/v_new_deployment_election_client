@@ -34,6 +34,11 @@ const SignUp = ({ onSwitchRegistor }) => {
     banknumber: "",
     IFSC: "",
     bankname: "",
+    fatherName: "",
+    motherName: "",
+    dateOfRegister: "",
+    pinCode: "",
+    profilePic: "",
   });
 
   // console.log(user);
@@ -137,9 +142,35 @@ const SignUp = ({ onSwitchRegistor }) => {
     }
     if (!values.banknumber) {
       errors.banknumber = "Bank Number is required!";
+    } else if (!/^[0-9]{1,}$/.test(values?.banknumber)) {
+      errors.banknumber = "bank number must be numeric characters";
     }
     if (!values.IFSC) {
       errors.IFSC = "IFSC Number is required!";
+    }
+    // father name
+
+    if (!values.fatherName) {
+      errors.fatherName = "Father Name is required";
+    } else if (!name.test(values.fatherName)) {
+      errors.fatherName = "Father Name shold containe only charaters";
+    }
+
+    if (!values.motherName) {
+      errors.motherName = "Mother Name is required";
+    } else if (!name.test(values.motherName)) {
+      errors.motherName = "Mother Name shold containe only charaters";
+    }
+    if (!values.dateOfRegister) {
+      errors.dateOfRegister = "Date Of Registration is required!";
+    }
+
+    if (!values.pinCode) {
+      errors.pinCode = "PIN Code is required!";
+    }
+
+    if (!values.profilePic) {
+      errors.profilePic = "Profile is required!";
     }
     return errors;
   };
@@ -230,6 +261,11 @@ const SignUp = ({ onSwitchRegistor }) => {
           banknumber: "",
           IFSC: "",
           bankname: "",
+          fatherName: "",
+          motherName: "",
+          dateOfRegister: "",
+          pinCode: "",
+          profilePic: "",
         });
         onSwitchRegistor({ phone: user.phone });
       })
@@ -278,6 +314,25 @@ const SignUp = ({ onSwitchRegistor }) => {
       setUser({
         ...user,
         adharIdImage: "",
+      });
+    }
+  };
+
+  // this function take the adhar card back side image
+  const onPrfilePic = async (event) => {
+    try {
+      const file = event.target.files[0];
+      const image = await resizeFile(file);
+      setUser({
+        ...user,
+        profilePic: image,
+      });
+    } catch (err) {
+      console.log(err);
+      pleaseChoosImages();
+      setUser({
+        ...user,
+        profilePic: "",
       });
     }
   };
@@ -425,27 +480,6 @@ const SignUp = ({ onSwitchRegistor }) => {
           {/* Adhar number and mandal set input field */}
 
           <div className="multi__input__card">
-            {/* <div className="inputBox">
-              <p
-                style={{
-                  visibility: "visible",
-                  color: "#f58b76",
-                }}
-              >
-                {formErrors.mandal ? formErrors.mandal : "."}
-              </p>
-              <select name="mandal" onChange={usernameChange}>
-                <option disabled hidden selected>
-                  MANDALS
-                </option>
-                {stateWiseDistState?.map((each, key) => (
-                  <option value={each.name} key={key}>
-                    {each.name}
-                  </option>
-                ))}
-              </select>
-            </div> */}
-
             <div className="inputBox">
               <p
                 style={{
@@ -579,46 +613,6 @@ const SignUp = ({ onSwitchRegistor }) => {
               </div>
             </div>
           </div>
-          {/* SET THE ADDRESS  */}
-          <div className="text__are__card">
-            <p
-              style={{
-                visibility: "visible",
-                color: "#f58b76",
-              }}
-            >
-              {formErrors.address ? formErrors.address : "."}
-            </p>
-
-            <textarea
-              cols="50"
-              placeholder="Enter Your Address"
-              rows="5"
-              required="required"
-              onChange={usernameChange}
-              name="address"
-              value={user.address}
-            ></textarea>
-          </div>
-          {/* USER PASSWORD FIELD */}
-          <div className="inputBox text__are__card">
-            <p
-              style={{
-                visibility: "visible",
-                color: "#f58b76",
-              }}
-            >
-              {formErrors.password ? formErrors.password : "."}
-            </p>
-            <input
-              onChange={usernameChange}
-              type="text"
-              required="required"
-              name="password"
-              value={user.password}
-            />
-            <span>Password</span>
-          </div>
           <div className="multi__input__card">
             <div className="inputBox">
               <p
@@ -657,7 +651,6 @@ const SignUp = ({ onSwitchRegistor }) => {
               <span>Enter Your Bank Name</span>
             </div>
           </div>
-          {/* Bank Details */}
           <div className="multi__input__card">
             <div className="inputBox">
               <p
@@ -696,6 +689,159 @@ const SignUp = ({ onSwitchRegistor }) => {
               <span>IFSC Code</span>
             </div>
           </div>
+          {/*  father mother names card */}
+          <div className="multi__input__card">
+            <div className="inputBox">
+              <p
+                style={{
+                  visibility: "visible",
+                  color: "#f58b76",
+                }}
+              >
+                {formErrors.fatherName ? formErrors.fatherName : "."}
+              </p>
+              <input
+                onChange={usernameChange}
+                type="text"
+                name="fatherName"
+                required="required"
+                value={user.fatherName}
+              />
+              <span>Father Name</span>
+            </div>
+            <div className="inputBox">
+              <p
+                style={{
+                  visibility: "visible",
+                  color: "#f58b76",
+                }}
+              >
+                {formErrors.motherName ? formErrors.motherName : "."}
+              </p>
+              <input
+                onChange={usernameChange}
+                type="text"
+                name="motherName"
+                required="required"
+                value={user.motherName}
+              />
+              <span>Mother Name</span>
+            </div>
+          </div>
+          {/* father mother names card end */}
+          {/* date of registrations and pincode card */}
+          <div className="multi__input__card">
+            <div className="inputBox">
+              <p
+                style={{
+                  visibility: "visible",
+                  color: "#f58b76",
+                }}
+              >
+                {formErrors.password ? formErrors.password : "."}
+              </p>
+              <input
+                onChange={usernameChange}
+                type="text"
+                required="required"
+                name="password"
+                value={user.password}
+              />
+              <span>Password</span>
+            </div>
+            <div className="inputBox">
+              <p
+                style={{
+                  visibility: "visible",
+                  color: "#f58b76",
+                }}
+              >
+                {formErrors.pinCode ? formErrors.pinCode : "."}
+              </p>
+              <input
+                onChange={usernameChange}
+                type="text"
+                name="pinCode"
+                required="required"
+                value={user.pinCode}
+              />
+              <span>PIN Code</span>
+            </div>
+          </div>
+          {/* date of registrations and pincode end */}
+          {/* SET THE ADDRESS  */}
+          <div className="multi__input__card__file">
+            <div className="file__image__preview__card">
+              <div className="file__input__box">
+                <p
+                  style={{
+                    visibility: "visible",
+                    color: "#f58b76",
+                  }}
+                >
+                  {formErrors.profilePic ? formErrors.profilePic : "."}
+                </p>
+
+                <input
+                  type="file"
+                  accept="image/png, image/jpeg"
+                  onChange={onPrfilePic}
+                />
+                <span>Profile Pic</span>
+              </div>
+              <div className="multi__input__card ">
+                {user.profilePic ? (
+                  <img src={user.profilePic} alt="" />
+                ) : (
+                  <img src="" alt="" />
+                )}
+              </div>
+            </div>
+            <div className="file__image__preview__card">
+              <div className="file__input__box">
+                <p
+                  style={{
+                    visibility: "visible",
+                    color: "#f58b76",
+                  }}
+                >
+                  {formErrors.dateOfRegister ? formErrors.dateOfRegister : "."}
+                </p>
+                <input
+                  type="date"
+                  onChange={usernameChange}
+                  name="dateOfRegister"
+                  // required="required"
+                  value={user.dateOfRegister}
+                />
+
+                <span>Date of Registration</span>
+              </div>
+            </div>
+          </div>
+          <div className="text__are__card">
+            <p
+              style={{
+                visibility: "visible",
+                color: "#f58b76",
+              }}
+            >
+              {formErrors.address ? formErrors.address : "."}
+            </p>
+
+            <textarea
+              cols="50"
+              placeholder="Enter Your Address"
+              rows="5"
+              required="required"
+              onChange={usernameChange}
+              name="address"
+              value={user.address}
+            ></textarea>
+          </div>
+
+          {/* Bank Details */}
+
           {/* <div className="signup__as__dist__coor">
             <input
               id="role"

@@ -34,6 +34,8 @@ import AssemblyPsDetails from "./Pages/AssemblyPsDetails/AssemblyPsDetails";
 import AssemblyAssignTask from "./Pages/AssemblyAssignTask/AssemblyAssignTask";
 import AssemblyRejectedTask from "./Pages/AssemblyRejectedTask/AssemblyRejectedTask";
 import ChangeRole from "./Pages/ChangeRole/ChangeRole";
+import Profile from "./Pages/Profile/Profile";
+import DistShowUser from "./Pages/DistShowUser/DistShowUser";
 function App() {
   const UUU = useSelector((state) => state.authReducer.authData);
   // console.log(UUU);
@@ -54,14 +56,11 @@ function App() {
         <Sidebar taskAssignAdminModalOpen={taskAssignAdminModalOpen}>
           <Routes>
             {/* <Route path="/register" element={<Register />} /> */}
-
             <Route
               path="/register"
               element={UUU ? <Navigate to="/" /> : <Register />}
             />
-
             {/* <Route path="/" element={<Home />} /> */}
-
             <Route
               path="/"
               element={
@@ -82,7 +81,6 @@ function App() {
                 )
               }
             />
-
             {/* <Route
               path="/super-admin"
               element={
@@ -97,7 +95,6 @@ function App() {
                 )
               }
             /> */}
-
             <Route
               path="/upload"
               element={
@@ -112,7 +109,6 @@ function App() {
                 )
               }
             />
-
             <Route
               path="/manages"
               element={
@@ -141,7 +137,6 @@ function App() {
                 )
               }
             />
-
             <Route
               path="change/role"
               element={
@@ -156,7 +151,6 @@ function App() {
                 )
               }
             />
-
             <Route
               path="/state/assign/task"
               element={
@@ -186,7 +180,6 @@ function App() {
                 )
               }
             />
-
             <Route
               path="/rejected"
               element={
@@ -201,7 +194,6 @@ function App() {
                 )
               }
             />
-
             <Route
               path="/payment-district-coor"
               element={
@@ -216,7 +208,6 @@ function App() {
                 )
               }
             />
-
             <Route
               path="/assigntask"
               element={
@@ -245,7 +236,6 @@ function App() {
                 )
               }
             />
-
             <Route
               path="/exel/details"
               element={
@@ -260,13 +250,27 @@ function App() {
                 )
               }
             />
-
             <Route
               path="/chat"
               element={
                 UUU ? (
                   UUU?.role === "2" ? (
                     <Chart />
+                  ) : (
+                    <NotAccess />
+                  )
+                ) : (
+                  <Navigate to="/register" />
+                )
+              }
+            />
+
+            <Route
+              path="/show/user/pdf"
+              element={
+                UUU ? (
+                  UUU?.role === "2" ? (
+                    <DistShowUser />
                   ) : (
                     <NotAccess />
                   )
@@ -290,7 +294,6 @@ function App() {
                 )
               }
             />
-
             <Route
               path="/learning"
               element={
@@ -319,6 +322,20 @@ function App() {
                 )
               }
             />
+            <Route
+              path="/profile/card"
+              element={
+                UUU ? (
+                  UUU?.role === "3" ? (
+                    <Profile />
+                  ) : (
+                    <NotAccess />
+                  )
+                ) : (
+                  <Navigate to="/register" />
+                )
+              }
+            />
 
             <Route
               path="/payment"
@@ -334,7 +351,6 @@ function App() {
                 )
               }
             />
-
             <Route
               path="/certificate"
               element={
@@ -349,7 +365,6 @@ function App() {
                 )
               }
             />
-
             <Route
               path="/assemblyadmin"
               element={
@@ -378,7 +393,6 @@ function App() {
                 )
               }
             />
-
             <Route
               path="/assembly/assigntask"
               element={
@@ -393,7 +407,6 @@ function App() {
                 )
               }
             />
-
             <Route
               path="/assembly/rejected"
               element={
@@ -408,11 +421,8 @@ function App() {
                 )
               }
             />
-
             <Route path="*" element={<NotFound />} />
-
             {/* <Route path="/certificate" element={<Certificate />} /> */}
-
             {/* <Route path="/payment" element={<Payment />} /> */}
           </Routes>
         </Sidebar>
