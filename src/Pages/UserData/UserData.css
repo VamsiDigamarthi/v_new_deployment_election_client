@@ -1,0 +1,12 @@
+
+
+.user-data-main{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.user-data-main > button{
+    width: 170px;
+    height: 35px;
+}

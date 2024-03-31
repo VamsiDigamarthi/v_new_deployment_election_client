@@ -47,7 +47,7 @@ const SuperAdmin = () => {
 
   const handleFileSubmit = async (e) => {
     e.preventDefault();
-    // console.log(excelData);
+    console.log(excelData);
     setLoading(true);
     await APIS.post("/state/bulk-upload", excelData, {
       headers: headers,

@@ -207,6 +207,27 @@ export const Sidebar = ({ children, taskAssignAdminModalOpen }) => {
 
             {UUU && (
               <>
+                {UUU?.role === "4" && (
+                  <Link to="download/user" className="all__links">
+                    <div
+                      style={{
+                        background: activeTab === 4 && "#ff6f00",
+                        borderRadius: "10px",
+                      }}
+                      className="left__side__bar__icons__card"
+                    >
+                      <div onClick={() => onTabLeftSideClick(4)}>
+                        <TfiControlEject />
+                        <span>Download Users</span>
+                      </div>
+                    </div>
+                  </Link>
+                )}
+              </>
+            )}
+
+            {UUU && (
+              <>
                 {UUU?.role === "1" && (
                   <Link to="state/assign/task" className="all__links">
                     <div
@@ -418,7 +439,7 @@ export const Sidebar = ({ children, taskAssignAdminModalOpen }) => {
               </>
             )}
 
-            {UUU && (
+            {/* {UUU && (
               <>
                 {UUU?.role === "3" && (
                   <Link to="/learning" className="all__links">
@@ -437,7 +458,7 @@ export const Sidebar = ({ children, taskAssignAdminModalOpen }) => {
                   </Link>
                 )}
               </>
-            )}
+            )} */}
 
             {UUU && (
               <>

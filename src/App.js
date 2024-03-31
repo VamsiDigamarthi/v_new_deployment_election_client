@@ -36,6 +36,7 @@ import AssemblyRejectedTask from "./Pages/AssemblyRejectedTask/AssemblyRejectedT
 import ChangeRole from "./Pages/ChangeRole/ChangeRole";
 import Profile from "./Pages/Profile/Profile";
 import DistShowUser from "./Pages/DistShowUser/DistShowUser";
+import UserData from "./Pages/UserData/UserData";
 function App() {
   const UUU = useSelector((state) => state.authReducer.authData);
   // console.log(UUU);
@@ -143,6 +144,20 @@ function App() {
                 UUU ? (
                   UUU?.role === "4" ? (
                     <ChangeRole />
+                  ) : (
+                    <NotAccess />
+                  )
+                ) : (
+                  <Navigate to="/register" />
+                )
+              }
+            />
+            <Route
+              path="download/user"
+              element={
+                UUU ? (
+                  UUU?.role === "4" ? (
+                    <UserData />
                   ) : (
                     <NotAccess />
                   )

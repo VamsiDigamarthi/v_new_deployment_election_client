@@ -36,7 +36,7 @@ const SignUp = ({ onSwitchRegistor }) => {
     bankname: "",
     fatherName: "",
     motherName: "",
-    dateOfRegister: "",
+    // dateOfRegister: "",
     pinCode: "",
     profilePic: "",
   });
@@ -87,13 +87,13 @@ const SignUp = ({ onSwitchRegistor }) => {
     } else if (!regex.test(values.email)) {
       errors.email = "This is not a valid email format!";
     }
-    if (!values.password) {
-      errors.password = "Password is required";
-    } else if (values.password.length < 4) {
-      errors.password = "Password must be more than 4 characters";
-    } else if (values.password.length > 10) {
-      errors.password = "Password cannot exceed more than 10 characters";
-    }
+    // if (!values.password) {
+    //   errors.password = "Password is required";
+    // } else if (values.password.length < 4) {
+    //   errors.password = "Password must be more than 4 characters";
+    // } else if (values.password.length > 10) {
+    //   errors.password = "Password cannot exceed more than 10 characters";
+    // }
     if (!values.dist) {
       errors.dist = "District is required!";
     }
@@ -129,25 +129,25 @@ const SignUp = ({ onSwitchRegistor }) => {
     } else if (values?.phone.length !== 10) {
       errors.phone = "phone number must be 10 characters";
     }
-    if (!values.phonepe) {
-      errors.phonepe = "phonepe number is required!";
-    } else if (!/^[0-9]{1,}$/.test(values.phonepe)) {
-      errors.phonepe = "phonepe number must be numeric characters";
-    } else if (values.phonepe.length !== 10) {
-      errors.phonepe = "phonepe number must be 10 characters";
-    }
+    // if (!values.phonepe) {
+    //   errors.phonepe = "phonepe number is required!";
+    // } else if (!/^[0-9]{1,}$/.test(values.phonepe)) {
+    //   errors.phonepe = "phonepe number must be numeric characters";
+    // } else if (values.phonepe.length !== 10) {
+    //   errors.phonepe = "phonepe number must be 10 characters";
+    // }
 
-    if (!values.bankname) {
-      errors.bankname = "Bank Name is required!";
-    }
-    if (!values.banknumber) {
-      errors.banknumber = "Bank Number is required!";
-    } else if (!/^[0-9]{1,}$/.test(values?.banknumber)) {
-      errors.banknumber = "bank number must be numeric characters";
-    }
-    if (!values.IFSC) {
-      errors.IFSC = "IFSC Number is required!";
-    }
+    // if (!values.bankname) {
+    //   errors.bankname = "Bank Name is required!";
+    // }
+    // if (!values.banknumber) {
+    //   errors.banknumber = "Bank Number is required!";
+    // } else if (!/^[0-9]{1,}$/.test(values?.banknumber)) {
+    //   errors.banknumber = "bank number must be numeric characters";
+    // }
+    // if (!values.IFSC) {
+    //   errors.IFSC = "IFSC Number is required!";
+    // }
     // father name
 
     if (!values.fatherName) {
@@ -161,9 +161,9 @@ const SignUp = ({ onSwitchRegistor }) => {
     } else if (!name.test(values.motherName)) {
       errors.motherName = "Mother Name shold containe only charaters";
     }
-    if (!values.dateOfRegister) {
-      errors.dateOfRegister = "Date Of Registration is required!";
-    }
+    // if (!values.dateOfRegister) {
+    //   errors.dateOfRegister = "Date Of Registration is required!";
+    // }
 
     if (!values.pinCode) {
       errors.pinCode = "PIN Code is required!";
@@ -200,6 +200,8 @@ const SignUp = ({ onSwitchRegistor }) => {
   }, [user.dist]);
 
   useEffect(() => {
+    console.log("ghj")
+    console.log(formErrors)
     if (Object.keys(formErrors).length === 0 && gg) {
       APIS.post(
         "/auth/new-sign",
@@ -216,7 +218,9 @@ const SignUp = ({ onSwitchRegistor }) => {
           errorMsgApi(e?.response?.data?.msg);
         });
 
-      // APIS.post("/auth/register", user, { headers: headers })
+      // console.log("login")
+
+      // APIS.post("/auth/register", {...user,dateOfRegister :  new Date().toString().slice(0,16)}, { headers: headers })
       //   .then((res) => {
       //     console.log(res.data);
       //   })
@@ -231,7 +235,7 @@ const SignUp = ({ onSwitchRegistor }) => {
 
   const onSubmitRegisterDataFn = (e) => {
     e.preventDefault();
-    // console.log(user);
+   
     setFormErrors(validate(user));
     setIsSubmit(true);
     setGg(true);
@@ -239,7 +243,7 @@ const SignUp = ({ onSwitchRegistor }) => {
 
   // submitted otp from signup user if otp is valid
   const onSubmitOtpFunc = () => {
-    APIS.post("/auth/verify-otp", user, { headers: headers })
+    APIS.post("/auth/verify-otp", {...user,dateOfRegister :  new Date().toString().slice(0,16)}, { headers: headers })
       .then(() => {
         registorSucces();
         setSendOtpUiDesign(false);
@@ -267,7 +271,7 @@ const SignUp = ({ onSwitchRegistor }) => {
           pinCode: "",
           profilePic: "",
         });
-        onSwitchRegistor({ phone: user.phone });
+        // onSwitchRegistor({ phone: user.phone });
       })
       .catch((e) => {
         console.log(e?.response?.data?.msg);
@@ -395,6 +399,7 @@ const SignUp = ({ onSwitchRegistor }) => {
             pauseOnHover
             theme="light"
           />
+          <h3>Personal Details</h3>
           {/* user name and email set input field */}
           <div className="multi__input__card">
             <div className="inputBox">
@@ -546,17 +551,18 @@ const SignUp = ({ onSwitchRegistor }) => {
                   color: "#f58b76",
                 }}
               >
-                {formErrors.phonepe ? formErrors.phonepe : "."}
+                {formErrors.mandal ? formErrors.mandal : "."}
               </p>
               <input
                 onChange={usernameChange}
                 type="text"
                 required="required"
-                name="phonepe"
-                value={user.phonepe}
+                name="mandal"
+                value={user.mandal}
               />
-              <span>UPI Number</span>
+              <span>Nearest PS/Location</span>
             </div>
+            
           </div>
           {/* ADHAR CARD FRONT AND BACK SIDE IMAGES UPLOADED  */}
           <div className="multi__input__card__file">
@@ -613,83 +619,74 @@ const SignUp = ({ onSwitchRegistor }) => {
               </div>
             </div>
           </div>
+         
           <div className="multi__input__card">
-            <div className="inputBox">
+            {/* <div className="inputBox">
               <p
                 style={{
                   visibility: "visible",
                   color: "#f58b76",
                 }}
               >
-                {formErrors.mandal ? formErrors.mandal : "."}
+                {formErrors.password ? formErrors.password : "."}
               </p>
               <input
                 onChange={usernameChange}
                 type="text"
                 required="required"
-                name="mandal"
-                value={user.mandal}
+                name="password"
+                value={user.password}
               />
-              <span>Mandal</span>
+              <span>Password</span>
+            </div> */}
+            <div className="file__image__preview__card">
+              <div className="file__input__box">
+                <p
+                  style={{
+                    visibility: "visible",
+                    color: "#f58b76",
+                  }}
+                >
+                  {formErrors.profilePic ? formErrors.profilePic : "."}
+                </p>
+
+                <input
+                  type="file"
+                  accept="image/png, image/jpeg"
+                  onChange={onPrfilePic}
+                />
+                <span>Profile Pic</span>
+              </div>
+              <div className="multi__input__card ">
+                {user.profilePic ? (
+                  <img src={user.profilePic} alt="" />
+                ) : (
+                  <img src="" alt="" />
+                )}
+              </div>
             </div>
-            <div className="inputBox">
+            <div className="inputBox" style={{
+              alignSelf : "flex-start"
+            }}>
               <p
                 style={{
                   visibility: "visible",
                   color: "#f58b76",
                 }}
               >
-                {formErrors.bankname ? formErrors.bankname : "."}
+                {formErrors.pinCode ? formErrors.pinCode : "."}
               </p>
               <input
                 onChange={usernameChange}
                 type="text"
-                name="bankname"
+                name="pinCode"
                 required="required"
-                value={user.bankname}
+                value={user.pinCode}
               />
-              <span>Enter Your Bank Name</span>
+              <span>PIN Code</span>
             </div>
           </div>
-          <div className="multi__input__card">
-            <div className="inputBox">
-              <p
-                style={{
-                  visibility: "visible",
-                  color: "#f58b76",
-                }}
-              >
-                {formErrors.banknumber ? formErrors.banknumber : "."}
-              </p>
-              <input
-                onChange={usernameChange}
-                type="text"
-                name="banknumber"
-                required="required"
-                value={user.banknumber}
-              />
-              <span>Enter Your Bank Number</span>
-            </div>
-            <div className="inputBox">
-              <p
-                style={{
-                  visibility: "visible",
-                  color: "#f58b76",
-                }}
-              >
-                {formErrors.IFSC ? formErrors.IFSC : "."}
-              </p>
-              <input
-                onChange={usernameChange}
-                type="text"
-                name="IFSC"
-                required="required"
-                value={user.IFSC}
-              />
-              <span>IFSC Code</span>
-            </div>
-          </div>
-          {/*  father mother names card */}
+          
           <div className="multi__input__card">
             <div className="inputBox">
               <p
@@ -728,8 +725,29 @@ const SignUp = ({ onSwitchRegistor }) => {
               <span>Mother Name</span>
             </div>
           </div>
-          {/* father mother names card end */}
-          {/* date of registrations and pincode card */}
+          <div className="text__are__card">
+            <p
+              style={{
+                visibility: "visible",
+                color: "#f58b76",
+              }}
+            >
+              {formErrors.address ? formErrors.address : "."}
+            </p>
+
+            <textarea
+              cols="50"
+              placeholder="Enter Your Address"
+              rows="5"
+              required="required"
+              onChange={usernameChange}
+              name="address"
+              value={user.address}
+            ></textarea>
+          </div>
+          <h3>
+            Bank Details
+          </h3>
           <div className="multi__input__card">
             <div className="inputBox">
               <p
@@ -738,16 +756,16 @@ const SignUp = ({ onSwitchRegistor }) => {
                   color: "#f58b76",
                 }}
               >
-                {formErrors.password ? formErrors.password : "."}
+                {formErrors.banknumber ? formErrors.banknumber : "."}
               </p>
               <input
                 onChange={usernameChange}
                 type="text"
+                name="banknumber"
                 required="required"
-                name="password"
-                value={user.password}
+                value={user.banknumber}
               />
-              <span>Password</span>
+              <span>Enter Your Bank Number</span>
             </div>
             <div className="inputBox">
               <p
@@ -756,21 +774,64 @@ const SignUp = ({ onSwitchRegistor }) => {
                   color: "#f58b76",
                 }}
               >
-                {formErrors.pinCode ? formErrors.pinCode : "."}
+                {formErrors.IFSC ? formErrors.IFSC : "."}
               </p>
               <input
                 onChange={usernameChange}
                 type="text"
-                name="pinCode"
+                name="IFSC"
                 required="required"
-                value={user.pinCode}
+                value={user.IFSC}
               />
-              <span>PIN Code</span>
+              <span>IFSC Code</span>
             </div>
           </div>
+          <div className="multi__input__card">
+           <div className="inputBox">
+              <p
+                style={{
+                  visibility: "visible",
+                  color: "#f58b76",
+                }}
+              >
+                {formErrors.phonepe ? formErrors.phonepe : "."}
+              </p>
+              <input
+                onChange={usernameChange}
+                type="text"
+                required="required"
+                name="phonepe"
+                value={user.phonepe}
+              />
+              <span>UPI Number</span>
+            </div>
+            <div className="inputBox">
+              <p
+                style={{
+                  visibility: "visible",
+                  color: "#f58b76",
+                }}
+              >
+                {formErrors.bankname ? formErrors.bankname : "."}
+              </p>
+              <input
+                onChange={usernameChange}
+                type="text"
+                name="bankname"
+                required="required"
+                value={user.bankname}
+              />
+              <span>Enter Your Bank Name</span>
+            </div>
+          </div>
+          {/*  father mother names card */}
+         
+          {/* father mother names card end */}
+          {/* date of registrations and pincode card */}
+          
           {/* date of registrations and pincode end */}
           {/* SET THE ADDRESS  */}
-          <div className="multi__input__card__file">
+          {/* <div className="multi__input__card__file">
             <div className="file__image__preview__card">
               <div className="file__input__box">
                 <p
@@ -818,27 +879,8 @@ const SignUp = ({ onSwitchRegistor }) => {
                 <span>Date of Registration</span>
               </div>
             </div>
-          </div>
-          <div className="text__are__card">
-            <p
-              style={{
-                visibility: "visible",
-                color: "#f58b76",
-              }}
-            >
-              {formErrors.address ? formErrors.address : "."}
-            </p>
-
-            <textarea
-              cols="50"
-              placeholder="Enter Your Address"
-              rows="5"
-              required="required"
-              onChange={usernameChange}
-              name="address"
-              value={user.address}
-            ></textarea>
-          </div>
+          </div> */}
+         
 
           {/* Bank Details */}
 
