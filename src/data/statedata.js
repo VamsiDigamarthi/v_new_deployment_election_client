@@ -92,13 +92,13 @@ export const stateWiseData = [
         name: "Baksa",
       },
       {
-        name: "07-Barpeta",
+        name: "Barpeta",
       },
       {
         name: "Bijni",
       },
       {
-        name: "BILASIPARA",
+        name: "Bilasipara",
       },
       {
         name: "Biswanath",
@@ -106,6 +106,7 @@ export const stateWiseData = [
       {
         name: "Bokajan",
       },
+
       {
         name: "Bokakhat",
       },
@@ -122,7 +123,7 @@ export const stateWiseData = [
         name: "Chirang",
       },
       {
-        name: "DARRANG",
+        name: "Darrang",
       },
       {
         name: "Dhakuakhana",
@@ -149,7 +150,7 @@ export const stateWiseData = [
         name: "Gohpur",
       },
       {
-        name: "GOLAGHAT",
+        name: "Golaghat",
       },
       {
         name: "Gossaigaon",
@@ -161,25 +162,25 @@ export const stateWiseData = [
         name: "Hojai",
       },
       {
-        name: "JONAI Election District",
+        name: "Jonai",
       },
       {
-        name: "JORHAT",
+        name: "Jorhat",
       },
       {
         name: "Kaliabor",
       },
       {
-        name: "Kamrup (Metro)",
+        name: "Kamrup",
       },
       {
-        name: "Kamrup",
+        name: "Kamrup Metro",
       },
       {
         name: "Karbi Anglong",
       },
       {
-        name: "KARIMGANJ",
+        name: "Karimganj",
       },
       {
         name: "Kokrajhar",
@@ -191,13 +192,13 @@ export const stateWiseData = [
         name: "Majuli",
       },
       {
-        name: "Tinsukia",
+        name: "Margherita",
       },
       {
         name: "Morigaon",
       },
       {
-        name: "NAGAON",
+        name: "Nagaon",
       },
       {
         name: "Nalbari",
@@ -215,7 +216,7 @@ export const stateWiseData = [
         name: "Sadiya",
       },
       {
-        name: "Sivasagar",
+        name: "Sibsagar",
       },
       {
         name: "Sonitpur",
@@ -233,337 +234,493 @@ export const stateWiseData = [
         name: "Udalguri",
       },
       {
-        name: "West Karbi Anglong",
+        name: "West Kari Anglong",
       },
+      
     ],
   },
-  {
-    state: "Telangana",
-    dist: [
-      {
-        name: "Adilabad",
-      },
-      {
-        name: "Kumuram Bheem Asifabad",
-      },
-      {
-        name: "Mancherial",
-      },
-      {
-        name: "Nirmal",
-      },
-      {
-        name: "Nizamabad",
-      },
-      {
-        name: "Jagtial",
-      },
-      {
-        name: "Peddapalli",
-      },
-      {
-        name: "Kamareddy",
-      },
-      {
-        name: "Rajanna Sircilla",
-      },
-      {
-        name: "Karimnagar",
-      },
-      {
-        name: "Jayashankar Bhupalpally",
-      },
-      {
-        name: "Sangareddy",
-      },
-      {
-        name: "Medak",
-      },
-      {
-        name: "Siddipet",
-      },
-      {
-        name: "Jangaon",
-      },
-      {
-        name: "Hanamkonda",
-      },
-      {
-        name: "Warangal",
-      },
-      {
-        name: "Mulugu",
-      },
-      {
-        name: "Bhadradri kothagudem",
-      },
-      {
-        name: "Khammam",
-      },
-      {
-        name: "Mahabubabad",
-      },
-      {
-        name: "Suryapet",
-      },
-      {
-        name: "Nalgonda",
-      },
-      {
-        name: "Yadadri Bhuvanagiri[",
-      },
-      {
-        name: "Medchal–Malkajgiri",
-      },
-      {
-        name: "Hyderabad",
-      },
-      {
-        name: "Ranga Reddy",
-      },
-      {
-        name: "Vikarabad",
-      },
-      {
-        name: "Narayanpet",
-      },
-      {
-        name: "Mahabubnagar",
-      },
-      {
-        name: "Nagarkurnool",
-      },
-      {
-        name: "Wanaparthy",
-      },
-      {
-        name: "Jogulamba Gadwal",
-      },
-      {
-        name: "",
-      },
-    ],
-  },
-  {
-    state: "Tamil Nadu",
-    dist: [
-      {
-        name: "Ariyalur",
-      },
-      {
-        name: "Chengalpattu",
-      },
-      {
-        name: "Chennai",
-      },
-      {
-        name: "Coimbatore",
-      },
-      {
-        name: "Cuddalore",
-      },
-      {
-        name: "Dharmapuri",
-      },
-      {
-        name: "Dindigul",
-      },
-      {
-        name: "Erode",
-      },
-      {
-        name: "Kallakurichi",
-      },
-      {
-        name: "Kanchipuram",
-      },
-      {
-        name: "Kanniyakumari",
-      },
-      {
-        name: "Karur",
-      },
-      {
-        name: "Krishnagiri",
-      },
-      {
-        name: "Madurai",
-      },
-      {
-        name: "Mayiladuthurai",
-      },
-      {
-        name: "Nagapattinam",
-      },
-      {
-        name: "Namakkal",
-      },
-      {
-        name: "Nilgiris",
-      },
-      {
-        name: "Perambalur",
-      },
-      {
-        name: "Pudukkottai",
-      },
-      {
-        name: "Ramanathapuram",
-      },
-      {
-        name: "Ranipet",
-      },
-      {
-        name: "Salem",
-      },
-      {
-        name: "Sivaganga",
-      },
-      {
-        name: "Tenkasi",
-      },
-      {
-        name: "Thanjavur",
-      },
-      {
-        name: "Theni",
-      },
-      {
-        name: "Thoothukudi",
-      },
-      {
-        name: "Tiruchirappalli",
-      },
-      {
-        name: "Tirunelveli",
-      },
-      {
-        name: "Tirupathur",
-      },
-      {
-        name: "Tiruppur",
-      },
-      {
-        name: "Tiruvallur",
-      },
-      {
-        name: "Tiruvannamalai",
-      },
-      {
-        name: "Tiruvarur",
-      },
-      {
-        name: "Vellore",
-      },
-      {
-        name: "Viluppuram",
-      },
-      {
-        name: "Virudhunagar	",
-      },
-      {
-        name: "",
-      },
-    ],
-  },
-  {
-    state: "Karnataka",
-    dist: [
-      {
-        name: "Bagalkote",
-      },
-      {
-        name: "Bengaluru Urban",
-      },
-      {
-        name: "Bengaluru Rural",
-      },
-      {
-        name: "Belagavi",
-      },
-      {
-        name: "Ballari",
-      },
-      {
-        name: "Bidar",
-      },
-      {
-        name: "Vijayapura",
-      },
-      {
-        name: "Chamarajanagar",
-      },
-      {
-        name: "Chikkaballapura",
-      },
-      {
-        name: "Chikkamagaluru",
-      },
-      {
-        name: "Chitradurga",
-      },
-      {
-        name: "Dakshina Kannada",
-      },
-      {
-        name: "Davanagere",
-      },
-      {
-        name: "Dharwad",
-      },
-      {
-        name: "Gadag",
-      },
-      {
-        name: "Kalaburagi",
-      },
-      {
-        name: "Hassan",
-      },
-      {
-        name: "Haveri",
-      },
-      {
-        name: "Kodagu",
-      },
-      {
-        name: "Kolar",
-      },
-      {
-        name: "Koppal",
-      },
-      {
-        name: "Mandya",
-      },
-      {
-        name: "Mysuru",
-      },
-      {
-        name: "Raichur",
-      },
-      {
-        name: "Ramanagara",
-      },
-      {
-        name: "Shivamogga",
-      },
-      {
-        name: "Tumakuru",
-      },
-      {
-        name: "Udupi",
-      },
-      {
-        name: "Uttara Kannada",
-      },
-      {
-        name: "Vijayanagara",
-      },
-      {
-        name: "Yadgiri",
-      },
-    ],
-  },
+  // {
+  //   state: "Assam",
+  //   dist: [
+  //     {
+  //       name: "Bajali",
+  //     },
+  //     {
+  //       name: "Baksa",
+  //     },
+  //     {
+  //       name: "07-Barpeta",
+  //     },
+  //     {
+  //       name: "Bijni",
+  //     },
+  //     {
+  //       name: "BILASIPARA",
+  //     },
+  //     {
+  //       name: "Biswanath",
+  //     },
+  //     {
+  //       name: "Bokajan",
+  //     },
+  //     {
+  //       name: "Bokakhat",
+  //     },
+  //     {
+  //       name: "Bongaigaon",
+  //     },
+  //     {
+  //       name: "Cachar",
+  //     },
+  //     {
+  //       name: "Charaideo",
+  //     },
+  //     {
+  //       name: "Chirang",
+  //     },
+  //     {
+  //       name: "DARRANG",
+  //     },
+  //     {
+  //       name: "Dhakuakhana",
+  //     },
+  //     {
+  //       name: "Dhansiri",
+  //     },
+  //     {
+  //       name: "Dhemaji",
+  //     },
+  //     {
+  //       name: "Dhubri",
+  //     },
+  //     {
+  //       name: "Dibrugarh",
+  //     },
+  //     {
+  //       name: "Dima Hasao",
+  //     },
+  //     {
+  //       name: "Goalpara",
+  //     },
+  //     {
+  //       name: "Gohpur",
+  //     },
+  //     {
+  //       name: "GOLAGHAT",
+  //     },
+  //     {
+  //       name: "Gossaigaon",
+  //     },
+  //     {
+  //       name: "Hailakandi",
+  //     },
+  //     {
+  //       name: "Hojai",
+  //     },
+  //     {
+  //       name: "JONAI Election District",
+  //     },
+  //     {
+  //       name: "JORHAT",
+  //     },
+  //     {
+  //       name: "Kaliabor",
+  //     },
+  //     {
+  //       name: "Kamrup (Metro)",
+  //     },
+  //     {
+  //       name: "Kamrup",
+  //     },
+  //     {
+  //       name: "Karbi Anglong",
+  //     },
+  //     {
+  //       name: "KARIMGANJ",
+  //     },
+  //     {
+  //       name: "Kokrajhar",
+  //     },
+  //     {
+  //       name: "Lakhimpur",
+  //     },
+  //     {
+  //       name: "Majuli",
+  //     },
+  //     {
+  //       name: "Tinsukia",
+  //     },
+  //     {
+  //       name: "Morigaon",
+  //     },
+  //     {
+  //       name: "NAGAON",
+  //     },
+  //     {
+  //       name: "Nalbari",
+  //     },
+  //     {
+  //       name: "Nazira",
+  //     },
+  //     {
+  //       name: "North Salmara",
+  //     },
+  //     {
+  //       name: "Rangia",
+  //     },
+  //     {
+  //       name: "Sadiya",
+  //     },
+  //     {
+  //       name: "Sivasagar",
+  //     },
+  //     {
+  //       name: "Sonitpur",
+  //     },
+  //     {
+  //       name: "South Salmara",
+  //     },
+  //     {
+  //       name: "Tinsukia",
+  //     },
+  //     {
+  //       name: "Titabor",
+  //     },
+  //     {
+  //       name: "Udalguri",
+  //     },
+  //     {
+  //       name: "West Karbi Anglong",
+  //     },
+  //   ],
+  // },
+  // {
+  //   state: "Telangana",
+  //   dist: [
+  //     {
+  //       name: "Adilabad",
+  //     },
+  //     {
+  //       name: "Kumuram Bheem Asifabad",
+  //     },
+  //     {
+  //       name: "Mancherial",
+  //     },
+  //     {
+  //       name: "Nirmal",
+  //     },
+  //     {
+  //       name: "Nizamabad",
+  //     },
+  //     {
+  //       name: "Jagtial",
+  //     },
+  //     {
+  //       name: "Peddapalli",
+  //     },
+  //     {
+  //       name: "Kamareddy",
+  //     },
+  //     {
+  //       name: "Rajanna Sircilla",
+  //     },
+  //     {
+  //       name: "Karimnagar",
+  //     },
+  //     {
+  //       name: "Jayashankar Bhupalpally",
+  //     },
+  //     {
+  //       name: "Sangareddy",
+  //     },
+  //     {
+  //       name: "Medak",
+  //     },
+  //     {
+  //       name: "Siddipet",
+  //     },
+  //     {
+  //       name: "Jangaon",
+  //     },
+  //     {
+  //       name: "Hanamkonda",
+  //     },
+  //     {
+  //       name: "Warangal",
+  //     },
+  //     {
+  //       name: "Mulugu",
+  //     },
+  //     {
+  //       name: "Bhadradri kothagudem",
+  //     },
+  //     {
+  //       name: "Khammam",
+  //     },
+  //     {
+  //       name: "Mahabubabad",
+  //     },
+  //     {
+  //       name: "Suryapet",
+  //     },
+  //     {
+  //       name: "Nalgonda",
+  //     },
+  //     {
+  //       name: "Yadadri Bhuvanagiri[",
+  //     },
+  //     {
+  //       name: "Medchal–Malkajgiri",
+  //     },
+  //     {
+  //       name: "Hyderabad",
+  //     },
+  //     {
+  //       name: "Ranga Reddy",
+  //     },
+  //     {
+  //       name: "Vikarabad",
+  //     },
+  //     {
+  //       name: "Narayanpet",
+  //     },
+  //     {
+  //       name: "Mahabubnagar",
+  //     },
+  //     {
+  //       name: "Nagarkurnool",
+  //     },
+  //     {
+  //       name: "Wanaparthy",
+  //     },
+  //     {
+  //       name: "Jogulamba Gadwal",
+  //     },
+  //     {
+  //       name: "",
+  //     },
+  //   ],
+  // },
+  // {
+  //   state: "Tamil Nadu",
+  //   dist: [
+  //     {
+  //       name: "Ariyalur",
+  //     },
+  //     {
+  //       name: "Chengalpattu",
+  //     },
+  //     {
+  //       name: "Chennai",
+  //     },
+  //     {
+  //       name: "Coimbatore",
+  //     },
+  //     {
+  //       name: "Cuddalore",
+  //     },
+  //     {
+  //       name: "Dharmapuri",
+  //     },
+  //     {
+  //       name: "Dindigul",
+  //     },
+  //     {
+  //       name: "Erode",
+  //     },
+  //     {
+  //       name: "Kallakurichi",
+  //     },
+  //     {
+  //       name: "Kanchipuram",
+  //     },
+  //     {
+  //       name: "Kanniyakumari",
+  //     },
+  //     {
+  //       name: "Karur",
+  //     },
+  //     {
+  //       name: "Krishnagiri",
+  //     },
+  //     {
+  //       name: "Madurai",
+  //     },
+  //     {
+  //       name: "Mayiladuthurai",
+  //     },
+  //     {
+  //       name: "Nagapattinam",
+  //     },
+  //     {
+  //       name: "Namakkal",
+  //     },
+  //     {
+  //       name: "Nilgiris",
+  //     },
+  //     {
+  //       name: "Perambalur",
+  //     },
+  //     {
+  //       name: "Pudukkottai",
+  //     },
+  //     {
+  //       name: "Ramanathapuram",
+  //     },
+  //     {
+  //       name: "Ranipet",
+  //     },
+  //     {
+  //       name: "Salem",
+  //     },
+  //     {
+  //       name: "Sivaganga",
+  //     },
+  //     {
+  //       name: "Tenkasi",
+  //     },
+  //     {
+  //       name: "Thanjavur",
+  //     },
+  //     {
+  //       name: "Theni",
+  //     },
+  //     {
+  //       name: "Thoothukudi",
+  //     },
+  //     {
+  //       name: "Tiruchirappalli",
+  //     },
+  //     {
+  //       name: "Tirunelveli",
+  //     },
+  //     {
+  //       name: "Tirupathur",
+  //     },
+  //     {
+  //       name: "Tiruppur",
+  //     },
+  //     {
+  //       name: "Tiruvallur",
+  //     },
+  //     {
+  //       name: "Tiruvannamalai",
+  //     },
+  //     {
+  //       name: "Tiruvarur",
+  //     },
+  //     {
+  //       name: "Vellore",
+  //     },
+  //     {
+  //       name: "Viluppuram",
+  //     },
+  //     {
+  //       name: "Virudhunagar	",
+  //     },
+  //     {
+  //       name: "",
+  //     },
+  //   ],
+  // },
+  // {
+  //   state: "Karnataka",
+  //   dist: [
+  //     {
+  //       name: "Bagalkote",
+  //     },
+  //     {
+  //       name: "Bengaluru Urban",
+  //     },
+  //     {
+  //       name: "Bengaluru Rural",
+  //     },
+  //     {
+  //       name: "Belagavi",
+  //     },
+  //     {
+  //       name: "Ballari",
+  //     },
+  //     {
+  //       name: "Bidar",
+  //     },
+  //     {
+  //       name: "Vijayapura",
+  //     },
+  //     {
+  //       name: "Chamarajanagar",
+  //     },
+  //     {
+  //       name: "Chikkaballapura",
+  //     },
+  //     {
+  //       name: "Chikkamagaluru",
+  //     },
+  //     {
+  //       name: "Chitradurga",
+  //     },
+  //     {
+  //       name: "Dakshina Kannada",
+  //     },
+  //     {
+  //       name: "Davanagere",
+  //     },
+  //     {
+  //       name: "Dharwad",
+  //     },
+  //     {
+  //       name: "Gadag",
+  //     },
+  //     {
+  //       name: "Kalaburagi",
+  //     },
+  //     {
+  //       name: "Hassan",
+  //     },
+  //     {
+  //       name: "Haveri",
+  //     },
+  //     {
+  //       name: "Kodagu",
+  //     },
+  //     {
+  //       name: "Kolar",
+  //     },
+  //     {
+  //       name: "Koppal",
+  //     },
+  //     {
+  //       name: "Mandya",
+  //     },
+  //     {
+  //       name: "Mysuru",
+  //     },
+  //     {
+  //       name: "Raichur",
+  //     },
+  //     {
+  //       name: "Ramanagara",
+  //     },
+  //     {
+  //       name: "Shivamogga",
+  //     },
+  //     {
+  //       name: "Tumakuru",
+  //     },
+  //     {
+  //       name: "Udupi",
+  //     },
+  //     {
+  //       name: "Uttara Kannada",
+  //     },
+  //     {
+  //       name: "Vijayanagara",
+  //     },
+  //     {
+  //       name: "Yadgiri",
+  //     },
+  //   ],
+  // },
 ];
 
 export const mandalsData = [

@@ -39,6 +39,7 @@ const SignUp = ({ onSwitchRegistor }) => {
     // dateOfRegister: "",
     pinCode: "",
     profilePic: "",
+    branchName:"",
   });
 
   // console.log(user);
@@ -235,7 +236,7 @@ const SignUp = ({ onSwitchRegistor }) => {
 
   const onSubmitRegisterDataFn = (e) => {
     e.preventDefault();
-   
+
     setFormErrors(validate(user));
     setIsSubmit(true);
     setGg(true);
@@ -243,7 +244,7 @@ const SignUp = ({ onSwitchRegistor }) => {
 
   // submitted otp from signup user if otp is valid
   const onSubmitOtpFunc = () => {
-    APIS.post("/auth/verify-otp", {...user,dateOfRegister :  new Date().toString().slice(0,16)}, { headers: headers })
+    APIS.post("/auth/verify-otp", { ...user, dateOfRegister: new Date().toString().slice(0, 16) }, { headers: headers })
       .then(() => {
         registorSucces();
         setSendOtpUiDesign(false);
@@ -270,6 +271,7 @@ const SignUp = ({ onSwitchRegistor }) => {
           dateOfRegister: "",
           pinCode: "",
           profilePic: "",
+          branchName:"",
         });
         // onSwitchRegistor({ phone: user.phone });
       })
@@ -439,8 +441,65 @@ const SignUp = ({ onSwitchRegistor }) => {
               <span>Email</span>
             </div>
           </div>
-          {/* state and district set selected field */}
           <div className="multi__input__card">
+            <div className="inputBox">
+              <p
+                style={{
+                  visibility: "visible",
+                  color: "#f58b76",
+                }}
+              >
+                {formErrors.phone ? formErrors.phone : "."}
+              </p>
+              <input
+                onChange={usernameChange}
+                type="text"
+                name="phone"
+                required="required"
+                value={user.phone}
+              />
+              <span>Phone Number</span>
+            </div>
+
+            <div className="inputBox">
+              <p
+                style={{
+                  visibility: "visible",
+                  color: "#f58b76",
+                }}
+              >
+                {formErrors.fatherName ? formErrors.fatherName : "."}
+              </p>
+              <input
+                onChange={usernameChange}
+                type="text"
+                name="fatherName"
+                required="required"
+                value={user.fatherName}
+              />
+              <span>Father Name</span>
+            </div>
+          </div>
+
+          <div className="multi__input__card">
+            <div className="inputBox">
+              <p
+                style={{
+                  visibility: "visible",
+                  color: "#f58b76",
+                }}
+              >
+                {formErrors.motherName ? formErrors.motherName : "."}
+              </p>
+              <input
+                onChange={usernameChange}
+                type="text"
+                name="motherName"
+                required="required"
+                value={user.motherName}
+              />
+              <span>Mother Name</span>
+            </div>
             <div className="inputBox">
               <p
                 style={{
@@ -461,6 +520,10 @@ const SignUp = ({ onSwitchRegistor }) => {
                 ))}
               </select>
             </div>
+          </div>
+          {/* state and district set selected field */}
+          <div className="multi__input__card">
+
             <div className="inputBox">
               <p
                 style={{
@@ -481,10 +544,6 @@ const SignUp = ({ onSwitchRegistor }) => {
                 ))}
               </select>
             </div>
-          </div>
-          {/* Adhar number and mandal set input field */}
-
-          <div className="multi__input__card">
             <div className="inputBox">
               <p
                 style={{
@@ -505,6 +564,55 @@ const SignUp = ({ onSwitchRegistor }) => {
                 ))}
               </select>
             </div>
+          </div>
+
+          <div className="text__are__card">
+            <p
+              style={{
+                visibility: "visible",
+                color: "#f58b76",
+              }}
+            >
+              {formErrors.address ? formErrors.address : "."}
+            </p>
+
+            <textarea
+              cols="50"
+              placeholder="Enter Your Address"
+              rows="2"
+              required="required"
+              onChange={usernameChange}
+              name="address"
+              value={user.address}
+            ></textarea>
+          </div>
+
+
+
+
+          {/* Adhar number and mandal set input field */}
+
+          <div className="multi__input__card">
+            <div className="inputBox" style={{
+              alignSelf: "flex-start"
+            }}>
+              <p
+                style={{
+                  visibility: "visible",
+                  color: "#f58b76",
+                }}
+              >
+                {formErrors.pinCode ? formErrors.pinCode : "."}
+              </p>
+              <input
+                onChange={usernameChange}
+                type="text"
+                name="pinCode"
+                required="required"
+                value={user.pinCode}
+              />
+              <span>PIN Code</span>
+            </div>
             <div className="inputBox">
               <p
                 style={{
@@ -523,47 +631,10 @@ const SignUp = ({ onSwitchRegistor }) => {
               />
               <span>Adhar Number</span>
             </div>
+
           </div>
           {/* phone number and UPI number set Input Field */}
-          <div className="multi__input__card">
-            <div className="inputBox">
-              <p
-                style={{
-                  visibility: "visible",
-                  color: "#f58b76",
-                }}
-              >
-                {formErrors.phone ? formErrors.phone : "."}
-              </p>
-              <input
-                onChange={usernameChange}
-                type="text"
-                name="phone"
-                required="required"
-                value={user.phone}
-              />
-              <span>Phone Number</span>
-            </div>
-            <div className="inputBox">
-              <p
-                style={{
-                  visibility: "visible",
-                  color: "#f58b76",
-                }}
-              >
-                {formErrors.mandal ? formErrors.mandal : "."}
-              </p>
-              <input
-                onChange={usernameChange}
-                type="text"
-                required="required"
-                name="mandal"
-                value={user.mandal}
-              />
-              <span>Nearest PS/Location</span>
-            </div>
-            
-          </div>
+
           {/* ADHAR CARD FRONT AND BACK SIDE IMAGES UPLOADED  */}
           <div className="multi__input__card__file">
             <div className="file__image__preview__card">
@@ -619,7 +690,7 @@ const SignUp = ({ onSwitchRegistor }) => {
               </div>
             </div>
           </div>
-         
+
           <div className="multi__input__card">
             {/* <div className="inputBox">
               <p
@@ -666,7 +737,7 @@ const SignUp = ({ onSwitchRegistor }) => {
               </div>
             </div>
             <div className="inputBox" style={{
-              alignSelf : "flex-start"
+              alignSelf: "flex-start"
             }}>
               <p
                 style={{
@@ -674,137 +745,26 @@ const SignUp = ({ onSwitchRegistor }) => {
                   color: "#f58b76",
                 }}
               >
-                {formErrors.pinCode ? formErrors.pinCode : "."}
+                {formErrors.mandal ? formErrors.mandal : "."}
               </p>
               <input
                 onChange={usernameChange}
                 type="text"
-                name="pinCode"
                 required="required"
-                value={user.pinCode}
+                name="mandal"
+                value={user.mandal}
               />
-              <span>PIN Code</span>
+              <span>Nearest PS/Location</span>
             </div>
-          </div>
-          
-          <div className="multi__input__card">
-            <div className="inputBox">
-              <p
-                style={{
-                  visibility: "visible",
-                  color: "#f58b76",
-                }}
-              >
-                {formErrors.fatherName ? formErrors.fatherName : "."}
-              </p>
-              <input
-                onChange={usernameChange}
-                type="text"
-                name="fatherName"
-                required="required"
-                value={user.fatherName}
-              />
-              <span>Father Name</span>
-            </div>
-            <div className="inputBox">
-              <p
-                style={{
-                  visibility: "visible",
-                  color: "#f58b76",
-                }}
-              >
-                {formErrors.motherName ? formErrors.motherName : "."}
-              </p>
-              <input
-                onChange={usernameChange}
-                type="text"
-                name="motherName"
-                required="required"
-                value={user.motherName}
-              />
-              <span>Mother Name</span>
-            </div>
-          </div>
-          <div className="text__are__card">
-            <p
-              style={{
-                visibility: "visible",
-                color: "#f58b76",
-              }}
-            >
-              {formErrors.address ? formErrors.address : "."}
-            </p>
 
-            <textarea
-              cols="50"
-              placeholder="Enter Your Address"
-              rows="5"
-              required="required"
-              onChange={usernameChange}
-              name="address"
-              value={user.address}
-            ></textarea>
           </div>
+
+
+
           <h3>
-            Bank Details
+            Your  Bank Details
           </h3>
           <div className="multi__input__card">
-            <div className="inputBox">
-              <p
-                style={{
-                  visibility: "visible",
-                  color: "#f58b76",
-                }}
-              >
-                {formErrors.banknumber ? formErrors.banknumber : "."}
-              </p>
-              <input
-                onChange={usernameChange}
-                type="text"
-                name="banknumber"
-                required="required"
-                value={user.banknumber}
-              />
-              <span>Enter Your Bank Number</span>
-            </div>
-            <div className="inputBox">
-              <p
-                style={{
-                  visibility: "visible",
-                  color: "#f58b76",
-                }}
-              >
-                {formErrors.IFSC ? formErrors.IFSC : "."}
-              </p>
-              <input
-                onChange={usernameChange}
-                type="text"
-                name="IFSC"
-                required="required"
-                value={user.IFSC}
-              />
-              <span>IFSC Code</span>
-            </div>
-          </div>
-          <div className="multi__input__card">
-           <div className="inputBox">
-              <p
-                style={{
-                  visibility: "visible",
-                  color: "#f58b76",
-                }}
-              >
-                {formErrors.phonepe ? formErrors.phonepe : "."}
-              </p>
-              <input
-                onChange={usernameChange}
-                type="text"
-                required="required"
-                name="phonepe"
-                value={user.phonepe}
-              />
-              <span>UPI Number</span>
-            </div>
             <div className="inputBox">
               <p
                 style={{
@@ -823,12 +783,95 @@ const SignUp = ({ onSwitchRegistor }) => {
               />
               <span>Enter Your Bank Name</span>
             </div>
+            <div className="inputBox">
+              <p
+                style={{
+                  visibility: "visible",
+                  color: "#f58b76",
+                }}
+              >
+                {formErrors.banknumber ? formErrors.banknumber : "."}
+              </p>
+              <input
+                onChange={usernameChange}
+                type="text"
+                name="banknumber"
+                required="required"
+                value={user.banknumber}
+              />
+              <span>Enter Your Bank Number</span>
+            </div>
+
           </div>
+          <div className="multi__input__card">
+
+            <div className="inputBox">
+              <p
+                style={{
+                  visibility: "visible",
+                  color: "#f58b76",
+                }}
+              >
+                {formErrors.IFSC ? formErrors.IFSC : "."}
+              </p>
+              <input
+                onChange={usernameChange}
+                type="text"
+                name="IFSC"
+                required="required"
+                value={user.IFSC}
+              />
+              <span>IFSC Code</span>
+            </div>
+
+            <div className="inputBox">
+              <p
+                style={{
+                  visibility: "visible",
+                  color: "#f58b76",
+                }}
+              >
+                {formErrors.branchName ? formErrors.branchName : "."}
+              </p>
+              <input
+                onChange={usernameChange}
+                type="text"
+                name="branchName"
+                required="required"
+                value={user.branchName}
+              />
+              <span>Branch Name</span>
+            </div>
+
+          </div>
+
+          <div>
+            <div className="inputBox">
+              <p
+                style={{
+                  visibility: "visible",
+                  color: "#f58b76",
+                }}
+              >
+                {formErrors.phonepe ? formErrors.phonepe : "."}
+              </p>
+              <input
+                onChange={usernameChange}
+                type="text"
+                required="required"
+                name="phonepe"
+                value={user.phonepe}
+              />
+              <span>UPI Number</span>
+            </div>
+
+          </div>
+
           {/*  father mother names card */}
-         
+
           {/* father mother names card end */}
           {/* date of registrations and pincode card */}
-          
+
           {/* date of registrations and pincode end */}
           {/* SET THE ADDRESS  */}
           {/* <div className="multi__input__card__file">
@@ -880,7 +923,7 @@ const SignUp = ({ onSwitchRegistor }) => {
               </div>
             </div>
           </div> */}
-         
+
 
           {/* Bank Details */}
 
