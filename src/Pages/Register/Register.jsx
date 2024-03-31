@@ -36,7 +36,7 @@ const Register = () => {
 
             <div className="signup__tabs__card">
               <span onClick={() => setSwitchRegisterPage(0)}>Sign Up</span>
-              {/* <span onClick={() => setSwitchRegisterPage(1)}>Log In</span> */}
+              <span onClick={() => setSwitchRegisterPage(1)}>Log In</span>
             </div>
           </div>
           {/* tabs carsd */}
