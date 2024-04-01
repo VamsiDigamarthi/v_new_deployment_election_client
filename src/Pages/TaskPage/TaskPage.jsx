@@ -57,6 +57,7 @@ const TaskPage = () => {
     airtelSpped: "",
     jioSpeed: "",
     bsnlSpeed: "",
+    power : "",
   });
 
   const [showLatErrorMsg, setShowLatErrorMsg] = useState("");
@@ -80,7 +81,7 @@ const TaskPage = () => {
       headers: headers,
     })
       .then((res) => {
-        // console.log(res.data);
+        console.log(res.data);
         setTaskForUser(res.data);
       })
       .catch((e) => {
@@ -267,18 +268,19 @@ const TaskPage = () => {
     }
   };
 
-  const uploadedLogLatiSpeed = (id) => {
+  const uploadedLogLatiSpeed = (each) => {
     // console.log(latLogSpeed);
     if (
       latLogSpeed.longitude !== "" &&
       latLogSpeed.latitude !== "" &&
       latLogSpeed.airtelSpped !== "" &&
       latLogSpeed.jioSpeed !== "" &&
-      latLogSpeed.bsnlSpeed !== ""
+      latLogSpeed.bsnlSpeed !== "" &&
+      latLogSpeed.power !== ''
     ) {
       setShowLatErrorMsg("");
       APIS.put(
-        `/user/uploaded/lon/speed/${id}`,
+        `/user/uploaded/lon/speed/${each?._id}/taskId/${each?.task_id}`,
         {
           ...latLogSpeed,
         },
@@ -294,6 +296,7 @@ const TaskPage = () => {
             airtelSpped: "",
             jioSpeed: "",
             bsnlSpeed: "",
+            power : ""
           });
         })
         .catch((e) => {
@@ -435,7 +438,7 @@ const TaskPage = () => {
                     {each.action === "accepted" ? (
                       <div className="all__image__uploaded__file__card">
                         {/* kit start card start */}
-                        <div className="kit__stared__card">
+                        {/* <div className="kit__stared__card">
                           <span className="kit__task__number">
                             Kit Received Image
                           </span>
@@ -475,11 +478,11 @@ const TaskPage = () => {
                               Upload
                             </button>
                           </div>
-                        </div>
+                        </div> */}
                         {/* kit start card start */}
                         {/*  */}
                         {/* second task start */}
-                        <div className="kit__stared__card">
+                        {/* <div className="kit__stared__card">
                           <span className="kit__task__number">
                             Installation Image , Certificate
                           </span>
@@ -516,7 +519,7 @@ const TaskPage = () => {
                               />
                             )}
                           </div>
-                          {/* inst certificate  */}
+                         
                           <div className="kit__stated__api__image__card">
                             <img
                               src={each.InstallationCertificate}
@@ -552,7 +555,6 @@ const TaskPage = () => {
                             )}
                           </div>
 
-                          {/* button */}
                           <div className="kit__image__uploaded__button__card">
                             <button
                               onClick={() =>
@@ -562,11 +564,11 @@ const TaskPage = () => {
                               Upload
                             </button>
                           </div>
-                        </div>
+                        </div> */}
                         {/* second task end */}
                         {/*  */}
                         {/* third task start */}
-                        <div className="kit__stared__card">
+                        {/* <div className="kit__stared__card">
                           <span className="kit__task__number">
                             Completed Certificate and kit Fitting
                           </span>
@@ -602,7 +604,7 @@ const TaskPage = () => {
                               />
                             )}
                           </div>
-                          {/*kit fitting  */}
+                          
                           <div className="kit__stated__api__image__card">
                             <img src={each.kit_end} alt="No kit Fitting img" />
                           </div>
@@ -634,7 +636,7 @@ const TaskPage = () => {
                             )}
                           </div>
 
-                          {/* button */}
+                         
                           <div className="kit__image__uploaded__button__card">
                             <button
                               onClick={() =>
@@ -644,7 +646,7 @@ const TaskPage = () => {
                               Upload
                             </button>
                           </div>
-                        </div>
+                        </div> */}
                         <div className="netwrok-details-main">
                           <span className="kit__task__number">
                             Network Details
@@ -676,6 +678,10 @@ const TaskPage = () => {
                                 <span>BSNL Speed</span>
                                 <span>{each.bsnlSpeed}</span>
                               </div>
+                              <div>
+                                <span>Power Availability</span>
+                                <span>{each.power}</span>
+                              </div>
                             </div>
                           ) : (
                             <>
@@ -694,26 +700,31 @@ const TaskPage = () => {
                                   name="latitude"
                                   value={latLogSpeed.latitude}
                                 />
+                                <select name="power" onChange={onSpeedChange}>
+                                  <option disabled hidden selected>Power Available</option>
+                                  <option value="Yes">Yes</option>
+                                  <option value="No">No</option>
+                                </select>
                               </div>
                               <div className="jio-speed">
                                 <input
                                   onChange={onSpeedChange}
                                   type="text"
-                                  placeholder="JIO Speed"
+                                  placeholder="JIO Speed MBPS"
                                   name="jioSpeed"
                                   value={latLogSpeed.jioSpeed}
                                 />
                                 <input
                                   onChange={onSpeedChange}
                                   type="text"
-                                  placeholder="Airtel Speed"
+                                  placeholder="Airtel Speed MBPS"
                                   name="airtelSpped"
                                   value={latLogSpeed.airtelSpped}
                                 />
                                 <input
                                   onChange={onSpeedChange}
                                   type="text"
-                                  placeholder="BSNL Speed"
+                                  placeholder="BSNL Speed MBPS"
                                   name="bsnlSpeed"
                                   value={latLogSpeed.bsnlSpeed}
                                 />
@@ -721,7 +732,7 @@ const TaskPage = () => {
                               <div className="kit__image__uploaded__button__card">
                                 <button
                                   onClick={() =>
-                                    uploadedLogLatiSpeed(each?._id)
+                                    uploadedLogLatiSpeed(each)
                                   }
                                 >
                                   Upload

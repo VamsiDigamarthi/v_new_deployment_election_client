@@ -37,6 +37,7 @@ import ChangeRole from "./Pages/ChangeRole/ChangeRole";
 import Profile from "./Pages/Profile/Profile";
 import DistShowUser from "./Pages/DistShowUser/DistShowUser";
 import UserData from "./Pages/UserData/UserData";
+import PDFUser from "./Pages/PDFUser/PDFUser";
 function App() {
   const UUU = useSelector((state) => state.authReducer.authData);
   // console.log(UUU);
@@ -428,6 +429,21 @@ function App() {
                 UUU ? (
                   UUU?.role === "5" ? (
                     <AssemblyRejectedTask />
+                  ) : (
+                    <NotAccess />
+                  )
+                ) : (
+                  <Navigate to="/register" />
+                )
+              }
+            />
+
+            <Route
+              path="/users/PDF"
+              element={
+                UUU ? (
+                  UUU?.role === "4" || UUU?.role === "2" || UUU?.role === "5" ? (
+                    <PDFUser />
                   ) : (
                     <NotAccess />
                   )

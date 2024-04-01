@@ -41,7 +41,7 @@ const AssemblyAssignTask = () => {
     )
       .then((res) => {
         setAllInitiallyUsers(res.data);
-        // console.log(res.data);
+        console.log(res.data);
       })
       .catch((e) => console.log(e));
   };
@@ -148,7 +148,7 @@ const AssemblyAssignTask = () => {
               <span>{each.score}</span>
               <span>{each.mandal}</span>
               <button
-                disabled={each.assign_task === "yes" && "true"}
+                // disabled={each.assign_task === "yes" && "true"}
                 // onClick={() => onOpenTaskModalFun(each)}
                 className="table__action"
                 // style={{

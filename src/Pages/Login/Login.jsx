@@ -14,6 +14,10 @@ const Login = ({ phoneAndName }) => {
 
   const [gg, setGg] = useState(false);
 
+  const [loading, setLoading] = useState(false)
+
+  // const [otpLoading, setOtpLoading] = useState(false)
+
   // THIS BOTH ARE USED TO NAVIGATION HOME PAGE
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -47,14 +51,17 @@ const Login = ({ phoneAndName }) => {
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && gg) {
       // console.log("submited Button");
+      setLoading(true)
       // dispatch(LogIns(user, navigate));
       APIS.post("/auth/new-login", user, { headers: headers })
         .then(() => {
+        setLoading(true);
           setIsSubmit(false);
           setSendOtpUiDesign(true);
           seonOtp();
         })
         .catch((e) => {
+         setLoading(true);
           console.log(e?.response?.data?.msg);
           errorMsgApi(e?.response?.data?.msg);
         });
@@ -137,7 +144,8 @@ const Login = ({ phoneAndName }) => {
                 cursor: "pointer",
               }}
             >
-              Submit
+            {loading ? "Loading ...!" : "Submit"}
+              
             </button>
           </div>
         </>

@@ -589,6 +589,18 @@
 
 
 export const assemblyList = [
+    {
+    dist: "West Godavari",
+    assembly: [
+      { name: "Achanta" },
+      { name: "Palacole" },
+      { name: "Narasapuram" },
+      { name: "Bhimavaram" },
+      { name: "Undi" },
+      { name: "Tanuku" },
+      { name: "Tadepalligudem" },
+    ],
+  },
   {
     dist: "Bajali",
     assembly: [

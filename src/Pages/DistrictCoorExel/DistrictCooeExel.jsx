@@ -16,7 +16,7 @@ const DistrictCooeExel = () => {
     })
       .then((res) => {
         setLoader(false);
-        // console.log(res.data);
+        console.log(res.data);
         setData(res.data);
       })
       .catch((e) => {
@@ -71,6 +71,12 @@ const DistrictCooeExel = () => {
                 <span>Bank Name</span>
                 <span>Bank Number</span>
                 <span>IFSC CODE</span>
+                <span>Latitude</span>
+                <span>Longitude</span>
+                <span>Jio Speed MBPs</span>
+                <span>Airtel Speed MBPs</span>
+                <span>BSNL Speed MBPs</span>
+                <span>Power Availability</span>
               </div>
               <div className="table__body__card_ex">
                 {data?.map((each, key) => (
@@ -91,6 +97,12 @@ const DistrictCooeExel = () => {
                     <span>{each?.bankname}</span>
                     <span>{each?.banknumber}</span>
                     <span>{each?.ifsc}</span>
+                    <span>{each?.latitude}</span>
+                    <span>{each?.longitude}</span>
+                    <span>{each?.jioSpeed}</span>
+                    <span>{each?.airtelSpped}</span>
+                    <span>{each?.bsnlSpeed}</span>
+                    <span>{each?.power}</span>
                   </div>
                 ))}
               </div>

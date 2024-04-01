@@ -382,7 +382,7 @@ export const Sidebar = ({ children, taskAssignAdminModalOpen }) => {
               </>
             )}
 
-            {UUU && (
+            {/* {UUU && (
               <>
                 {UUU?.role === "2" && (
                   <Link to="/show/user/pdf" className="all__links">
@@ -401,7 +401,7 @@ export const Sidebar = ({ children, taskAssignAdminModalOpen }) => {
                   </Link>
                 )}
               </>
-            )}
+            )} */}
 
             {/* {UUU && (
               <>
@@ -609,6 +609,27 @@ export const Sidebar = ({ children, taskAssignAdminModalOpen }) => {
                       <div onClick={() => onTabLeftSideClick(3)}>
                         <FaArrowDownUpAcrossLine />
                         <span>Rejected Task</span>
+                      </div>
+                    </div>
+                  </Link>
+                )}
+              </>
+            )}
+
+            {UUU && (
+              <>
+                {(UUU?.role === "4" || UUU?.role === "2"  || UUU?.role === "5")&& (
+                  <Link to="/users/PDF" className="all__links">
+                    <div
+                      style={{
+                        background: activeTab === 4 && "#ff6f00",
+                        borderRadius: "10px",
+                      }}
+                      className="left__side__bar__icons__card"
+                    >
+                      <div onClick={() => onTabLeftSideClick(4)}>
+                        <TfiControlEject />
+                        <span>Users PDF</span>
                       </div>
                     </div>
                   </Link>

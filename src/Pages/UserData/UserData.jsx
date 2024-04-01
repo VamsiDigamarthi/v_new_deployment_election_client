@@ -8,6 +8,8 @@ const UserData = () => {
 
     const [userData, setUserData] = useState([])
 
+    
+
     useEffect(() => {
         APIS.get("/user//fetch/all/user/available", {
             headers: headers,
@@ -27,6 +29,8 @@ const UserData = () => {
         XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
         XLSX.writeFile(wb, "userData" + ".xlsx");
       };
+
+      console.log(userData)
 
   return (
     <div className='user-data-main'>

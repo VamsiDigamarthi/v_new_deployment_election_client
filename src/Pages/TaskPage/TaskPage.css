@@ -358,7 +358,16 @@
 }
 
 .netwrok-details-mainss > input {
-  width: 45%;
+  width: 30%;
+  height: 40px;
+  border: 2px solid #90e49d;
+  outline: none;
+  border-radius: 10px;
+  padding: 0px 10px;
+}
+
+.netwrok-details-mainss > select{
+  width: 30%;
   height: 40px;
   border: 2px solid #90e49d;
   outline: none;
@@ -400,6 +409,9 @@
     gap: 1rem;
   }
   .netwrok-details-mainss > input {
+    width: 100%;
+  }
+  .netwrok-details-mainss > select{
     width: 100%;
   }
   .jio-speed {

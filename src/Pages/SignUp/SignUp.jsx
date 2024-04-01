@@ -39,8 +39,12 @@ const SignUp = ({ onSwitchRegistor }) => {
     // dateOfRegister: "",
     pinCode: "",
     profilePic: "",
-    branchName:"",
+    branchName: "",
   });
+
+  const [loading, setLoading] = useState(false)
+
+  const [otpLoading, setOtpLoading] = useState(false)
 
   // console.log(user);
 
@@ -59,6 +63,10 @@ const SignUp = ({ onSwitchRegistor }) => {
   // DISTRICT WISE ASSEMBLIES
   const [filterAssembly, setFilterAssembly] = useState([]);
 
+  const [uniqueState, setUniqueState] = useState([])
+
+  // fetch all ps data to display unique state and district
+  const [allPsStore, setAllPsStore] = useState([])
   // user changes input field that corresponding data store there state function
   const usernameChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -176,6 +184,31 @@ const SignUp = ({ onSwitchRegistor }) => {
     return errors;
   };
 
+  // console.log(setAllPsStore)
+
+  // fetch all ps to display unique state and distric and 
+  // useEffect(() => {
+
+  //   APIS.get("/state/fetch/all/ps/to/registor", {
+  //     headers: headers,
+  //   })
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       setAllPsStore(res.data);
+  //     })
+  //     .catch((e) => {
+  //       console.log(e);
+  //     });
+  // } ,[])
+
+  // useEffect(() => {
+  //   const uniqueState = [
+  //     ...new Set(allPsStore.map((each) => each.State)),
+  //   ];
+  //   // console.log(uniqueState)
+
+  //   setUniqueState(uniqueState);
+  // }, [allPsStore]);
   // console.log(formErrors);
 
   // whene user selected state that corresponding district filters
@@ -186,6 +219,18 @@ const SignUp = ({ onSwitchRegistor }) => {
       // setFilterAssembly([]);
       setUser({ ...user, dist: newDist[0]?.dist[0]?.name });
     }
+
+    // if (user.state !== "") {
+    //   const newDist = allPsStore?.filter((each) => each.state === user.state);
+    //   const uniqueState = [
+    //     ...new Set(newDist?.map((each) => each.District)),
+    //   ];
+    //   console.log(uniqueState)
+    //   // setStateWiseDistState(newDist[0].dist);
+    //   setFilterAssembly([]);
+    //   // setUser({ ...user, dist: newDist[0]?.dist[0]?.name });
+    // }
+
   }, [user.state]);
 
   useEffect(() => {
@@ -204,28 +249,33 @@ const SignUp = ({ onSwitchRegistor }) => {
     console.log("ghj")
     console.log(formErrors)
     if (Object.keys(formErrors).length === 0 && gg) {
+      setLoading(true)
       APIS.post(
         "/auth/new-sign",
         { phone: user.phone, name: user.name },
         { headers: headers }
       )
         .then(() => {
+      setLoading(false)
           setIsSubmit(false);
           setSendOtpUiDesign(true);
           seonOtp();
         })
         .catch((e) => {
+      setLoading(false)
           console.log(e?.response?.data?.msg);
           errorMsgApi(e?.response?.data?.msg);
         });
 
       // console.log("login")
 
-      // APIS.post("/auth/register", {...user,dateOfRegister :  new Date().toString().slice(0,16)}, { headers: headers })
+      // APIS.post("/auth/register", { ...user, dateOfRegister: new Date().toString().slice(0, 16) }, { headers: headers })
       //   .then((res) => {
       //     console.log(res.data);
+      //     setLoading(false)
       //   })
       //   .catch((e) => {
+      //     setLoading(false)
       //     console.log(e?.response?.data?.msg);
       //     errorMsgApi(e?.response?.data?.msg);
       //   });
@@ -244,10 +294,12 @@ const SignUp = ({ onSwitchRegistor }) => {
 
   // submitted otp from signup user if otp is valid
   const onSubmitOtpFunc = () => {
+    setOtpLoading(true)
     APIS.post("/auth/verify-otp", { ...user, dateOfRegister: new Date().toString().slice(0, 16) }, { headers: headers })
       .then(() => {
         registorSucces();
         setSendOtpUiDesign(false);
+        setOtpLoading(false)
         setUser({
           name: "",
           email: "",
@@ -271,11 +323,12 @@ const SignUp = ({ onSwitchRegistor }) => {
           dateOfRegister: "",
           pinCode: "",
           profilePic: "",
-          branchName:"",
+          branchName: "",
         });
         // onSwitchRegistor({ phone: user.phone });
       })
       .catch((e) => {
+        setOtpLoading(false)
         console.log(e?.response?.data?.msg);
         errorMsgApi(e?.response?.data?.msg);
       });
@@ -384,7 +437,7 @@ const SignUp = ({ onSwitchRegistor }) => {
             onChange={onChangeOtpFromInput}
           />
           <div onClick={onSubmitOtpFunc} className="otp_submit_btn">
-            <button>Submit Otp</button>
+            <button>{otpLoading ? "Loading ...!" : "Submit OTP"}</button>
           </div>
         </div>
       ) : (
@@ -518,6 +571,11 @@ const SignUp = ({ onSwitchRegistor }) => {
                     {each.state}
                   </option>
                 ))}
+                {/* {uniqueState.map((each, key) => (
+                  <option value={each} key={key}>
+                    {each}
+                  </option>
+                ))} */}
               </select>
             </div>
           </div>
@@ -799,7 +857,7 @@ const SignUp = ({ onSwitchRegistor }) => {
                 required="required"
                 value={user.banknumber}
               />
-              <span>Enter Your Bank Number</span>
+              <span>Enter Your Bank Account Number</span>
             </div>
 
           </div>
@@ -945,7 +1003,8 @@ const SignUp = ({ onSwitchRegistor }) => {
             }}
             onClick={onSubmitRegisterDataFn}
           >
-            Submit
+            {loading ? "Loading ...!" : "Submit"}
+
           </button>
         </div>
       )}
