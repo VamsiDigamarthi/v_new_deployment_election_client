@@ -52,7 +52,7 @@ const Login = ({ phoneAndName }) => {
     if (Object.keys(formErrors).length === 0 && gg) {
       // console.log("submited Button");
       setLoading(true);
-      dispatch(LogIns(user, navigate));
+      // dispatch(LogIns(user, navigate));
       APIS.post("/auth/new-login", user, { headers: headers })
         .then(() => {
           setLoading(true);
