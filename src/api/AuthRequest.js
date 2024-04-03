@@ -1,4 +1,5 @@
-import axios from "axios";
+// import axios from "axios";
+import { APIS } from "../data/header";
 
 let headers = new Headers();
 headers.append("Content-Type", "application/json");
@@ -11,16 +12,16 @@ headers.append("GET", "POST", "PUT", "DELETE", "OPTIONS");
 
 // const API = axios.create({ baseURL: "http://localhost:5001" });
 
-const API = axios.create({
-  baseURL: "https://v-new-deployment-election-server.onrender.com/",
-});
+// const API = axios.create({
+//   baseURL: "https://v-new-deployment-election-server.onrender.com/",
+// });
 
 // export const logIn = (FormData) =>
-//   API.post("/auth/login-verify-otp", FormData, {
+//   APIS.post("/auth/login-verify-otp", FormData, {
 //     headers: headers,
 //   });
 
 export const logIn = (FormData) =>
-  API.post("/auth/login", FormData, {
+  APIS.post("/auth/login", FormData, {
     headers: headers,
   });

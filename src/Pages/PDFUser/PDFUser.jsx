@@ -39,14 +39,20 @@ const PDFUser = () => {
       let mainHeading = document.createElement("h1");
       mainHeading.textContent = "DECLARATION BY WEB CASTING AGENTS";
       firstMainDiv.appendChild(mainHeading);
+
+      let headingCard = document.createElement("div");
+      headingCard.classList.add("main-heading-card");
+      firstMainDiv.appendChild(headingCard);
+
       let secondHeading = document.createElement("h3");
-
       secondHeading.textContent = ` I, ${record?.name}, S/o / D/o ${record?.fatherName} do hereby make a
-            solemn
-             declaration, in connection with the General Election to Lok
-            Sabha 2024, Assam, that:`;
+            solemn`;
+      headingCard.appendChild(secondHeading);
+      let thirdHeading = document.createElement("h3");
+      thirdHeading.textContent =
+        "declaration, in connection with the General Election to Lok Sabha 2024, Assam, that:";
 
-      firstMainDiv.appendChild(secondHeading);
+      headingCard.appendChild(thirdHeading);
 
       let listElemnt = document.createElement("ol");
       listElemnt.classList.add("pdf-ul");
@@ -54,7 +60,7 @@ const PDFUser = () => {
       let firstOlEmenelt = document.createElement("li");
 
       firstOlEmenelt.textContent =
-        "I am not a close relative of any of the contesting candidate/leading  political functionary of the state/district in the aforesaid election.";
+        "I am not a close relative of any of the contesting candidate/leading\npolitical functionary of the state/district in the aforesaid election.";
 
       listElemnt.appendChild(firstOlEmenelt);
 
@@ -70,7 +76,57 @@ const PDFUser = () => {
 
       let img = document.createElement("img");
 
-      img.src = ``;
+      img.width = 300;
+      img.height = 200;
+
+      img.src = `${record?.profilePic}`;
+
+      newSecondDiv.appendChild(img);
+
+      let secondDivInsideDiv = document.createElement("div");
+
+      newSecondDiv.appendChild(secondDivInsideDiv);
+
+      let signatureSpan = document.createElement("span");
+      signatureSpan.textContent =
+        "Signature With Date .............................";
+      secondDivInsideDiv.appendChild(signatureSpan);
+
+      let nameSpan = document.createElement("span");
+      nameSpan.textContent = `Name -- ${record?.name}`;
+      secondDivInsideDiv.appendChild(nameSpan);
+
+      let fNameSpan = document.createElement("span");
+      fNameSpan.textContent = `Father's Name -- ${record?.fatherName}</span>`;
+      secondDivInsideDiv.appendChild(fNameSpan);
+
+      let mNameSpan = document.createElement("span");
+      mNameSpan.textContent = `Mother's Name -- ${record?.motherName}`;
+      secondDivInsideDiv.appendChild(mNameSpan);
+
+      let addressSpan = document.createElement("span");
+      addressSpan.textContent = `Address -- ${record?.address}`;
+      secondDivInsideDiv.appendChild(addressSpan);
+
+      let village = document.createElement("span");
+      village.textContent = `Village -- ${record?.mandal}`;
+      secondDivInsideDiv.appendChild(village);
+
+      let district = document.createElement("span");
+      district.textContent = `District -- ${record?.district}`;
+      secondDivInsideDiv.appendChild(district);
+
+      let pin = document.createElement("span");
+      pin.textContent = `PIN -- ${record?.pinCode}`;
+      secondDivInsideDiv.appendChild(pin);
+
+      let mobileNumber = document.createElement("span");
+      mobileNumber.textContent = `Mobile No -- ${record?.phone}`;
+      secondDivInsideDiv.appendChild(mobileNumber);
+
+      let adharNumber = document.createElement("span");
+      adharNumber.textContent = `Adhaar No -- ${record?.adharnumber}`;
+      secondDivInsideDiv.appendChild(adharNumber);
 
       element.appendChild(firstMainDiv);
 
@@ -83,7 +139,7 @@ const PDFUser = () => {
         const componentWidth = doc.internal.pageSize.getWidth();
         const componentHeight = doc.internal.pageSize.getHeight();
         doc.addImage(imgData, "PNG", 0, 0, componentWidth, componentHeight);
-        doc.save("userData.pdf");
+        doc.save(`${record?.name}.pdf`);
         document.body.removeChild(element);
       });
     });
@@ -131,7 +187,7 @@ const PDFUser = () => {
           <div className="pdf-img-names-card">
             <img src={user?.profilePic} alt="" />
             <div>
-              <span>Signature With Date .............................</span>
+              Signature With Date .............................</span>
               <span>Name -- {user?.name}</span>
               <span>Father's Name -- {user?.fatherName}</span>
               <span>Mother's Name -- {user?.motherName}</span>

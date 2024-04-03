@@ -63,10 +63,14 @@ const SignUp = ({ onSwitchRegistor }) => {
   // DISTRICT WISE ASSEMBLIES
   const [filterAssembly, setFilterAssembly] = useState([]);
 
+  //
+  // newly added states
+  //
   const [uniqueState, setUniqueState] = useState([]);
 
   // fetch all ps data to display unique state and district
   const [allPsStore, setAllPsStore] = useState([]);
+
   // user changes input field that corresponding data store there state function
   const usernameChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -186,29 +190,25 @@ const SignUp = ({ onSwitchRegistor }) => {
 
   // console.log(setAllPsStore)
 
-  // fetch all ps to display unique state and distric and
-  // useEffect(() => {
+  //fetch all ps to display unique state and distric and
+  useEffect(() => {
+    APIS.get("/state/fetch/all/ps/to/registor", {
+      headers: headers,
+    })
+      .then((res) => {
+        // console.log(res.data);
+        setAllPsStore(res.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, []);
 
-  //   APIS.get("/state/fetch/all/ps/to/registor", {
-  //     headers: headers,
-  //   })
-  //     .then((res) => {
-  //       console.log(res.data);
-  //       setAllPsStore(res.data);
-  //     })
-  //     .catch((e) => {
-  //       console.log(e);
-  //     });
-  // } ,[])
+  useEffect(() => {
+    const uniqueState = [...new Set(allPsStore.map((each) => each.State))];
+    setUniqueState(uniqueState);
+  }, [allPsStore]);
 
-  // useEffect(() => {
-  //   const uniqueState = [
-  //     ...new Set(allPsStore.map((each) => each.State)),
-  //   ];
-  //   // console.log(uniqueState)
-
-  //   setUniqueState(uniqueState);
-  // }, [allPsStore]);
   // console.log(formErrors);
 
   // whene user selected state that corresponding district filters

@@ -53,18 +53,18 @@ const Login = ({ phoneAndName }) => {
       // console.log("submited Button");
       setLoading(true);
       dispatch(LogIns(user, navigate));
-      // APIS.post("/auth/new-login", user, { headers: headers })
-      //   .then(() => {
-      //   setLoading(true);
-      //     setIsSubmit(false);
-      //     setSendOtpUiDesign(true);
-      //     seonOtp();
-      //   })
-      //   .catch((e) => {
-      //    setLoading(true);
-      //     console.log(e?.response?.data?.msg);
-      //     errorMsgApi(e?.response?.data?.msg);
-      //   });
+      APIS.post("/auth/new-login", user, { headers: headers })
+        .then(() => {
+          setLoading(true);
+          setIsSubmit(false);
+          setSendOtpUiDesign(true);
+          seonOtp();
+        })
+        .catch((e) => {
+          setLoading(true);
+          console.log(e?.response?.data?.msg);
+          errorMsgApi(e?.response?.data?.msg);
+        });
     }
   }, [formErrors]);
 
