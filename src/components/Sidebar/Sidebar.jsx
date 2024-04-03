@@ -618,7 +618,7 @@ export const Sidebar = ({ children, taskAssignAdminModalOpen }) => {
 
             {UUU && (
               <>
-                {(UUU?.role === "4" || UUU?.role === "2"  || UUU?.role === "5")&& (
+                {UUU?.role === "5" && (
                   <Link to="/users/PDF" className="all__links">
                     <div
                       style={{

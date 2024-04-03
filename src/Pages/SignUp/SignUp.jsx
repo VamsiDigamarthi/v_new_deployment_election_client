@@ -42,9 +42,9 @@ const SignUp = ({ onSwitchRegistor }) => {
     branchName: "",
   });
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
-  const [otpLoading, setOtpLoading] = useState(false)
+  const [otpLoading, setOtpLoading] = useState(false);
 
   // console.log(user);
 
@@ -63,10 +63,10 @@ const SignUp = ({ onSwitchRegistor }) => {
   // DISTRICT WISE ASSEMBLIES
   const [filterAssembly, setFilterAssembly] = useState([]);
 
-  const [uniqueState, setUniqueState] = useState([])
+  const [uniqueState, setUniqueState] = useState([]);
 
   // fetch all ps data to display unique state and district
-  const [allPsStore, setAllPsStore] = useState([])
+  const [allPsStore, setAllPsStore] = useState([]);
   // user changes input field that corresponding data store there state function
   const usernameChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -91,11 +91,11 @@ const SignUp = ({ onSwitchRegistor }) => {
     if (!values.state) {
       errors.state = "state is required!";
     }
-    if (!values.email) {
-      errors.email = "Email is required!";
-    } else if (!regex.test(values.email)) {
-      errors.email = "This is not a valid email format!";
-    }
+    // if (!values.email) {
+    //   errors.email = "Email is required!";
+    // } else if (!regex.test(values.email)) {
+    //   errors.email = "This is not a valid email format!";
+    // }
     // if (!values.password) {
     //   errors.password = "Password is required";
     // } else if (values.password.length < 4) {
@@ -159,17 +159,17 @@ const SignUp = ({ onSwitchRegistor }) => {
     // }
     // father name
 
-    if (!values.fatherName) {
-      errors.fatherName = "Father Name is required";
-    } else if (!name.test(values.fatherName)) {
-      errors.fatherName = "Father Name shold containe only charaters";
-    }
+    // if (!values.fatherName) {
+    //   errors.fatherName = "Father Name is required";
+    // } else if (!name.test(values.fatherName)) {
+    //   errors.fatherName = "Father Name shold containe only charaters";
+    // }
 
-    if (!values.motherName) {
-      errors.motherName = "Mother Name is required";
-    } else if (!name.test(values.motherName)) {
-      errors.motherName = "Mother Name shold containe only charaters";
-    }
+    // if (!values.motherName) {
+    //   errors.motherName = "Mother Name is required";
+    // } else if (!name.test(values.motherName)) {
+    //   errors.motherName = "Mother Name shold containe only charaters";
+    // }
     // if (!values.dateOfRegister) {
     //   errors.dateOfRegister = "Date Of Registration is required!";
     // }
@@ -186,7 +186,7 @@ const SignUp = ({ onSwitchRegistor }) => {
 
   // console.log(setAllPsStore)
 
-  // fetch all ps to display unique state and distric and 
+  // fetch all ps to display unique state and distric and
   // useEffect(() => {
 
   //   APIS.get("/state/fetch/all/ps/to/registor", {
@@ -230,7 +230,6 @@ const SignUp = ({ onSwitchRegistor }) => {
     //   setFilterAssembly([]);
     //   // setUser({ ...user, dist: newDist[0]?.dist[0]?.name });
     // }
-
   }, [user.state]);
 
   useEffect(() => {
@@ -246,39 +245,69 @@ const SignUp = ({ onSwitchRegistor }) => {
   }, [user.dist]);
 
   useEffect(() => {
-    console.log("ghj")
-    console.log(formErrors)
+    console.log("ghj");
+    console.log(formErrors);
     if (Object.keys(formErrors).length === 0 && gg) {
-      setLoading(true)
-      APIS.post(
-        "/auth/new-sign",
-        { phone: user.phone, name: user.name },
-        { headers: headers }
-      )
-        .then(() => {
-      setLoading(false)
-          setIsSubmit(false);
-          setSendOtpUiDesign(true);
-          seonOtp();
-        })
-        .catch((e) => {
-      setLoading(false)
-          console.log(e?.response?.data?.msg);
-          errorMsgApi(e?.response?.data?.msg);
-        });
-
-      // console.log("login")
-
-      // APIS.post("/auth/register", { ...user, dateOfRegister: new Date().toString().slice(0, 16) }, { headers: headers })
-      //   .then((res) => {
-      //     console.log(res.data);
-      //     setLoading(false)
+      setLoading(true);
+      // APIS.post(
+      //   "/auth/new-sign",
+      //   { phone: user.phone, name: user.name },
+      //   { headers: headers }
+      // )
+      //   .then(() => {
+      //     setLoading(false);
+      //     setIsSubmit(false);
+      //     setSendOtpUiDesign(true);
+      //     seonOtp();
       //   })
       //   .catch((e) => {
-      //     setLoading(false)
+      //     setLoading(false);
       //     console.log(e?.response?.data?.msg);
       //     errorMsgApi(e?.response?.data?.msg);
       //   });
+
+      // console.log("login")
+
+      APIS.post(
+        "/auth/register",
+        { ...user, dateOfRegister: new Date().toString().slice(0, 16) },
+        { headers: headers }
+      )
+        .then((res) => {
+          // console.log(res.data);
+          registorSucces();
+          setLoading(false);
+          setUser({
+            name: "",
+            email: "",
+            state: "",
+            dist: "",
+            assembly: "",
+            address: "",
+            phonepe: "",
+            voteridnumber: "",
+            adharnumber: "",
+            mandal: "",
+            password: "",
+            phone: "",
+            voterIdImage: "",
+            adharIdImage: "",
+            banknumber: "",
+            IFSC: "",
+            bankname: "",
+            fatherName: "",
+            motherName: "",
+            dateOfRegister: "",
+            pinCode: "",
+            profilePic: "",
+            branchName: "",
+          });
+        })
+        .catch((e) => {
+          setLoading(false);
+          console.log(e?.response?.data?.msg);
+          errorMsgApi(e?.response?.data?.msg);
+        });
     }
   }, [formErrors]);
 
@@ -294,12 +323,16 @@ const SignUp = ({ onSwitchRegistor }) => {
 
   // submitted otp from signup user if otp is valid
   const onSubmitOtpFunc = () => {
-    setOtpLoading(true)
-    APIS.post("/auth/verify-otp", { ...user, dateOfRegister: new Date().toString().slice(0, 16) }, { headers: headers })
+    setOtpLoading(true);
+    APIS.post(
+      "/auth/verify-otp",
+      { ...user, dateOfRegister: new Date().toString().slice(0, 16) },
+      { headers: headers }
+    )
       .then(() => {
         registorSucces();
         setSendOtpUiDesign(false);
-        setOtpLoading(false)
+        setOtpLoading(false);
         setUser({
           name: "",
           email: "",
@@ -328,7 +361,7 @@ const SignUp = ({ onSwitchRegistor }) => {
         // onSwitchRegistor({ phone: user.phone });
       })
       .catch((e) => {
-        setOtpLoading(false)
+        setOtpLoading(false);
         console.log(e?.response?.data?.msg);
         errorMsgApi(e?.response?.data?.msg);
       });
@@ -581,7 +614,6 @@ const SignUp = ({ onSwitchRegistor }) => {
           </div>
           {/* state and district set selected field */}
           <div className="multi__input__card">
-
             <div className="inputBox">
               <p
                 style={{
@@ -645,15 +677,15 @@ const SignUp = ({ onSwitchRegistor }) => {
             ></textarea>
           </div>
 
-
-
-
           {/* Adhar number and mandal set input field */}
 
           <div className="multi__input__card">
-            <div className="inputBox" style={{
-              alignSelf: "flex-start"
-            }}>
+            <div
+              className="inputBox"
+              style={{
+                alignSelf: "flex-start",
+              }}
+            >
               <p
                 style={{
                   visibility: "visible",
@@ -689,7 +721,6 @@ const SignUp = ({ onSwitchRegistor }) => {
               />
               <span>Adhar Number</span>
             </div>
-
           </div>
           {/* phone number and UPI number set Input Field */}
 
@@ -794,9 +825,12 @@ const SignUp = ({ onSwitchRegistor }) => {
                 )}
               </div>
             </div>
-            <div className="inputBox" style={{
-              alignSelf: "flex-start"
-            }}>
+            <div
+              className="inputBox"
+              style={{
+                alignSelf: "flex-start",
+              }}
+            >
               <p
                 style={{
                   visibility: "visible",
@@ -814,14 +848,9 @@ const SignUp = ({ onSwitchRegistor }) => {
               />
               <span>Nearest PS/Location</span>
             </div>
-
           </div>
 
-
-
-          <h3>
-            Your  Bank Details
-          </h3>
+          <h3>Your Bank Details</h3>
           <div className="multi__input__card">
             <div className="inputBox">
               <p
@@ -859,10 +888,8 @@ const SignUp = ({ onSwitchRegistor }) => {
               />
               <span>Enter Your Bank Account Number</span>
             </div>
-
           </div>
           <div className="multi__input__card">
-
             <div className="inputBox">
               <p
                 style={{
@@ -900,7 +927,6 @@ const SignUp = ({ onSwitchRegistor }) => {
               />
               <span>Branch Name</span>
             </div>
-
           </div>
 
           <div>
@@ -922,7 +948,6 @@ const SignUp = ({ onSwitchRegistor }) => {
               />
               <span>UPI Number</span>
             </div>
-
           </div>
 
           {/*  father mother names card */}
@@ -982,7 +1007,6 @@ const SignUp = ({ onSwitchRegistor }) => {
             </div>
           </div> */}
 
-
           {/* Bank Details */}
 
           {/* <div className="signup__as__dist__coor">
@@ -1004,7 +1028,6 @@ const SignUp = ({ onSwitchRegistor }) => {
             onClick={onSubmitRegisterDataFn}
           >
             {loading ? "Loading ...!" : "Submit"}
-
           </button>
         </div>
       )}

@@ -98,6 +98,7 @@ const ChangeRole = () => {
           <option value="1">State Coordinator</option>
           <option value="2">District Coordinator</option>
           <option value="5">Assembly Coordinator</option>
+          <option value="4">Super Admin</option>
         </select>
         <button onClick={onChangeRoleFun}>Updated</button>
       </div>
