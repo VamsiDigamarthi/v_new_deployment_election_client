@@ -32,144 +32,155 @@ const PDFUser = () => {
       });
   }, []);
 
-  const downloadPdf = () => {
-    user.forEach((record, index) => {
-      let element = document.createElement("div");
-      element.classList.add("pdf-main-mian");
+  // const downloadPdf = () => {
+  //   user.forEach((record, index) => {
+  //     let element = document.createElement("div");
+  //     element.classList.add("pdf-main-mian");
 
-      let firstMainDiv = document.createElement("div");
-      firstMainDiv.classList.add("pdf-main-body");
+  //     let firstMainDiv = document.createElement("div");
+  //     firstMainDiv.classList.add("pdf-main-body");
 
-      let mainHeading = document.createElement("h1");
-      mainHeading.textContent = "DECLARATION BY WEB CASTING AGENTS";
-      firstMainDiv.appendChild(mainHeading);
+  //     let mainHeading = document.createElement("h1");
+  //     mainHeading.textContent = "DECLARATION BY WEB CASTING AGENTS";
+  //     firstMainDiv.appendChild(mainHeading);
 
-      let headingCard = document.createElement("div");
-      headingCard.classList.add("main-heading-card");
-      firstMainDiv.appendChild(headingCard);
+  //     let headingCard = document.createElement("div");
+  //     headingCard.classList.add("main-heading-card");
+  //     firstMainDiv.appendChild(headingCard);
 
-      let secondHeading = document.createElement("h3");
-      secondHeading.textContent = ` I, ${record?.name}, S/o / D/o ${record?.fatherName} do hereby make a
-            solemn`;
-      headingCard.appendChild(secondHeading);
-      let thirdHeading = document.createElement("h3");
-      thirdHeading.textContent =
-        "declaration, in connection with the General Election to Lok Sabha 2024, Assam, that:";
+  //     let secondHeading = document.createElement("h2");
+  //     secondHeading.textContent = ` I, ${record?.name}, S/o / D/o ${record?.fatherName} do hereby make a
+  //           solemn`;
+  //     headingCard.appendChild(secondHeading);
+  //     let thirdHeading = document.createElement("h2");
+  //     thirdHeading.textContent =
+  //       "declaration, in connection with the General Election to Lok Sabha 2024, Assam, that:";
 
-      headingCard.appendChild(thirdHeading);
+  //     headingCard.appendChild(thirdHeading);
 
-      let listElemnt = document.createElement("ol");
-      listElemnt.classList.add("pdf-ul");
-      firstMainDiv.appendChild(listElemnt);
-      let firstOlEmenelt = document.createElement("li");
+  //     let listElemnt = document.createElement("ol");
+  //     listElemnt.classList.add("pdf-ul");
+  //     firstMainDiv.appendChild(listElemnt);
+  //     let firstOlEmenelt = document.createElement("li");
 
-      firstOlEmenelt.textContent =
-        "I am not a close relative of any of the contesting candidate/leading\npolitical functionary of the state/district in the aforesaid election.";
+  //     // Create text nodes for each line and append them
+  //     const line1 = document.createTextNode(
+  //       "I am not a close relative of any of the contesting candidate/leading"
+  //     );
+  //     const line2 = document.createTextNode(
+  //       "political functionary of the state/district in the aforesaid election."
+  //     );
 
-      listElemnt.appendChild(firstOlEmenelt);
+  //     // Create a <br> element for the line break
+  //     const lineBreak = document.createElement("br");
 
-      let secondOlElement = document.createElement("li");
-      secondOlElement.textContent =
-        "No criminal case is pending against me in any court of law.";
+  //     firstOlEmenelt.appendChild(line1);
+  //     firstOlEmenelt.appendChild(lineBreak);
+  //     firstOlEmenelt.appendChild(line2);
+  //     listElemnt.appendChild(firstOlEmenelt);
 
-      listElemnt.appendChild(secondOlElement);
+  //     let secondOlElement = document.createElement("li");
+  //     secondOlElement.textContent =
+  //       "No criminal case is pending against me in any court of law.";
 
-      let newSecondDiv = document.createElement("div");
-      newSecondDiv.classList.add("pdf-img-names-card");
-      firstMainDiv.appendChild(newSecondDiv);
+  //     listElemnt.appendChild(secondOlElement);
 
-      let img = document.createElement("img");
+  //     let newSecondDiv = document.createElement("div");
+  //     newSecondDiv.classList.add("pdf-img-names-card");
+  //     firstMainDiv.appendChild(newSecondDiv);
 
-      img.width = 300;
-      img.height = 200;
+  //     let img = document.createElement("img");
 
-      img.src = `${record?.profilePic}`;
+  //     // img.width = 300;
+  //     // img.height = 200;
 
-      newSecondDiv.appendChild(img);
+  //     img.src = `${record?.profilePic}`;
 
-      let secondDivInsideDiv = document.createElement("div");
+  //     newSecondDiv.appendChild(img);
 
-      newSecondDiv.appendChild(secondDivInsideDiv);
+  //     let secondDivInsideDiv = document.createElement("div");
 
-      let signatureSpan = document.createElement("span");
-      signatureSpan.textContent =
-        "Signature With Date .............................";
-      secondDivInsideDiv.appendChild(signatureSpan);
+  //     newSecondDiv.appendChild(secondDivInsideDiv);
 
-      let nameSpan = document.createElement("span");
-      nameSpan.textContent = `Name -- ${record?.name}`;
-      secondDivInsideDiv.appendChild(nameSpan);
+  //     let signatureSpan = document.createElement("span");
+  //     signatureSpan.textContent =
+  //       "Signature With Date .............................";
+  //     secondDivInsideDiv.appendChild(signatureSpan);
 
-      let fNameSpan = document.createElement("span");
-      fNameSpan.textContent = `Father's Name -- ${record?.fatherName}</span>`;
-      secondDivInsideDiv.appendChild(fNameSpan);
+  //     let nameSpan = document.createElement("span");
+  //     nameSpan.textContent = `Name -- ${record?.name}`;
+  //     secondDivInsideDiv.appendChild(nameSpan);
 
-      let mNameSpan = document.createElement("span");
-      mNameSpan.textContent = `Mother's Name -- ${record?.motherName}`;
-      secondDivInsideDiv.appendChild(mNameSpan);
+  //     let fNameSpan = document.createElement("span");
+  //     fNameSpan.textContent = `Father's Name -- ${record?.fatherName}</span>`;
+  //     secondDivInsideDiv.appendChild(fNameSpan);
 
-      let addressSpan = document.createElement("span");
-      addressSpan.textContent = `Address -- ${record?.address}`;
-      secondDivInsideDiv.appendChild(addressSpan);
+  //     let mNameSpan = document.createElement("span");
+  //     mNameSpan.textContent = `Mother's Name -- ${record?.motherName}`;
+  //     secondDivInsideDiv.appendChild(mNameSpan);
 
-      let village = document.createElement("span");
-      village.textContent = `Village -- ${record?.mandal}`;
-      secondDivInsideDiv.appendChild(village);
+  //     let addressSpan = document.createElement("span");
+  //     addressSpan.textContent = `Address -- ${record?.address}`;
+  //     secondDivInsideDiv.appendChild(addressSpan);
 
-      let district = document.createElement("span");
-      district.textContent = `District -- ${record?.district}`;
-      secondDivInsideDiv.appendChild(district);
+  //     let village = document.createElement("span");
+  //     village.textContent = `Village -- ${record?.mandal}`;
+  //     secondDivInsideDiv.appendChild(village);
 
-      let pin = document.createElement("span");
-      pin.textContent = `PIN -- ${record?.pinCode}`;
-      secondDivInsideDiv.appendChild(pin);
+  //     let district = document.createElement("span");
+  //     district.textContent = `District -- ${record?.district}`;
+  //     secondDivInsideDiv.appendChild(district);
 
-      let mobileNumber = document.createElement("span");
-      mobileNumber.textContent = `Mobile No -- ${record?.phone}`;
-      secondDivInsideDiv.appendChild(mobileNumber);
+  //     let pin = document.createElement("span");
+  //     pin.textContent = `PIN -- ${record?.pinCode}`;
+  //     secondDivInsideDiv.appendChild(pin);
 
-      let adharNumber = document.createElement("span");
-      adharNumber.textContent = `Adhaar No -- ${record?.adharnumber}`;
-      secondDivInsideDiv.appendChild(adharNumber);
+  //     let mobileNumber = document.createElement("span");
+  //     mobileNumber.textContent = `Mobile No -- ${record?.phone}`;
+  //     secondDivInsideDiv.appendChild(mobileNumber);
 
-      element.appendChild(firstMainDiv);
+  //     let adharNumber = document.createElement("span");
+  //     adharNumber.textContent = `Adhaar No -- ${record?.adharnumber}`;
+  //     secondDivInsideDiv.appendChild(adharNumber);
 
-      document.body.appendChild(element);
+  //     element.appendChild(firstMainDiv);
 
-      // html2canvas(element).then((canvas) => {
-      //   const imgData = canvas.toDataURL("img/png");
-      //   const doc = new jsPDF("p", "mm", "a4");
+  //     document.body.appendChild(element);
 
-      //   const componentWidth = doc.internal.pageSize.getWidth();
-      //   const componentHeight = doc.internal.pageSize.getHeight();
-      //   doc.addImage(imgData, "PNG", 0, 0, componentWidth, componentHeight);
-      //   doc.save(`${record?.name}.pdf`);
-      //   document.body.removeChild(element);
-      // });
+  //     // html2canvas(element).then((canvas) => {
+  //     //   const imgData = canvas.toDataURL("img/png");
+  //     //   const doc = new jsPDF("p", "mm", "a4");
 
-      html2canvas(element, {
-        width: element.offsetWidth,
-        height: element.offsetHeight,
-      }).then((canvas) => {
-        const imgData = canvas.toDataURL("img/png");
-        const doc = new jsPDF("p", "mm", "a4");
+  //     //   const componentWidth = doc.internal.pageSize.getWidth();
+  //     //   const componentHeight = doc.internal.pageSize.getHeight();
+  //     //   doc.addImage(imgData, "PNG", 0, 0, componentWidth, componentHeight);
+  //     //   doc.save(`${record?.name}.pdf`);
+  //     //   document.body.removeChild(element);
+  //     // });
 
-        // Scale the image to fit the PDF page
-        const scale = Math.min(
-          doc.internal.pageSize.getWidth() / canvas.width,
-          doc.internal.pageSize.getHeight() / canvas.height
-        );
-        const scaledWidth = canvas.width * scale;
-        const scaledHeight = canvas.height * scale;
+  //     html2canvas(element, {
+  //       width: element.offsetWidth,
+  //       height: element.offsetHeight,
+  //     }).then((canvas) => {
+  //       const imgData = canvas.toDataURL("img/png");
+  //       const doc = new jsPDF("p", "mm", "a4");
 
-        doc.addImage(imgData, "PNG", 0, 0, scaledWidth, scaledHeight);
-        doc.save(`${record?.name}.pdf`);
-        document.body.removeChild(element);
-      });
-    });
+  //       // Scale the image to fit the PDF page
+  //       const scale = Math.min(
+  //         doc.internal.pageSize.getWidth() / canvas.width,
+  //         doc.internal.pageSize.getHeight() / canvas.height
+  //       );
+  //       const scaledWidth = canvas.width * scale;
+  //       const scaledHeight = canvas.height * scale;
 
-    // const capture = document.querySelector(".pdf-main-mian");
-  };
+  //       doc.addImage(imgData, "PNG", 0, 0, scaledWidth, scaledHeight);
+  //       doc.save(`${record?.name}.pdf`);
+  //       document.body.removeChild(element);
+  //     });
+  //   });
+
+  //   // const capture = document.querySelector(".pdf-main-mian");
+  // };
 
   return (
     <div className="main-user-pdf">
@@ -186,7 +197,7 @@ const PDFUser = () => {
         theme="light"
       />
 
-      <div className="user-data-main">
+      {/* <div className="user-data-main">
         <h2>Users PDF File</h2>
         {loader ? (
           <SpinnerDotted
@@ -198,10 +209,77 @@ const PDFUser = () => {
         ) : (
           <button onClick={downloadPdf}>Download</button>
         )}
-      </div>
+      </div> */}
 
-      <div className="pdf-main-mian">
-        {/* <div className="pdf-main-body">
+      <div className="main__pdf__file__container">
+        {loader ? (
+          <div
+            style={{
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <SpinnerDotted
+              size={50}
+              thickness={100}
+              speed={100}
+              color="#36ad47"
+            />
+          </div>
+        ) : (
+          <>
+            {user?.map((each) => (
+              <div className="pdf_main_page_card">
+                <h1>DECLARATION BY WEB CASTING AGENTS</h1>
+                <h3>
+                  I, <span>{each?.name}</span>, S/o / D/o{" "}
+                  <span>{each?.fatherName}</span> do hereby make a solemn <br />{" "}
+                  declaration, in connection with the General Election to Lok
+                  Sabha 2024,
+                  <br /> Assam, that:
+                </h3>
+                <ol className="pdf_ol_main_card">
+                  <li>
+                    A. I am not a close relative of any of the contesting
+                    candidate/leading <br /> political functionary of the
+                    state/district in the aforesaid election
+                  </li>
+                  <li>
+                    B. No criminal case is pending against me in any court of
+                    law.
+                  </li>
+                </ol>
+                <div className="pdf-main-imge-card">
+                  <img src={each?.profilePic} alt="" />
+                  <div className="pdf_user_detaiisl_main">
+                    <span>
+                      Signature with
+                      date:..................................................
+                    </span>
+                    <span>Name -- {each?.name}</span>
+                    <span>Father's Name -- {each?.fatherName}</span>
+                    <span>Mother's Name -- {each?.motherName}</span>
+                    <span>Address -- {each?.address?.slice(0.25)}</span>
+                    <span>Village -- {each?.mandal}</span>
+                    <span>District -- {each?.district}</span>
+                    <span>PIN -- {each?.pinCode}</span>
+                    <span>Mobile No -- {each?.phone}</span>
+                    <span>Adhaar No -- {each?.adharnumber}</span>
+                  </div>
+                </div>
+                <div className="pdf-adhrr-card">
+                  <img src={each?.voteridurl} alt="" />
+                  <img src={each?.adharidurl} alt="" />
+                </div>
+              </div>
+            ))}
+          </>
+        )}
+      </div>
+      {/* <div className="pdf-main-body">
           <h1>DECLARATION BY WEB CASTING AGENTS</h1>
           <h3 style={{ textAlign: "center" }}>
             I, {user?.name}, S/o / D/o {user?.fatherName} do hereby make a
@@ -233,7 +311,6 @@ const PDFUser = () => {
             </div>
           </div>
         </div> */}
-      </div>
     </div>
   );
 };
