@@ -16,12 +16,12 @@ headers.append("GET", "POST", "PUT", "DELETE", "OPTIONS");
 //   baseURL: "https://v-new-deployment-election-server.onrender.com/",
 // });
 
-export const logIn = (FormData) =>
-  APIS.post("/auth/login-verify-otp", FormData, {
-    headers: headers,
-  });
-
 // export const logIn = (FormData) =>
-//   APIS.post("/auth/login", FormData, {
+//   APIS.post("/auth/login-verify-otp", FormData, {
 //     headers: headers,
 //   });
+
+export const logIn = (FormData) =>
+  APIS.post("/auth/login", FormData, {
+    headers: headers,
+  });

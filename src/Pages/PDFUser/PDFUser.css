@@ -78,7 +78,7 @@
 .pdf-img-names-card > img {
   width: 40%;
   height: 150px !important;
-  border: 2px solid red;
+  /* border: 2px solid red; */
 }
 
 .pdf-img-names-card > div {

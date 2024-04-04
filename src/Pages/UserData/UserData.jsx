@@ -2,18 +2,24 @@ import React, { useEffect, useState } from "react";
 import "./UserData.css";
 import * as XLSX from "xlsx";
 import { APIS, headers } from "../../data/header";
+import { SpinnerDotted } from "spinners-react";
 const UserData = () => {
   const [userData, setUserData] = useState([]);
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
+    setLoading(true);
     APIS.get("/user/fetch/all/user/available", {
       headers: headers,
     })
       .then((res) => {
+        setLoading(false);
         // console.log(res);
         setUserData(res.data);
       })
       .catch((e) => {
+        setLoading(false);
         console.log(e);
       });
   }, []);
@@ -30,7 +36,11 @@ const UserData = () => {
   return (
     <div className="user-data-main">
       <h2>Users Data</h2>
-      <button onClick={onExelDownload}>Download</button>
+      {loading ? (
+        <SpinnerDotted size={50} thickness={100} speed={100} color="#36ad47" />
+      ) : (
+        <button onClick={onExelDownload}>Download</button>
+      )}
     </div>
   );
 };

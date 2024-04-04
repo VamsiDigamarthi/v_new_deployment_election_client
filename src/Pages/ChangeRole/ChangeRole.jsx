@@ -93,12 +93,13 @@ const ChangeRole = () => {
         )}
         <select value={role} onChange={(e) => setRole(e.target.value)}>
           <option disabled hidden selected>
-            STATE
+            Change Role
           </option>
           <option value="1">State Coordinator</option>
           <option value="2">District Coordinator</option>
           <option value="5">Assembly Coordinator</option>
           <option value="4">Super Admin</option>
+          <option value="3">Employee</option>
         </select>
         <button onClick={onChangeRoleFun}>Updated</button>
       </div>

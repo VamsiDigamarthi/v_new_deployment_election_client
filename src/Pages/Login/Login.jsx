@@ -6,6 +6,8 @@ import { LogIns } from "../../action/AuthAction";
 import { APIS, headers } from "../../data/header";
 import { ToastContainer } from "react-toastify";
 import { errorMsgApi, seonOtp } from "../../util/showmessages";
+import { featureVariants } from "../../data/animation";
+import { motion } from "framer-motion";
 const Login = ({ phoneAndName }) => {
   // STORE THE USERS INFORMATION
   const [user, setUser] = useState({
@@ -52,19 +54,19 @@ const Login = ({ phoneAndName }) => {
     if (Object.keys(formErrors).length === 0 && gg) {
       // console.log("submited Button");
       setLoading(true);
-      // dispatch(LogIns(user, navigate));
-      APIS.post("/auth/new-login", user, { headers: headers })
-        .then(() => {
-          setLoading(true);
-          setIsSubmit(false);
-          setSendOtpUiDesign(true);
-          seonOtp();
-        })
-        .catch((e) => {
-          setLoading(true);
-          console.log(e?.response?.data?.msg);
-          errorMsgApi(e?.response?.data?.msg);
-        });
+      dispatch(LogIns(user, navigate));
+      // APIS.post("/auth/new-login", user, { headers: headers })
+      //   .then(() => {
+      //     setLoading(true);
+      //     setIsSubmit(false);
+      //     setSendOtpUiDesign(true);
+      //     seonOtp();
+      //   })
+      //   .catch((e) => {
+      //     setLoading(true);
+      //     console.log(e?.response?.data?.msg);
+      //     errorMsgApi(e?.response?.data?.msg);
+      //   });
     }
   }, [formErrors]);
 

@@ -47,6 +47,16 @@ const User = () => {
     }
   }, [UUU]);
 
+  function capitalizeName(name) {
+    const words = name?.split(" ");
+    const capitalizedWords = words?.map((word) => {
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    });
+    const capitalizedName = capitalizedWords?.join(" ");
+
+    return capitalizedName;
+  }
+
   return (
     <div className="user__main__card">
       <div
@@ -80,7 +90,7 @@ const User = () => {
           <div className="user__name__pic__card">
             <div>
               <div>
-                <h2>{userDataFromApi?.name?.slice(0, 16)}</h2>
+                <h2>{capitalizeName(userDataFromApi?.name)?.slice(0, 16)}</h2>
                 <button onClick={onOpenEditUserDetailsModal}>Edit</button>
               </div>
               <span>Thanks for joining.</span>
@@ -114,7 +124,7 @@ const User = () => {
                   color: "gray",
                 }}
               >
-                {userDataFromApi.address}
+                {userDataFromApi?.address?.toLowerCase()}
               </span>
             </div>
             <div className="contact__info">

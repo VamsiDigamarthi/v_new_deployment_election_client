@@ -4,6 +4,7 @@ import { stateWiseData } from "../../data/statedata";
 import { ToastContainer } from "react-toastify";
 import { APIS, headers } from "../../data/header";
 import "react-toastify/dist/ReactToastify.css";
+import { motion } from "framer-motion";
 
 import {
   errorMsgApi,
@@ -13,6 +14,7 @@ import {
   seonOtp,
 } from "../../util/showmessages";
 import { assemblyList } from "../../data/assembly";
+import { featureVariants } from "../../data/animation";
 const SignUp = ({ onSwitchRegistor }) => {
   // user store data state
   const [user, setUser] = useState({
@@ -142,13 +144,13 @@ const SignUp = ({ onSwitchRegistor }) => {
     } else if (values?.phone.length !== 10) {
       errors.phone = "phone number must be 10 characters";
     }
-    // if (!values.phonepe) {
-    //   errors.phonepe = "phonepe number is required!";
-    // } else if (!/^[0-9]{1,}$/.test(values.phonepe)) {
-    //   errors.phonepe = "phonepe number must be numeric characters";
-    // } else if (values.phonepe.length !== 10) {
-    //   errors.phonepe = "phonepe number must be 10 characters";
-    // }
+    if (!values.phonepe) {
+      errors.phonepe = null;
+    } else if (!/^[0-9]{1,}$/.test(values.phonepe)) {
+      errors.phonepe = "phonepe number must be numeric characters";
+    } else if (values.phonepe.length !== 10) {
+      errors.phonepe = "phonepe number must be 10 characters";
+    }
 
     // if (!values.bankname) {
     //   errors.bankname = "Bank Name is required!";
@@ -245,8 +247,8 @@ const SignUp = ({ onSwitchRegistor }) => {
   }, [user.dist]);
 
   useEffect(() => {
-    console.log("ghj");
-    console.log(formErrors);
+    // console.log("ghj");
+    // console.log(formErrors);
     if (Object.keys(formErrors).length === 0 && gg) {
       setLoading(true);
       // APIS.post(

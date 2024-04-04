@@ -3,6 +3,7 @@ import { ToastContainer } from "react-toastify";
 import React, { useEffect, useState } from "react";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import { SpinnerDotted } from "spinners-react";
 
 import "./PDFUser.css";
 import { useSelector } from "react-redux";
@@ -13,6 +14,7 @@ const PDFUser = () => {
   const [loader, setLoader] = useState(true);
 
   useEffect(() => {
+    setLoader(true);
     APIS.get(
       `/user/all/user/pdf/file/state/${UUU?.state}/district/${UUU?.district}/assembly/${UUU?.assembly}`,
       {
@@ -20,11 +22,13 @@ const PDFUser = () => {
       }
     )
       .then((res) => {
-        console.log(res.data);
+        setLoader(false);
+        // console.log(res.data);
         setUser(res.data);
       })
       .catch((e) => {
         console.log(e);
+        setLoader(false);
       });
   }, []);
 
@@ -164,7 +168,16 @@ const PDFUser = () => {
 
       <div className="user-data-main">
         <h2>Users PDF File</h2>
-        <button onClick={downloadPdf}>Download</button>
+        {loader ? (
+          <SpinnerDotted
+            size={50}
+            thickness={100}
+            speed={100}
+            color="#36ad47"
+          />
+        ) : (
+          <button onClick={downloadPdf}>Download</button>
+        )}
       </div>
 
       <div className="pdf-main-mian">
