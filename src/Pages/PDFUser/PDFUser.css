@@ -127,9 +127,16 @@
   /* border: 2px solid red; */
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 5rem;
   overflow-y: scroll;
   padding: 30px;
+}
+
+.main-p-f-d {
+  display: flex;
+  flex-direction: column;
+  /* gap: 0rem; */
+  /* border: 2px solid red; */
 }
 
 .pdf_main_page_card {
@@ -141,6 +148,7 @@
   border: 2px solid lightgrey;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 .pdf_main_page_card > h1 {
@@ -188,4 +196,25 @@
 
 .pdf-adhrr-card > img {
   width: 40%;
+  height: 300px;
+}
+
+.downloadpdf-btn-crad {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.downloadpdf-btn-crad > button {
+  width: fit-content;
+  height: 35px;
+  background-color: orangered;
+  color: #fff;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  border-radius: 9px;
+  cursor: pointer;
+  padding: 0px 10px;
 }

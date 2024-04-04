@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 const PDFUser = () => {
   const UUU = useSelector((state) => state.authReducer.authData);
   const [user, setUser] = useState(null);
-  const [errors, setErrors] = useState({});
+  // const [errors, setErrors] = useState({});
   const [loader, setLoader] = useState(true);
 
   useEffect(() => {
@@ -32,155 +32,32 @@ const PDFUser = () => {
       });
   }, []);
 
-  // const downloadPdf = () => {
-  //   user.forEach((record, index) => {
-  //     let element = document.createElement("div");
-  //     element.classList.add("pdf-main-mian");
+  const download = (key) => {
+    // console.log(key);
+    const capture = document.getElementById(key?.key);
+    // console.log(capture);
+    html2canvas(capture).then((canvas) => {
+      const imgData = canvas.toDataURL("img/png");
+      const doc = new jsPDF("p", "mm", "a4");
 
-  //     let firstMainDiv = document.createElement("div");
-  //     firstMainDiv.classList.add("pdf-main-body");
+      const componentWidth = doc.internal.pageSize.getWidth();
+      const componentHeight = doc.internal.pageSize.getHeight();
+      doc.addImage(imgData, "PNG", 0, 0, componentWidth, componentHeight);
 
-  //     let mainHeading = document.createElement("h1");
-  //     mainHeading.textContent = "DECLARATION BY WEB CASTING AGENTS";
-  //     firstMainDiv.appendChild(mainHeading);
+      doc.save(`${key?.name}.pdf`);
+    });
 
-  //     let headingCard = document.createElement("div");
-  //     headingCard.classList.add("main-heading-card");
-  //     firstMainDiv.appendChild(headingCard);
-
-  //     let secondHeading = document.createElement("h2");
-  //     secondHeading.textContent = ` I, ${record?.name}, S/o / D/o ${record?.fatherName} do hereby make a
-  //           solemn`;
-  //     headingCard.appendChild(secondHeading);
-  //     let thirdHeading = document.createElement("h2");
-  //     thirdHeading.textContent =
-  //       "declaration, in connection with the General Election to Lok Sabha 2024, Assam, that:";
-
-  //     headingCard.appendChild(thirdHeading);
-
-  //     let listElemnt = document.createElement("ol");
-  //     listElemnt.classList.add("pdf-ul");
-  //     firstMainDiv.appendChild(listElemnt);
-  //     let firstOlEmenelt = document.createElement("li");
-
-  //     // Create text nodes for each line and append them
-  //     const line1 = document.createTextNode(
-  //       "I am not a close relative of any of the contesting candidate/leading"
-  //     );
-  //     const line2 = document.createTextNode(
-  //       "political functionary of the state/district in the aforesaid election."
-  //     );
-
-  //     // Create a <br> element for the line break
-  //     const lineBreak = document.createElement("br");
-
-  //     firstOlEmenelt.appendChild(line1);
-  //     firstOlEmenelt.appendChild(lineBreak);
-  //     firstOlEmenelt.appendChild(line2);
-  //     listElemnt.appendChild(firstOlEmenelt);
-
-  //     let secondOlElement = document.createElement("li");
-  //     secondOlElement.textContent =
-  //       "No criminal case is pending against me in any court of law.";
-
-  //     listElemnt.appendChild(secondOlElement);
-
-  //     let newSecondDiv = document.createElement("div");
-  //     newSecondDiv.classList.add("pdf-img-names-card");
-  //     firstMainDiv.appendChild(newSecondDiv);
-
-  //     let img = document.createElement("img");
-
-  //     // img.width = 300;
-  //     // img.height = 200;
-
-  //     img.src = `${record?.profilePic}`;
-
-  //     newSecondDiv.appendChild(img);
-
-  //     let secondDivInsideDiv = document.createElement("div");
-
-  //     newSecondDiv.appendChild(secondDivInsideDiv);
-
-  //     let signatureSpan = document.createElement("span");
-  //     signatureSpan.textContent =
-  //       "Signature With Date .............................";
-  //     secondDivInsideDiv.appendChild(signatureSpan);
-
-  //     let nameSpan = document.createElement("span");
-  //     nameSpan.textContent = `Name -- ${record?.name}`;
-  //     secondDivInsideDiv.appendChild(nameSpan);
-
-  //     let fNameSpan = document.createElement("span");
-  //     fNameSpan.textContent = `Father's Name -- ${record?.fatherName}</span>`;
-  //     secondDivInsideDiv.appendChild(fNameSpan);
-
-  //     let mNameSpan = document.createElement("span");
-  //     mNameSpan.textContent = `Mother's Name -- ${record?.motherName}`;
-  //     secondDivInsideDiv.appendChild(mNameSpan);
-
-  //     let addressSpan = document.createElement("span");
-  //     addressSpan.textContent = `Address -- ${record?.address}`;
-  //     secondDivInsideDiv.appendChild(addressSpan);
-
-  //     let village = document.createElement("span");
-  //     village.textContent = `Village -- ${record?.mandal}`;
-  //     secondDivInsideDiv.appendChild(village);
-
-  //     let district = document.createElement("span");
-  //     district.textContent = `District -- ${record?.district}`;
-  //     secondDivInsideDiv.appendChild(district);
-
-  //     let pin = document.createElement("span");
-  //     pin.textContent = `PIN -- ${record?.pinCode}`;
-  //     secondDivInsideDiv.appendChild(pin);
-
-  //     let mobileNumber = document.createElement("span");
-  //     mobileNumber.textContent = `Mobile No -- ${record?.phone}`;
-  //     secondDivInsideDiv.appendChild(mobileNumber);
-
-  //     let adharNumber = document.createElement("span");
-  //     adharNumber.textContent = `Adhaar No -- ${record?.adharnumber}`;
-  //     secondDivInsideDiv.appendChild(adharNumber);
-
-  //     element.appendChild(firstMainDiv);
-
-  //     document.body.appendChild(element);
-
-  //     // html2canvas(element).then((canvas) => {
-  //     //   const imgData = canvas.toDataURL("img/png");
-  //     //   const doc = new jsPDF("p", "mm", "a4");
-
-  //     //   const componentWidth = doc.internal.pageSize.getWidth();
-  //     //   const componentHeight = doc.internal.pageSize.getHeight();
-  //     //   doc.addImage(imgData, "PNG", 0, 0, componentWidth, componentHeight);
-  //     //   doc.save(`${record?.name}.pdf`);
-  //     //   document.body.removeChild(element);
-  //     // });
-
-  //     html2canvas(element, {
-  //       width: element.offsetWidth,
-  //       height: element.offsetHeight,
-  //     }).then((canvas) => {
-  //       const imgData = canvas.toDataURL("img/png");
-  //       const doc = new jsPDF("p", "mm", "a4");
-
-  //       // Scale the image to fit the PDF page
-  //       const scale = Math.min(
-  //         doc.internal.pageSize.getWidth() / canvas.width,
-  //         doc.internal.pageSize.getHeight() / canvas.height
-  //       );
-  //       const scaledWidth = canvas.width * scale;
-  //       const scaledHeight = canvas.height * scale;
-
-  //       doc.addImage(imgData, "PNG", 0, 0, scaledWidth, scaledHeight);
-  //       doc.save(`${record?.name}.pdf`);
-  //       document.body.removeChild(element);
-  //     });
-  //   });
-
-  //   // const capture = document.querySelector(".pdf-main-mian");
-  // };
+    // APIS.get(`/user/user-get-profile/${key?.id}`, {
+    //   headers: headers,
+    // })
+    //   .then((res) => {
+    //     // console.log(res);
+    //     setUser(res.data);
+    //   })
+    //   .catch((e) => {
+    //     console.log(e);
+    //   });
+  };
 
   return (
     <div className="main-user-pdf">
@@ -196,20 +73,6 @@ const PDFUser = () => {
         pauseOnHover
         theme="light"
       />
-
-      {/* <div className="user-data-main">
-        <h2>Users PDF File</h2>
-        {loader ? (
-          <SpinnerDotted
-            size={50}
-            thickness={100}
-            speed={100}
-            color="#36ad47"
-          />
-        ) : (
-          <button onClick={downloadPdf}>Download</button>
-        )}
-      </div> */}
 
       <div className="main__pdf__file__container">
         {loader ? (
@@ -231,86 +94,154 @@ const PDFUser = () => {
           </div>
         ) : (
           <>
-            {user?.map((each) => (
-              <div className="pdf_main_page_card">
-                <h1>DECLARATION BY WEB CASTING AGENTS</h1>
-                <h3>
-                  I, <span>{each?.name}</span>, S/o / D/o{" "}
-                  <span>{each?.fatherName}</span> do hereby make a solemn <br />{" "}
-                  declaration, in connection with the General Election to Lok
-                  Sabha 2024,
-                  <br /> Assam, that:
-                </h3>
-                <ol className="pdf_ol_main_card">
-                  <li>
-                    A. I am not a close relative of any of the contesting
-                    candidate/leading <br /> political functionary of the
-                    state/district in the aforesaid election
-                  </li>
-                  <li>
-                    B. No criminal case is pending against me in any court of
-                    law.
-                  </li>
-                </ol>
-                <div className="pdf-main-imge-card">
-                  <img src={each?.profilePic} alt="" />
-                  <div className="pdf_user_detaiisl_main">
-                    <span>
-                      Signature with
-                      date:..................................................
+            {user?.map((each, key) => (
+              <div className="main-p-f-d">
+                <div id={key} className="pdf_main_page_card">
+                  <h1>DECLARATION BY WEB CASTING AGENTS</h1>
+                  <h3>
+                    I,{" "}
+                    <span style={{ fontWeight: "bold" }}>
+                      <span>{each?.name}</span>
                     </span>
-                    <span>Name -- {each?.name}</span>
-                    <span>Father's Name -- {each?.fatherName}</span>
-                    <span>Mother's Name -- {each?.motherName}</span>
-                    <span>Address -- {each?.address?.slice(0.25)}</span>
-                    <span>Village -- {each?.mandal}</span>
-                    <span>District -- {each?.district}</span>
-                    <span>PIN -- {each?.pinCode}</span>
-                    <span>Mobile No -- {each?.phone}</span>
-                    <span>Adhaar No -- {each?.adharnumber}</span>
+                    , S/o / D/o{" "}
+                    <span style={{ fontWeight: "bold" }}>
+                      {each?.fatherName
+                        ? each?.fatherName
+                        : "_________________"}
+                    </span>{" "}
+                    do hereby make a solemn <br /> declaration, in connection
+                    with the General Election to Lok Sabha 2024,
+                    <br /> Assam, that:
+                  </h3>
+                  <ol type="A" className="pdf_ol_main_card">
+                    <li>
+                      I am not a close relative of any of the contesting
+                      candidate/leading <br /> political functionary of the
+                      state/district in the aforesaid election
+                    </li>
+                    <li>
+                      No criminal case is pending against me in any court of
+                      law.
+                    </li>
+                  </ol>
+                  <div className="pdf-main-imge-card">
+                    <img src={each?.profilePic} alt="" />
+                    <div className="pdf_user_detaiisl_main">
+                      <span>
+                        Name --{" "}
+                        <span
+                          style={{
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {each?.name}
+                        </span>
+                      </span>
+                      <span>
+                        Father's Name --{" "}
+                        <span
+                          style={{
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {each?.fatherName}
+                        </span>
+                      </span>
+                      <span>
+                        Mother's Name --{" "}
+                        <span
+                          style={{
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {each?.motherName}
+                        </span>
+                      </span>
+                      <span>
+                        Address --{" "}
+                        <span
+                          style={{
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {each?.address?.slice(0.25)}
+                        </span>
+                      </span>
+                      <span>
+                        Village --{" "}
+                        <span
+                          style={{
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {each?.mandal}
+                        </span>
+                      </span>
+                      <span>
+                        District --{" "}
+                        <span
+                          style={{
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {each?.district}
+                        </span>
+                      </span>
+                      <span>
+                        PIN --{" "}
+                        <span
+                          style={{
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {each?.pinCode}
+                        </span>
+                      </span>
+                      <span>
+                        Mobile No --{" "}
+                        <span
+                          style={{
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {each?.phone}
+                        </span>
+                      </span>
+                      <span>
+                        Adhaar No --{" "}
+                        <span
+                          style={{
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {each?.adharnumber}
+                        </span>
+                      </span>
+                      <span>
+                        Signature with
+                        date:..................................................
+                      </span>
+                    </div>
                   </div>
+                  {/* <div className="pdf-adhrr-card">
+                    <img src={each?.voteridurl} alt="" />
+                    <img src={each?.adharidurl} alt="" />
+                  </div> */}
                 </div>
-                <div className="pdf-adhrr-card">
-                  <img src={each?.voteridurl} alt="" />
-                  <img src={each?.adharidurl} alt="" />
+                <div className="downloadpdf-btn-crad">
+                  <button
+                    onClick={() =>
+                      download({ key, name: each?.name, id: each?._id })
+                    }
+                  >
+                    Download {each?.name} PDF
+                  </button>
                 </div>
               </div>
             ))}
           </>
         )}
       </div>
-      {/* <div className="pdf-main-body">
-          <h1>DECLARATION BY WEB CASTING AGENTS</h1>
-          <h3 style={{ textAlign: "center" }}>
-            I, {user?.name}, S/o / D/o {user?.fatherName} do hereby make a
-            solemn
-            <br /> declaration, in connection with the General Election to Lok
-            Sabha 2024, Assam, that:
-          </h3>
-          <ol type="A" className="pdf-ul">
-            <li>
-              I am not a close relative of any of the contesting
-              candidate/leading <br /> political functionary of the
-              state/district in the aforesaid election.
-            </li>
-            <li>No criminal case is pending against me in any court of law.</li>
-          </ol>
-          <div className="pdf-img-names-card">
-            <img src={user?.profilePic} alt="" />
-            <div>
-              Signature With Date .............................</span>
-              <span>Name -- {user?.name}</span>
-              <span>Father's Name -- {user?.fatherName}</span>
-              <span>Mother's Name -- {user?.motherName}</span>
-              <span>Address -- {user?.address}</span>
-              <span>Village -- {user?.mandal}</span>
-              <span>District -- {user?.district}</span>
-              <span>PIN -- {user?.pinCode}</span>
-              <span>Mobile No -- {user?.phone}</span>
-              <span>Adhaar No -- {user?.adharnumber}</span>
-            </div>
-          </div>
-        </div> */}
     </div>
   );
 };

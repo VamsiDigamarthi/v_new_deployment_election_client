@@ -8,11 +8,13 @@ import { FaUserAlt } from "react-icons/fa";
 import { BiMessageDetail } from "react-icons/bi";
 import { RxCross1 } from "react-icons/rx";
 import PaymentModal from "../../Modals/PaymentModal/PaymentModal";
+import { SpinnerDotted } from "spinners-react";
 const AssemblyPsDetails = () => {
   const [allInitiallyUsers, setAllInitiallyUsers] = useState([]);
   // SCORED USER NAME STORE WHEN INPUT FIELD CHANGE
   const [filterValue, setFilterValue] = useState("");
 
+  const [loader, setLoader] = useState(true);
   // STORE NOT REJECTED COMPLETED TASKS
   const [countTotalNotRejectedTask, setCountTotalNotRejectedTask] = useState(0);
 
@@ -36,14 +38,19 @@ const AssemblyPsDetails = () => {
 
   const UUU = useSelector((state) => state.authReducer.authData);
   const allUsers = () => {
+    setLoader(true);
     APIS.get(
       `assembly/alluser/assembly/${UUU?.assembly}/state/${UUU?.state}/district/${UUU?.district}`
     )
       .then((res) => {
+        setLoader(false);
         setAllInitiallyUsers(res.data);
         // console.log(res.data);
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        setLoader(false);
+        console.log(e);
+      });
   };
   useEffect(() => {
     allUsers();
@@ -188,54 +195,73 @@ const AssemblyPsDetails = () => {
               <IoSearch color="#fff" size="25" />
             </div>
           </div>
-          <div className="user__display__card">
-            {allInitiallyUsers?.length > 0 ? (
-              <>
-                {allInitiallyUsers
-                  .filter((each) =>
-                    filterValue === ""
-                      ? each
-                      : each.name
-                          .toLowerCase()
-                          .includes(filterValue.toLowerCase())
-                  )
-                  .map((each, key) => (
-                    <div
-                      key={key}
-                      onClick={() => onUserClickFetchTask(each)}
-                      className="each__user"
-                      style={{
-                        border:
-                          leftSideUserClickStoreId?._id === each._id
-                            ? "2px solid rgb(255, 187, 0)"
-                            : "1px solid rgb(221, 214, 214)",
-                        borderLeft:
-                          leftSideUserClickStoreId?._id === each._id &&
-                          "1px solid rgb(255, 187, 0)",
-                      }}
-                    >
-                      <FaUserAlt size="25" color="rgb(221, 214, 214)" />
-                      <div>
-                        <span>{each.name}</span>
-                        <span>{each.phone}</span>
+          {loader ? (
+            <div
+              style={{
+                width: "100%",
+                height: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <SpinnerDotted
+                size={50}
+                thickness={100}
+                speed={100}
+                color="#36ad47"
+              />
+            </div>
+          ) : (
+            <div className="user__display__card">
+              {allInitiallyUsers?.length > 0 ? (
+                <>
+                  {allInitiallyUsers
+                    .filter((each) =>
+                      filterValue === ""
+                        ? each
+                        : each.name
+                            .toLowerCase()
+                            .includes(filterValue.toLowerCase())
+                    )
+                    .map((each, key) => (
+                      <div
+                        key={key}
+                        onClick={() => onUserClickFetchTask(each)}
+                        className="each__user"
+                        style={{
+                          border:
+                            leftSideUserClickStoreId?._id === each._id
+                              ? "2px solid rgb(255, 187, 0)"
+                              : "1px solid rgb(221, 214, 214)",
+                          borderLeft:
+                            leftSideUserClickStoreId?._id === each._id &&
+                            "1px solid rgb(255, 187, 0)",
+                        }}
+                      >
+                        <FaUserAlt size="25" color="rgb(221, 214, 214)" />
+                        <div>
+                          <span>{each.name}</span>
+                          <span>{each.phone}</span>
+                        </div>
+                        <BiMessageDetail size="20" color="rgb(221, 214, 214)" />
                       </div>
-                      <BiMessageDetail size="20" color="rgb(221, 214, 214)" />
-                    </div>
-                  ))}
-              </>
-            ) : (
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  height: "100%",
-                }}
-              >
-                <h2> No User Found</h2>
-              </div>
-            )}
-          </div>
+                    ))}
+                </>
+              ) : (
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: "100%",
+                  }}
+                >
+                  <h2> No User Found</h2>
+                </div>
+              )}
+            </div>
+          )}
         </div>
         {/*  */}
         <div className="user__right__side__card">

@@ -6,12 +6,15 @@ import { GoTasklist } from "react-icons/go";
 import ReactPaginate from "react-paginate";
 import { RxCross1 } from "react-icons/rx";
 import { allpsAddedtoUser } from "../../util/showmessages";
+import { SpinnerDotted } from "spinners-react";
 const AssemblyAssignTask = () => {
   const UUU = useSelector((state) => state.authReducer.authData);
   const [initiallyAllPs, setInitiallyAllPs] = useState([]);
   const [allInitiallyUsers, setAllInitiallyUsers] = useState([]);
 
   const [storeModalUser, setStoreModalUser] = useState(null);
+
+  const [loader, setLoader] = useState(true);
 
   // array of ps added to users
   const [array, setArray] = useState([]);
@@ -27,23 +30,28 @@ const AssemblyAssignTask = () => {
 
   // AFTER SET UNIQUE LOCATIONS THIS ALL STATE ARE STORE PAGINATION AND LOCATION DATA
   const [itemOffset, setItemOffset] = useState(0);
-  const endOffset = itemOffset + 8;
+  const endOffset = itemOffset + 9;
   const currentItems = allInitiallyUsers?.slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(allInitiallyUsers?.length / 8);
+  const pageCount = Math.ceil(allInitiallyUsers?.length / 9);
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * 8) % allInitiallyUsers?.length;
+    const newOffset = (event.selected * 9) % allInitiallyUsers?.length;
     setItemOffset(newOffset);
   };
 
   const allUsers = () => {
+    setLoader(true);
     APIS.get(
       `assembly/alluser/assembly/${UUU?.assembly}/state/${UUU?.state}/district/${UUU?.district}`
     )
       .then((res) => {
+        setLoader(false);
         setAllInitiallyUsers(res.data);
-        console.log(res.data);
+        // console.log(res.data);
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        setLoader(false);
+        console.log(e);
+      });
   };
 
   const allPsInitially = () => {
@@ -119,66 +127,87 @@ const AssemblyAssignTask = () => {
 
   return (
     <div className="assembly-aasigntask-main">
-      <div
-        style={{
-          filter: openTaskModal && "blur(10px)",
-        }}
-        className="table__main__card"
-      >
-        <div className="table__header__card">
-          <span>Name</span>
-          <span>Address</span>
-          <span>Phone</span>
-          <span>Score</span>
-          <span>Mandal</span>
-          <span className="table__header__last__span">Action</span>
+      {loader ? (
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <SpinnerDotted
+            size={50}
+            thickness={100}
+            speed={100}
+            color="#36ad47"
+          />
         </div>
-        <div className="table__body__card">
-          {currentItems?.map((each, key) => (
-            <div
-              style={{
-                color: each.assign_task === "yes" && "#ee8673",
-              }}
-              key={key}
-              className="table__inner__body"
-            >
-              <span>{each.name}</span>
-              <span>{each.address}</span>
-              <span>{each.phone}</span>
-              <span>{each.score}</span>
-              <span>{each.mandal}</span>
-              <button
-                // disabled={each.assign_task === "yes" && "true"}
-                // onClick={() => onOpenTaskModalFun(each)}
-                className="table__action"
-                // style={{
-                //   color: each.assign === "yes" && "#ee8673",
-                // }}
-                onClick={() => onTaskModalCloseFun(each)}
-              >
-                <GoTasklist size={20} />
-              </button>
+      ) : (
+        <>
+          <div
+            style={{
+              filter: openTaskModal && "blur(10px)",
+            }}
+            className="table__main__card"
+          >
+            <div className="assembly-table-header">
+              <span>Name</span>
+              <span>Address</span>
+              <span>Phone</span>
+              <span>PIN Code</span>
+              <span>Mandal</span>
+              <span className="table__header__last__span">Action</span>
             </div>
-          ))}
-        </div>
-      </div>
-      <div
-        style={{
-          filter: openTaskModal && "blur(10px)",
-        }}
-        className="paginations__card__appcss"
-      >
-        <ReactPaginate
-          breakLabel="..."
-          nextLabel=">"
-          onPageChange={handlePageClick}
-          pageRangeDisplayed={5}
-          pageCount={pageCount}
-          previousLabel="<"
-          renderOnZeroPageCount={null}
-          className="paginat"
-        />
-      </div>
+            <div className="table__body__card">
+              {currentItems?.map((each, key) => (
+                <div
+                  style={{
+                    color: each.assign_task === "yes" && "#ee8673",
+                  }}
+                  key={key}
+                  className="assembly-table-body"
+                >
+                  <span>{each.name}</span>
+                  <span>{each.address?.toLowerCase()}</span>
+                  <span>{each.phone}</span>
+                  <span>{each.pinCode}</span>
+                  <span>{each.mandal}</span>
+                  <button
+                    // disabled={each.assign_task === "yes" && "true"}
+                    // onClick={() => onOpenTaskModalFun(each)}
+                    className="table__action"
+                    // style={{
+                    //   color: each.assign === "yes" && "#ee8673",
+                    // }}
+                    onClick={() => onTaskModalCloseFun(each)}
+                  >
+                    <GoTasklist size={20} />
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div
+            style={{
+              filter: openTaskModal && "blur(10px)",
+            }}
+            className="paginations__card__appcss"
+          >
+            <ReactPaginate
+              breakLabel="..."
+              nextLabel=">"
+              onPageChange={handlePageClick}
+              pageRangeDisplayed={5}
+              pageCount={pageCount}
+              previousLabel="<"
+              renderOnZeroPageCount={null}
+              className="paginat"
+            />
+          </div>
+        </>
+      )}
       {openTaskModal && (
         <div className="assembly-assigntask-modal-main">
           <div className="user__modal__cross__card">

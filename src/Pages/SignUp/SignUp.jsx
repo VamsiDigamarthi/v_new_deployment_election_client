@@ -849,7 +849,7 @@ const SignUp = ({ onSwitchRegistor }) => {
                 name="mandal"
                 value={user.mandal}
               />
-              <span>Nearest PS/Location</span>
+              <span>Nearest Polling Station Location</span>
             </div>
           </div>
 

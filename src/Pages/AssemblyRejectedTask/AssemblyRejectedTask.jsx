@@ -19,11 +19,11 @@ const AssemblyRejectedTask = () => {
 
   // AFTER SET UNIQUE LOCATIONS THIS ALL STATE ARE STORE PAGINATION AND LOCATION DATA
   const [itemOffset, setItemOffset] = useState(0);
-  const endOffset = itemOffset + 8;
+  const endOffset = itemOffset + 9;
   const currentItems = allInitiallyUsers?.slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(allInitiallyUsers?.length / 8);
+  const pageCount = Math.ceil(allInitiallyUsers?.length / 9);
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * 8) % allInitiallyUsers?.length;
+    const newOffset = (event.selected * 9) % allInitiallyUsers?.length;
     setItemOffset(newOffset);
   };
 
@@ -108,12 +108,12 @@ const AssemblyRejectedTask = () => {
         }}
         className="table__main__card"
       >
-        <div className="table__header__card">
+        <div className="assembly-table-header">
           <span>Name</span>
-          <span>Phone</span>
           <span>Address</span>
-          <span>Score</span>
-          <span>PS Address</span>
+          <span>Phone</span>
+          <span>PIN Code</span>
+          <span>Mandal</span>
           <span className="table__header__last__span">Action</span>
         </div>
         <div className="table__body__card">
@@ -123,15 +123,13 @@ const AssemblyRejectedTask = () => {
                 color: each.assign_task === "yes" && "#ee8673",
               }}
               key={key}
-              className="table__inner__body"
+              className="assembly-table-body"
             >
               <span>{each.name}</span>
+              <span>{each.address?.toLowerCase()}</span>
               <span>{each.phone}</span>
-              <span>{each.address}</span>
-              <span>{each.score}</span>
-              <span>
-                {each.PS_Name_and_Address?.toLowerCase().slice(0, 80)}
-              </span>
+              <span>{each.pinCode}</span>
+              <span>{each?.mandal}</span>
               <button
                 disabled={each.assign_task === "yes" && "true"}
                 // onClick={() => onOpenTaskModalFun(each)}
