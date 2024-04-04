@@ -144,13 +144,13 @@ const SignUp = ({ onSwitchRegistor }) => {
     } else if (values?.phone.length !== 10) {
       errors.phone = "phone number must be 10 characters";
     }
-    if (!values.phonepe) {
-      errors.phonepe = null;
-    } else if (!/^[0-9]{1,}$/.test(values.phonepe)) {
-      errors.phonepe = "phonepe number must be numeric characters";
-    } else if (values.phonepe.length !== 10) {
-      errors.phonepe = "phonepe number must be 10 characters";
-    }
+    // if (!values.phonepe) {
+    //   errors.phonepe = null;
+    // } else if (!/^[0-9]{1,}$/.test(values.phonepe)) {
+    //   errors.phonepe = "phonepe number must be numeric characters";
+    // } else if (values.phonepe.length !== 10) {
+    //   errors.phonepe = "phonepe number must be 10 characters";
+    // }
 
     // if (!values.bankname) {
     //   errors.bankname = "Bank Name is required!";
@@ -248,7 +248,7 @@ const SignUp = ({ onSwitchRegistor }) => {
 
   useEffect(() => {
     // console.log("ghj");
-    // console.log(formErrors);
+    console.log(formErrors);
     if (Object.keys(formErrors).length === 0 && gg) {
       setLoading(true);
       // APIS.post(
@@ -316,6 +316,7 @@ const SignUp = ({ onSwitchRegistor }) => {
   // user validated there form and send otp api call
 
   const onSubmitRegisterDataFn = (e) => {
+    console.log("btn click");
     e.preventDefault();
 
     setFormErrors(validate(user));

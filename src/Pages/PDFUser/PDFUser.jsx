@@ -136,13 +136,33 @@ const PDFUser = () => {
 
       document.body.appendChild(element);
 
-      html2canvas(element).then((canvas) => {
+      // html2canvas(element).then((canvas) => {
+      //   const imgData = canvas.toDataURL("img/png");
+      //   const doc = new jsPDF("p", "mm", "a4");
+
+      //   const componentWidth = doc.internal.pageSize.getWidth();
+      //   const componentHeight = doc.internal.pageSize.getHeight();
+      //   doc.addImage(imgData, "PNG", 0, 0, componentWidth, componentHeight);
+      //   doc.save(`${record?.name}.pdf`);
+      //   document.body.removeChild(element);
+      // });
+
+      html2canvas(element, {
+        width: element.offsetWidth,
+        height: element.offsetHeight,
+      }).then((canvas) => {
         const imgData = canvas.toDataURL("img/png");
         const doc = new jsPDF("p", "mm", "a4");
 
-        const componentWidth = doc.internal.pageSize.getWidth();
-        const componentHeight = doc.internal.pageSize.getHeight();
-        doc.addImage(imgData, "PNG", 0, 0, componentWidth, componentHeight);
+        // Scale the image to fit the PDF page
+        const scale = Math.min(
+          doc.internal.pageSize.getWidth() / canvas.width,
+          doc.internal.pageSize.getHeight() / canvas.height
+        );
+        const scaledWidth = canvas.width * scale;
+        const scaledHeight = canvas.height * scale;
+
+        doc.addImage(imgData, "PNG", 0, 0, scaledWidth, scaledHeight);
         doc.save(`${record?.name}.pdf`);
         document.body.removeChild(element);
       });
