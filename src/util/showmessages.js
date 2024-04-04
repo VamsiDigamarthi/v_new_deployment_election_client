@@ -17,6 +17,22 @@ export const resizeFile = (file) =>
     );
   });
 
+export const resizeFileAdhar = (file) =>
+  new Promise((resolve) => {
+    Resizer.imageFileResizer(
+      file,
+      300,
+      300,
+      "JPEG",
+      60,
+      0,
+      (uri) => {
+        resolve(uri);
+      },
+      "base64"
+    );
+  });
+
 export const pleaseChoosImages = () =>
   toast.warning("Please Choose Images Only ...!", {
     position: "bottom-right",

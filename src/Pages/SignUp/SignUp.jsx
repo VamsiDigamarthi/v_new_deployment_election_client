@@ -11,6 +11,7 @@ import {
   pleaseChoosImages,
   registorSucces,
   resizeFile,
+  resizeFileAdhar,
   seonOtp,
 } from "../../util/showmessages";
 import { assemblyList } from "../../data/assembly";
@@ -379,7 +380,7 @@ const SignUp = ({ onSwitchRegistor }) => {
   const onFrontAdhrChange = async (event) => {
     try {
       const file = event.target.files[0];
-      const image = await resizeFile(file);
+      const image = await resizeFileAdhar(file);
       setUser({
         ...user,
         voterIdImage: image,
@@ -398,7 +399,7 @@ const SignUp = ({ onSwitchRegistor }) => {
   const onBackAdhrChange = async (event) => {
     try {
       const file = event.target.files[0];
-      const image = await resizeFile(file);
+      const image = await resizeFileAdhar(file);
       setUser({
         ...user,
         adharIdImage: image,
@@ -417,7 +418,7 @@ const SignUp = ({ onSwitchRegistor }) => {
   const onPrfilePic = async (event) => {
     try {
       const file = event.target.files[0];
-      const image = await resizeFile(file);
+      const image = await resizeFileAdhar(file);
       setUser({
         ...user,
         profilePic: image,

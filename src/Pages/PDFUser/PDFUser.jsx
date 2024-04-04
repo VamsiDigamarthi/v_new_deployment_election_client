@@ -23,7 +23,7 @@ const PDFUser = () => {
     )
       .then((res) => {
         setLoader(false);
-        // console.log(res.data);
+        // console.log(res.data?.length);
         setUser(res.data);
       })
       .catch((e) => {
@@ -46,17 +46,42 @@ const PDFUser = () => {
 
       doc.save(`${key?.name}.pdf`);
     });
+  };
 
-    // APIS.get(`/user/user-get-profile/${key?.id}`, {
-    //   headers: headers,
-    // })
-    //   .then((res) => {
-    //     // console.log(res);
-    //     setUser(res.data);
-    //   })
-    //   .catch((e) => {
-    //     console.log(e);
-    //   });
+  const downloadAdhar = (value) => {
+    const capture = document.getElementById(value?.id);
+    html2canvas(capture, {
+      width: capture.offsetWidth,
+      height: capture.offsetHeight,
+    }).then((canvas) => {
+      const imgData = canvas.toDataURL("img/png");
+      const doc = new jsPDF("p", "mm", "a4");
+
+      // Scale the image to fit the PDF page
+      const scale = Math.min(
+        doc.internal.pageSize.getWidth() / canvas.width,
+        doc.internal.pageSize.getHeight() / canvas.height
+      );
+      const scaledWidth = canvas.width * scale;
+      const scaledHeight = canvas.height * scale;
+
+      doc.addImage(imgData, "PNG", 0, 0, scaledWidth, scaledHeight);
+      doc.save(`${value?.name}adhaar.pdf`);
+      // document.body.removeChild(element);
+    });
+    // console.log(value);
+    // const capture = document.getElementById(value?.id);
+    // // console.log(capture);
+    // html2canvas(capture).then((canvas) => {
+    //   const imgData = canvas.toDataURL("img/png");
+    //   const doc = new jsPDF("p", "mm", "a4");
+
+    //   const componentWidth = doc.internal.pageSize.getWidth();
+    //   const componentHeight = doc.internal.pageSize.getHeight();
+    //   doc.addImage(imgData, "PNG", 0, 0, componentWidth, componentHeight);
+
+    //   doc.save(`${value?.name}adhaar.pdf`);
+    // });
   };
 
   return (
@@ -95,23 +120,16 @@ const PDFUser = () => {
         ) : (
           <>
             {user?.map((each, key) => (
-              <div className="main-p-f-d">
+              <div key={key} className="main-p-f-d">
                 <div id={key} className="pdf_main_page_card">
                   <h1>DECLARATION BY WEB CASTING AGENTS</h1>
-                  <h3>
+                  <h3 style={{ paddingLeft: "6%" }}>
                     I,{" "}
                     <span style={{ fontWeight: "bold" }}>
                       <span>{each?.name}</span>
                     </span>
-                    , S/o / D/o{" "}
-                    <span style={{ fontWeight: "bold" }}>
-                      {each?.fatherName
-                        ? each?.fatherName
-                        : "_________________"}
-                    </span>{" "}
-                    do hereby make a solemn <br /> declaration, in connection
-                    with the General Election to Lok Sabha 2024,
-                    <br /> Assam, that:
+                    , do hereby make a solemndeclaration, in connection with the
+                    General Election to Lok Sabha 2024, Assam, that:
                   </h3>
                   <ol type="A" className="pdf_ol_main_card">
                     <li>
@@ -137,26 +155,7 @@ const PDFUser = () => {
                           {each?.name}
                         </span>
                       </span>
-                      <span>
-                        Father's Name --{" "}
-                        <span
-                          style={{
-                            fontWeight: "bold",
-                          }}
-                        >
-                          {each?.fatherName}
-                        </span>
-                      </span>
-                      <span>
-                        Mother's Name --{" "}
-                        <span
-                          style={{
-                            fontWeight: "bold",
-                          }}
-                        >
-                          {each?.motherName}
-                        </span>
-                      </span>
+
                       <span>
                         Address --{" "}
                         <span
@@ -217,16 +216,16 @@ const PDFUser = () => {
                           {each?.adharnumber}
                         </span>
                       </span>
-                      <span>
-                        Signature with
-                        date:..................................................
-                      </span>
                     </div>
                   </div>
-                  {/* <div className="pdf-adhrr-card">
-                    <img src={each?.voteridurl} alt="" />
-                    <img src={each?.adharidurl} alt="" />
-                  </div> */}
+                </div>
+                <div
+                  id={`${key}_${each?.name}`}
+                  // style={{ visibility: "hidden" }}
+                  className="pdf-adhrr-card"
+                >
+                  <img src={each?.voteridurl} alt="" />
+                  <img src={each?.adharidurl} alt="" />
                 </div>
                 <div className="downloadpdf-btn-crad">
                   <button
@@ -234,7 +233,17 @@ const PDFUser = () => {
                       download({ key, name: each?.name, id: each?._id })
                     }
                   >
-                    Download {each?.name} PDF
+                    Download {each?.name} Details PDF
+                  </button>
+                  <button
+                    onClick={() =>
+                      downloadAdhar({
+                        id: `${key}_${each?.name}`,
+                        name: each?.name,
+                      })
+                    }
+                  >
+                    Download {each?.name} Adhaar PDF
                   </button>
                 </div>
               </div>
