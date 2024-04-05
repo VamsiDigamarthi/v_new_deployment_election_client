@@ -1,0 +1,18 @@
+.kjhgfd {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 20px;
+}
+
+.kjhgfd > button {
+  width: 170px;
+  height: 40px;
+  background-color: orangered;
+  color: #fff;
+  border: none;
+  outline: none;
+  border-radius: 9px;
+  cursor: pointer;
+}
