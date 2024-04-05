@@ -38,6 +38,7 @@ import Profile from "./Pages/Profile/Profile";
 import DistShowUser from "./Pages/DistShowUser/DistShowUser";
 import UserData from "./Pages/UserData/UserData";
 import PDFUser from "./Pages/PDFUser/PDFUser";
+import PDF from "./Pages/PDF/PDF";
 function App() {
   const UUU = useSelector((state) => state.authReducer.authData);
   // console.log(UUU);
@@ -159,6 +160,21 @@ function App() {
                 UUU ? (
                   UUU?.role === "4" ? (
                     <UserData />
+                  ) : (
+                    <NotAccess />
+                  )
+                ) : (
+                  <Navigate to="/register" />
+                )
+              }
+            />
+
+            <Route
+              path="download/user/pdfs"
+              element={
+                UUU ? (
+                  UUU?.role === "4" ? (
+                    <PDF />
                   ) : (
                     <NotAccess />
                   )
@@ -442,7 +458,9 @@ function App() {
               path="/users/PDF"
               element={
                 UUU ? (
-                  UUU?.role === "4" || UUU?.role === "2" || UUU?.role === "5" ? (
+                  UUU?.role === "4" ||
+                  UUU?.role === "2" ||
+                  UUU?.role === "5" ? (
                     <PDFUser />
                   ) : (
                     <NotAccess />

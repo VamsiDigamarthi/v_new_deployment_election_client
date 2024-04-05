@@ -218,7 +218,28 @@ export const Sidebar = ({ children, taskAssignAdminModalOpen }) => {
                     >
                       <div onClick={() => onTabLeftSideClick(4)}>
                         <TfiControlEject />
-                        <span>Download Users</span>
+                        <span>Users Data</span>
+                      </div>
+                    </div>
+                  </Link>
+                )}
+              </>
+            )}
+
+            {UUU && (
+              <>
+                {UUU?.role === "4" && (
+                  <Link to="download/user/pdfs" className="all__links">
+                    <div
+                      style={{
+                        background: activeTab === 5 && "#ff6f00",
+                        borderRadius: "10px",
+                      }}
+                      className="left__side__bar__icons__card"
+                    >
+                      <div onClick={() => onTabLeftSideClick(5)}>
+                        <TfiControlEject />
+                        <span>Users PDFs</span>
                       </div>
                     </div>
                   </Link>

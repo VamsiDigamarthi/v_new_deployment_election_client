@@ -71,6 +71,10 @@ const SignUp = ({ onSwitchRegistor }) => {
   //
   const [uniqueState, setUniqueState] = useState([]);
 
+  const [uniqueDistrict, setUniqueDistrict] = useState([]);
+
+  const [uniqueAssembly, setUniqueAssembly] = useState([]);
+
   // fetch all ps data to display unique state and district
   const [allPsStore, setAllPsStore] = useState([]);
 
@@ -209,42 +213,59 @@ const SignUp = ({ onSwitchRegistor }) => {
 
   useEffect(() => {
     const uniqueState = [...new Set(allPsStore.map((each) => each.State))];
+    // console.log(uniqueState);
     setUniqueState(uniqueState);
+    setUser({
+      ...user,
+      state: uniqueState[0],
+    });
   }, [allPsStore]);
 
   // console.log(formErrors);
 
   // whene user selected state that corresponding district filters
   useEffect(() => {
-    if (user.state !== "") {
-      const newDist = stateWiseData.filter((each) => each.state === user.state);
-      setStateWiseDistState(newDist[0].dist);
-      // setFilterAssembly([]);
-      setUser({ ...user, dist: newDist[0]?.dist[0]?.name });
-    }
-
     // if (user.state !== "") {
-    //   const newDist = allPsStore?.filter((each) => each.state === user.state);
-    //   const uniqueState = [
-    //     ...new Set(newDist?.map((each) => each.District)),
-    //   ];
-    //   console.log(uniqueState)
-    //   // setStateWiseDistState(newDist[0].dist);
-    //   setFilterAssembly([]);
-    //   // setUser({ ...user, dist: newDist[0]?.dist[0]?.name });
+    //   const newDist = stateWiseData.filter((each) => each.state === user.state);
+    //   setStateWiseDistState(newDist[0].dist);
+    //   // setFilterAssembly([]);
+    //   setUser({ ...user, dist: newDist[0]?.dist[0]?.name });
     // }
+
+    let filteredData = allPsStore.filter((item) => item.State === user.state);
+    const uniqueDIstrict = [
+      ...new Set(filteredData.map((each) => each.District)),
+    ];
+    setUniqueDistrict(uniqueDIstrict);
+
+    // console.log(uniqueDIstrict);
   }, [user.state]);
 
   useEffect(() => {
-    if (user.dist !== "") {
-      const filterAssembly = assemblyList.filter(
-        (each) => each.dist === user.dist
-      );
-      setFilterAssembly(filterAssembly[0]?.assembly);
-      // console.log(filterAssembly[0]?.assembly);
-      // setStateWiseDistState(newDist[0].dist);
-      setUser({ ...user, assembly: filterAssembly[0]?.assembly[0]?.name });
-    }
+    // if (user.dist !== "") {
+    //   const filterAssembly = assemblyList.filter(
+    //     (each) => each.dist === user.dist
+    //   );
+    //   setFilterAssembly(filterAssembly[0]?.assembly);
+    //   // console.log(filterAssembly[0]?.assembly);
+    //   // setStateWiseDistState(newDist[0].dist);
+    //   setUser({ ...user, assembly: filterAssembly[0]?.assembly[0]?.name });
+    // }
+
+    const filterAssembly = allPsStore.filter(
+      (item) => item.District === user.dist
+    );
+    const uniqueAssembly = [
+      ...new Set(filterAssembly.map((each) => each.AC_Name)),
+    ];
+
+    setUser({
+      ...user,
+      assembly: uniqueAssembly[0],
+    });
+
+    setUniqueAssembly(uniqueAssembly);
+    // console.log(uniqueAssembly);
   }, [user.dist]);
 
   useEffect(() => {
@@ -433,21 +454,7 @@ const SignUp = ({ onSwitchRegistor }) => {
     }
   };
 
-  // const onChangeDistrictCoor = (e) => {
-  //   if (e.target.checked) {
-  //     setUser({
-  //       ...user,
-  //       role: e.target.value,
-  //     });
-  //   } else {
-  //     setUser({
-  //       ...user,
-  //       role: "3",
-  //     });
-  //   }
-  // };
-
-  // console.log(user);
+  console.log(user);
 
   return (
     <>
@@ -603,16 +610,16 @@ const SignUp = ({ onSwitchRegistor }) => {
                 <option disabled hidden selected>
                   STATE
                 </option>
-                {stateWiseData.map((each, key) => (
+                {/* {stateWiseData.map((each, key) => (
                   <option value={each.state} key={key}>
                     {each.state}
                   </option>
-                ))}
-                {/* {uniqueState.map((each, key) => (
+                ))} */}
+                {uniqueState.map((each, key) => (
                   <option value={each} key={key}>
                     {each}
                   </option>
-                ))} */}
+                ))}
               </select>
             </div>
           </div>
@@ -631,9 +638,14 @@ const SignUp = ({ onSwitchRegistor }) => {
                 <option disabled hidden selected>
                   DISTRICT
                 </option>
-                {stateWiseDistState?.map((each, key) => (
+                {/* {stateWiseDistState?.map((each, key) => (
                   <option value={each.name} key={key}>
                     {each.name}
+                  </option>
+                ))} */}
+                {uniqueDistrict?.map((each, key) => (
+                  <option value={each} key={key}>
+                    {each}
                   </option>
                 ))}
               </select>
@@ -647,13 +659,22 @@ const SignUp = ({ onSwitchRegistor }) => {
               >
                 {formErrors.assembly ? formErrors.assembly : "."}
               </p>
-              <select name="assembly" onChange={usernameChange}>
+              <select
+                value={user.assembly}
+                name="assembly"
+                onChange={usernameChange}
+              >
                 <option disabled hidden selected>
                   ASSEMBLY
                 </option>
-                {filterAssembly?.map((each, key) => (
+                {/* {filterAssembly?.map((each, key) => (
                   <option value={each.name} key={key}>
                     {each.name}
+                  </option>
+                ))} */}
+                {uniqueAssembly?.map((each, key) => (
+                  <option value={each} key={key}>
+                    {each}
                   </option>
                 ))}
               </select>
@@ -850,7 +871,7 @@ const SignUp = ({ onSwitchRegistor }) => {
                 name="mandal"
                 value={user.mandal}
               />
-              <span>Nearest Polling Station Location</span>
+              <span>Near Polling Station Location</span>
             </div>
           </div>
 
