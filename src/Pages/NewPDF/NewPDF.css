@@ -3,7 +3,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-  padding: 20px;
+  /* padding: 20px; */
 }
 
 .kjhgfd > button {
@@ -15,4 +15,27 @@
   outline: none;
   border-radius: 9px;
   cursor: pointer;
+}
+
+.page-break {
+  page-break-before: always;
+}
+
+.pdf_main_page_card {
+  page-break-after: always !important;
+}
+.pdf-adhrr-card {
+  page-break-after: always !important;
+}
+
+@media print {
+  .page-break {
+    page-break-before: always;
+  }
+  .pdf_main_page_card {
+    page-break-after: always !important;
+  }
+  .pdf-adhrr-card {
+    page-break-after: always !important;
+  }
 }

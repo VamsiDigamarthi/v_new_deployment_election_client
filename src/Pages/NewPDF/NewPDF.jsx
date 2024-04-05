@@ -77,15 +77,15 @@ const NewPDF = () => {
             {apiFilterData?.map((each, key) => (
               <div key={key} className="main-p-f-d">
                 <div id={key} className="pdf_main_page_card">
-                  <h1>DECLARATION BY WEB CASTING AGENTS</h1>
-                  <h3 style={{ paddingLeft: "6%" }}>
+                  <h2>DECLARATION BY WEB CASTING AGENTS</h2>
+                  <h4>
                     I,{" "}
                     <span style={{ fontWeight: "bold" }}>
                       <span>{each?.name}</span>
                     </span>
                     , do hereby make a solemndeclaration, in connection with the
                     General Election to Lok Sabha 2024, Assam, that:
-                  </h3>
+                  </h4>
                   <ol type="A" className="pdf_ol_main_card">
                     <li>
                       I am not a close relative of any of the contesting
@@ -104,7 +104,7 @@ const NewPDF = () => {
                         Name --{" "}
                         <span
                           style={{
-                            fontWeight: "bold",
+                            fontWeight: 600,
                           }}
                         >
                           {each?.name}
@@ -174,6 +174,7 @@ const NewPDF = () => {
                     </div>
                   </div>
                 </div>
+                <div className="page-break"></div>
                 <div
                   id={`${key}_${each?.name}`}
                   // style={{ visibility: "hidden" }}
@@ -182,30 +183,7 @@ const NewPDF = () => {
                   <img src={each?.voteridurl} alt="" />
                   <img src={each?.adharidurl} alt="" />
                 </div>
-                {/* <div className="downloadpdf-btn-crad">
-            <button
-              onClick={() => download({ key, name: each?.name, id: each?._id })}
-            >
-              Download {each?.name} Details PDF{" "}
-              <span
-                style={{
-                  fontWeight: "bold",
-                }}
-              >
-                {each?.downloadPreview} time download
-              </span>
-            </button>
-            <button
-              onClick={() =>
-                downloadAdhar({
-                  id: `${key}_${each?.name}`,
-                  name: each?.name,
-                })
-              }
-            >
-              Download {each?.name} Adhaar PDF
-            </button>
-          </div> */}
+                <div className="page-break"></div>
               </div>
             ))}
           </>

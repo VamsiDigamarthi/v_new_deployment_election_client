@@ -143,12 +143,14 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 2.6rem;
   padding: 100px 50px;
   border: 2px solid lightgrey;
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
+  font-family: "sans-serif";
+  page-break-after: always !important;
 }
 
 .pdf_main_page_card > h1 {
@@ -157,15 +159,15 @@
   font-weight: bold;
 }
 
-.pdf_main_page_card > h3 {
+.pdf_main_page_card > h4 {
   line-height: 1.4;
-  font-size: 23px;
+  font-size: 20px;
   font-weight: 500;
 }
 
 .pdf_ol_main_card {
   line-height: 2;
-  font-size: 20px;
+  font-size: 17px;
 }
 
 .pdf-main-imge-card {
@@ -176,15 +178,15 @@
 }
 
 .pdf-main-imge-card > img {
-  width: 220px;
-  height: 220px;
+  width: 180px;
+  height: 180px;
 }
 
 .pdf_user_detaiisl_main {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  font-size: 18px;
+  font-size: 17px;
   width: 40%;
   /* border: 2px solid red; */
 }
@@ -197,6 +199,7 @@
   padding: 30px;
   border: 2px solid lightgrey;
   margin-bottom: 20px;
+  page-break-after: always !important;
 }
 
 .pdf-adhrr-card > img {
