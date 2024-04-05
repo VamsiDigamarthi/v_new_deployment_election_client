@@ -257,11 +257,11 @@ const SignUp = ({ onSwitchRegistor }) => {
     const filterAssembly = allPsStore.filter(
       (item) => item.District?.trim() === user.dist?.trim()
     );
-    console.log(filterAssembly);
+    // console.log(filterAssembly);
     const uniqueAssembly = [
       ...new Set(filterAssembly.map((each) => each.AC_Name)),
     ];
-    console.log(uniqueAssembly);
+    // console.log(uniqueAssembly);
 
     setUser({
       ...user,
