@@ -232,7 +232,9 @@ const SignUp = ({ onSwitchRegistor }) => {
     //   setUser({ ...user, dist: newDist[0]?.dist[0]?.name });
     // }
 
-    let filteredData = allPsStore.filter((item) => item.State === user.state);
+    let filteredData = allPsStore.filter(
+      (item) => item.State?.trim() === user.state?.trim()
+    );
     const uniqueDIstrict = [
       ...new Set(filteredData.map((each) => each.District)),
     ];
@@ -253,11 +255,13 @@ const SignUp = ({ onSwitchRegistor }) => {
     // }
 
     const filterAssembly = allPsStore.filter(
-      (item) => item.District === user.dist
+      (item) => item.District?.trim() === user.dist?.trim()
     );
+    console.log(filterAssembly);
     const uniqueAssembly = [
       ...new Set(filterAssembly.map((each) => each.AC_Name)),
     ];
+    console.log(uniqueAssembly);
 
     setUser({
       ...user,
