@@ -39,6 +39,7 @@ import DistShowUser from "./Pages/DistShowUser/DistShowUser";
 import UserData from "./Pages/UserData/UserData";
 import PDFUser from "./Pages/PDFUser/PDFUser";
 import PDF from "./Pages/PDF/PDF";
+import NewPDF from "./Pages/NewPDF/NewPDF";
 function App() {
   const UUU = useSelector((state) => state.authReducer.authData);
   // console.log(UUU);
@@ -168,7 +169,6 @@ function App() {
                 )
               }
             />
-
             <Route
               path="download/user/pdfs"
               element={
@@ -183,6 +183,21 @@ function App() {
                 )
               }
             />
+            <Route
+              path="/user/all/assembly/pdf"
+              element={
+                UUU ? (
+                  UUU?.role === "4" ? (
+                    <NewPDF />
+                  ) : (
+                    <NotAccess />
+                  )
+                ) : (
+                  <Navigate to="/register" />
+                )
+              }
+            />
+
             <Route
               path="/state/assign/task"
               element={
@@ -296,7 +311,6 @@ function App() {
                 )
               }
             />
-
             <Route
               path="/show/user/pdf"
               element={
@@ -368,7 +382,6 @@ function App() {
                 )
               }
             />
-
             <Route
               path="/payment"
               element={
@@ -453,7 +466,6 @@ function App() {
                 )
               }
             />
-
             <Route
               path="/users/PDF"
               element={

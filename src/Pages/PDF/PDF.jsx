@@ -4,6 +4,7 @@ import { APIS, headers } from "../../data/header";
 import { SpinnerDotted } from "spinners-react";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import { Link } from "react-router-dom";
 const PDF = () => {
   const [psData, setPsData] = useState([]);
 
@@ -54,7 +55,7 @@ const PDF = () => {
   useEffect(() => {
     if (district !== "") {
       const filterAssembly = psData.filter(
-        (each) => each.District === district
+        (each) => each.District.trim() === district.trim()
       );
       const uniqueAssembly = [
         ...new Set(filterAssembly?.map((item) => item.AC_Name)),
@@ -67,25 +68,25 @@ const PDF = () => {
     setAssembly(e.target.value);
   };
 
-  const onFetchAssemblyWiseData = () => {
-    setApiFilterDataLoader(true);
-    APIS.get(
-      `own/fetch/pdf/data/assembly/${assembly}/district/${district}`,
+  // const onFetchAssemblyWiseData = () => {
+  //   setApiFilterDataLoader(true);
+  //   APIS.get(
+  //     `own/fetch/pdf/data/assembly/${assembly}/district/${district}`,
 
-      {
-        headers: headers,
-      }
-    )
-      .then((res) => {
-        setApiFilterDataLoader(false);
-        console.log(res.data);
-        setApiFilterData(res.data);
-      })
-      .catch((e) => {
-        setApiFilterDataLoader(false);
-        console.log(e);
-      });
-  };
+  //     {
+  //       headers: headers,
+  //     }
+  //   )
+  //     .then((res) => {
+  //       setApiFilterDataLoader(false);
+  //       // console.log(res.data);
+  //       setApiFilterData(res.data);
+  //     })
+  //     .catch((e) => {
+  //       setApiFilterDataLoader(false);
+  //       console.log(e);
+  //     });
+  // };
 
   const download = (key) => {
     const capture = document.getElementById(key?.key);
@@ -169,8 +170,11 @@ const PDF = () => {
                 <option key={key}>{each}</option>
               ))}
             </select>
-            <button onClick={onFetchAssemblyWiseData}>
-              {apiFilterDataLoader ? "Loading ..!" : "Submit"}
+            <button>
+              <Link to="/user/all/assembly/pdf" state={{ assembly, district }}>
+                Submit
+              </Link>
+              {/* {apiFilterDataLoader ? "Loading ..!" : "Submit"} */}
             </button>
           </div>
           {apiFilterDataLoader ? (
