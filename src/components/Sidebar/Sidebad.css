@@ -39,11 +39,11 @@
   /* gap: 1rem; */
 }
 .logo__imgh__card > div > :nth-child(1) {
-  font-size: 10px;
+  font-size: 8px;
   color: #fff;
 }
 .logo__imgh__card > div > :nth-child(2) {
-  font-size: 16px;
+  font-size: 14px;
   font-style: italic;
   color: #f7e1b0;
   color: #fab00c;
@@ -61,7 +61,7 @@
   /* justify-content: center; */
   align-items: flex-end;
   /* color: rgb(29, 28, 28); */
-  font-size: 17px;
+  font-size: 15px;
   padding: 10px;
   border-radius: 12px;
   color: #fff;

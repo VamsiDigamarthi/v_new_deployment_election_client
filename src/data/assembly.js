@@ -587,9 +587,8 @@
 //   },
 // ];
 
-
 export const assemblyList = [
-    {
+  {
     dist: "West Godavari",
     assembly: [
       { name: "Achanta" },
@@ -603,10 +602,7 @@ export const assemblyList = [
   },
   {
     dist: "Bajali",
-    assembly: [
-      { name: "Bhawanipur-Sorbhog" },
-      { name: "Bajali" },
-    ],
+    assembly: [{ name: "Bhawanipur-Sorbhog" }, { name: "Bajali" }],
   },
   {
     dist: "Baksa",
@@ -628,46 +624,27 @@ export const assemblyList = [
   },
   {
     dist: "Bijni",
-    assembly: [
-      { name: "Bijni" },
-
-    ],
+    assembly: [{ name: "Bijni" }],
   },
   {
     dist: "Bilasipara",
-    assembly: [
-      { name: "Birsing-Jarua" },
-      { name: "Bilasipara" },
-
-    ],
+    assembly: [{ name: "Birsing-Jarua" }, { name: "Bilasipara" }],
   },
   {
     dist: "Biswanath",
-    assembly: [
-      { name: "Biswanath" },
-      { name: "Behali (SC)" },
-
-    ],
+    assembly: [{ name: "Biswanath" }, { name: "Behali (SC)" }],
   },
   {
     dist: "Bokajan",
-    assembly: [
-      { name: "Bokajan (ST)" },
-    ],
+    assembly: [{ name: "Bokajan (ST)" }],
   },
   {
     dist: "Bokakhat",
-    assembly: [
-      { name: "Bokakhat" },
-
-    ],
+    assembly: [{ name: "Bokakhat" }],
   },
   {
     dist: "Bongaigaon",
-    assembly: [
-      { name: "Bongaigaon" },
-
-    ],
+    assembly: [{ name: "Bongaigaon" }],
   },
   {
     dist: "Cachar",
@@ -683,18 +660,11 @@ export const assemblyList = [
   },
   {
     dist: "Charaideo",
-    assembly: [
-      { name: "Sonari" },
-      { name: "Mahmora" },
-
-    ],
+    assembly: [{ name: "Sonari" }, { name: "Mahmora" }],
   },
   {
     dist: "Chirang",
-    assembly: [
-      { name: "Sidli Chirang (ST)" },
-
-    ],
+    assembly: [{ name: "Sidli Chirang (ST)" }],
   },
   {
     dist: "Darrang",
@@ -706,373 +676,267 @@ export const assemblyList = [
   },
   {
     dist: "Dhakuakhana",
-    assembly: [
-
-      { name: "Dhakuakhana (ST)" },
-      
-    ]
+    assembly: [{ name: "Dhakuakhana (ST)" }],
   },
   {
     dist: "Dhansiri",
-    assembly: [
-
-      { name: "Sarupathar " },
-    
-    ]
+    assembly: [{ name: "Sarupathar " }],
   },
   {
     dist: "Dhemaji",
     assembly: [
-
       { name: "Dhemaji (ST)" },
       { name: "Sissiborgaon " },
       // { name: "" },
       // { name: "" },
       // { name: "" },
-    ]
+    ],
   },
   {
     dist: "Dhubri",
-    assembly: [
-
-      { name: "Golakganj" },
-      { name: "Gauripur" },
-      { name: "Dhubri" },
-     
-    ]
+    assembly: [{ name: "Golakganj" }, { name: "Gauripur" }, { name: "Dhubri" }],
   },
   {
     dist: "Dibrugarh",
     assembly: [
-
       { name: "Chabua-Lahowal" },
       { name: "Dibrugarh" },
       { name: "Khowang" },
       { name: "Duliajan" },
       { name: "Tingkhong" },
       { name: "Naharkatia" },
-    ]
+    ],
   },
   {
     dist: "Dima Hasao",
-    assembly: [
-
-      { name: "Haflong (ST)" },
-     
-    ]
+    assembly: [{ name: "Haflong (ST)" }],
   },
   {
     dist: "Goalpara",
     assembly: [
-
       { name: "Jaleswar" },
       { name: "Goalpara West (ST)" },
       { name: "Goalpara East" },
       { name: "Dudhnoi (ST)" },
-      
-    ]
+    ],
   },
   {
     dist: "Gohpur",
-    assembly: [
-
-      { name: "Gohpur" },
-     
-    ]
+    assembly: [{ name: "Gohpur" }],
   },
   {
     dist: "Golaghat",
-    assembly: [
-
-      { name: "Golaghat" },
-      { name: "Dergaon" },
-      { name: "Khumtai" },
-      
-    ]
+    assembly: [{ name: "Golaghat" }, { name: "Dergaon" }, { name: "Khumtai" }],
   },
   {
     dist: "Gossaigaon",
-    assembly: [
-
-      { name: "Gossaigaon" },
-      { name: "Parbatjhora" },
-      
-    ]
+    assembly: [{ name: "Gossaigaon" }, { name: "Parbatjhora" }],
   },
   {
     dist: "Hailakandi",
-    assembly: [
-
-      { name: "Hailakandi" },
-      { name: "Algapur-Katlicherra" },
-      
-    ]
+    assembly: [{ name: "Hailakandi" }, { name: "Algapur-Katlicherra" }],
   },
   {
     dist: "Hojai",
-    assembly: [
-
-      { name: "Binnakandi" },
-      { name: "Hojai" },
-      { name: "Lumding" },
-      
-    ]
+    assembly: [{ name: "Binnakandi" }, { name: "Hojai" }, { name: "Lumding" }],
   },
   {
     dist: "Jonai",
-    assembly: [
-
-      { name: "Jonai (ST)" },
-     
-    ]
+    assembly: [{ name: "Jonai (ST)" }],
   },
   {
     dist: "Jorhat",
-    assembly: [
-
-      { name: "Teok" },
-      { name: "Jorhat" },
-     
-    ]
+    assembly: [{ name: "Teok" }, { name: "Jorhat" }],
   },
   {
     dist: "Kaliabor",
-    assembly: [
-
-      { name: "Kaliabor" },
-     
-    ]
+    assembly: [{ name: "Kaliabor" }],
   },
   {
     dist: "Kamrup",
     assembly: [
-
       { name: "Chamaria" },
       { name: "Boko-Chaygaon (ST)" },
       { name: "Palasbari" },
       { name: "Hajo-Sualkuchi (SC)" },
       // { name: "" },
-    ]
+    ],
   },
   {
     dist: "Kamrup Metro",
     assembly: [
-
       { name: "Dispur" },
       { name: "Dimoria (SC)" },
       { name: "New Guwahati" },
       { name: "Guwahati Central" },
       { name: "Jalukbari" },
-    ]
+    ],
   },
   {
     dist: "Karbi Anglong",
-    assembly: [
-
-      { name: "Howraghat (ST)" },
-      { name: "Diphu (ST)" },
-    ]
+    assembly: [{ name: "Howraghat (ST)" }, { name: "Diphu (ST)" }],
   },
   {
     dist: "Karimganj",
     assembly: [
-
       { name: "Karimganj North" },
       { name: "Karimganj South" },
       { name: "Patharkandi" },
       { name: "Ram Krishna Nagar (SC)" },
       // { name: "" },
-    ]
+    ],
   },
   {
     dist: "Kokrajhar",
     assembly: [
-
       { name: "Dotma (ST)" },
       { name: "Kokrajhar (ST)" },
       { name: "Baokhungri" },
       // { name: "" },
       // { name: "" },
-    ]
+    ],
   },
   {
     dist: "Lakhimpur",
     assembly: [
-
       { name: "Bihpuria" },
       { name: "Ranganadi" },
       { name: "Nowboicha (SC)" },
       { name: "Lakhimpur" },
       // { name: "" },
-    ]
+    ],
   },
   {
     dist: "Majuli",
-    assembly: [
-
-      { name: "Majuli (ST)" },
-     
-    ]
+    assembly: [{ name: "Majuli (ST)" }],
   },
   {
     dist: "Margherita",
-    assembly: [
-
-      { name: "Margherita" },
-      
-    ]
+    assembly: [{ name: "Margherita" }],
   },
   {
     dist: "Morigaon",
     assembly: [
-
       { name: "Jagiroad (SC)" },
       { name: "Laharighat" },
       { name: "Morigaon" },
       // { name: "" },
       // { name: "" },
-    ]
+    ],
   },
   {
     dist: "Nagaon",
     assembly: [
-
       { name: "Dhingc" },
       { name: "Rupahihat" },
       { name: "Samaguri" },
       { name: "Barhampur" },
       { name: "Nagaon-Batadraba" },
       { name: "Raha (SC)" },
-
-    ]
+    ],
   },
   {
     dist: "Nalbari",
     assembly: [
-
       { name: "Barkhetri" },
       { name: "Nalbari" },
       { name: "Tihu" },
       // { name: "" },
       // { name: "" },
-    ]
+    ],
   },
   {
     dist: "Nazira",
     assembly: [
-
       { name: "Nazira" },
       // { name: "" },
       // { name: "" },
       // { name: "" },
       // { name: "" },
-    ]
+    ],
   },
   {
     dist: "North Salmara",
     assembly: [
-
       { name: "Abhayapuri" },
       { name: "Srijangram" },
       // { name: "" },
       // { name: "" },
       // { name: "" },
-    ]
+    ],
   },
   {
     dist: "Rangia",
     assembly: [
-
       { name: "Rangia" },
       { name: "Kamalpur" },
       // { name: "" },
       // { name: "" },
       // { name: "" },
-    ]
+    ],
   },
   {
     dist: "Sadiya",
-    assembly: [
-
-      { name: "Sadiya" },
-     
-    ]
+    assembly: [{ name: "Sadiya" }],
   },
   {
     dist: "Sibsagar",
     assembly: [
-
       { name: "Demow" },
       { name: "Sibsagar" },
       // { name: "" },
       // { name: "" },
       // { name: "" },
-    ]
+    ],
   },
   {
     dist: "Sonitpur",
     assembly: [
-
       { name: "Dhekiajuli" },
       { name: "Barchalla" },
       { name: "Tezpur" },
       { name: "Rangapara" },
       { name: "Naduar" },
       // { name: "" },
-
-    ]
+    ],
   },
   {
     dist: "South Salmara",
-    assembly: [
-
-      { name: "Mankachar" },
-     
-    ]
+    assembly: [{ name: "Mankachar" }],
   },
   {
     dist: "Tinsukia",
     assembly: [
-
       { name: "Doom Dooma" },
       { name: "Digboi" },
       { name: "Makum" },
       { name: "Tinsukia" },
       // { name: "" },
-    ]
+    ],
   },
   {
     dist: "Titabor",
-    assembly: [
-
-      { name: "Mariani" },
-      { name: "Titabor" },
-     
-    ]
+    assembly: [{ name: "Mariani" }, { name: "Titabor" }],
   },
 
   {
     dist: "Udalguri",
     assembly: [
-
       { name: "Bhergaon" },
       { name: "Udalguri (ST)" },
       { name: "Mazbatc" },
       { name: "Tangla" },
       // { name: "" },
-    ]
+    ],
   },
   {
     dist: "West Kari Anglong",
     assembly: [
-
       { name: "Rongkhang (ST)" },
       { name: "Amri (ST)" },
       // { name: "" },
       // { name: "" },
       // { name: "" },
-    ]
+    ],
   },
-
-  
-]
+];

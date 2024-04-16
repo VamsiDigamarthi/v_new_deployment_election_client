@@ -9,9 +9,10 @@ import { useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import { APIS, headers } from "../../data/header";
 import { editUseSuccessaa } from "../../util/showmessages";
+import { motion } from "framer-motion";
 const User = () => {
   const UUU = useSelector((state) => state.authReducer.authData);
-
+  const transition = { type: "spring", duration: 3 };
   // EDIT MODAL OPEN STATE
   const [openUserModal, setOpenModalUser] = useState(false);
   // STORE THE USER INFORMATION FROM API (getUserDataGromApis)
@@ -77,9 +78,7 @@ const User = () => {
           theme="light"
         />
       </div>
-      <span className="all__pages__over__view">
-        Hi There Welcome Back ....!
-      </span>
+
       <div
         style={{
           filter: openUserModal && "blur(20px)",
@@ -90,7 +89,16 @@ const User = () => {
           <div className="user__name__pic__card">
             <div>
               <div>
-                <h2>{capitalizeName(userDataFromApi?.name)?.slice(0, 16)}</h2>
+                <motion.h2
+                  initial={{ left: "-6rem" }}
+                  whileInView={{ left: "0rem" }}
+                  transition={transition}
+                  style={{
+                    position: "relative",
+                  }}
+                >
+                  {capitalizeName(userDataFromApi?.name)?.slice(0, 16)}
+                </motion.h2>
                 <button onClick={onOpenEditUserDetailsModal}>Edit</button>
               </div>
               <span>Thanks for joining.</span>
@@ -117,15 +125,7 @@ const User = () => {
                 <LiaAddressCard size={25} />
               </span>
               <span>Address</span>
-              <span
-                style={{
-                  textAlign: "center",
-                  lineHeight: "1.6",
-                  color: "gray",
-                }}
-              >
-                {userDataFromApi?.address?.toLowerCase()}
-              </span>
+              <span>{userDataFromApi?.address?.toLowerCase()}</span>
             </div>
             <div className="contact__info">
               <div>
@@ -133,16 +133,32 @@ const User = () => {
                   <IoIosContact size={25} />
                 </span>
               </div>
-              <span>
+              <div className="contact__info__new">
+                <span>Phone-</span>
+                <span>{userDataFromApi?.phone}</span>
+              </div>
+              <div className="contact__info__new">
+                <span>UPI-</span>
+                <span>
+                  {userDataFromApi?.phonepe
+                    ? userDataFromApi?.phonepe
+                    : "No Found"}
+                </span>
+              </div>
+              <div className="contact__info__new">
+                <span>Adhaar-</span>
+                <span>{userDataFromApi?.adharnumber}</span>
+              </div>
+              {/* <span>
                 Phone No - <span>{userDataFromApi?.phone}</span>
               </span>
               <span>
-                PhonePeNo - <span>{userDataFromApi?.phonepe}</span>
+                UPI - <span>{userDataFromApi?.phonepe}</span>
               </span>
 
               <span>
-                Adhar Id - <span>{userDataFromApi?.adharnumber}</span>
-              </span>
+                Adhaar - <span>{userDataFromApi?.adharnumber}</span>
+              </span> */}
             </div>
             <div className="other__details">
               <span>
@@ -151,7 +167,7 @@ const User = () => {
               <span>{userDataFromApi?.state}</span>
               <span>{userDataFromApi?.district}</span>
               {/* <span>{userDataFromApi?.assembly}</span> */}
-              <span>{userDataFromApi?.mandal}</span>
+              <span>{userDataFromApi?.assembly}</span>
             </div>
           </div>
         </div>
@@ -162,7 +178,7 @@ const User = () => {
       </div>
       {openUserModal && (
         <div className="user__edit__modal__main__card">
-          <div className="user__modal__inner__card">
+          <div className="user__modal__inner__card new__user__edit">
             <div className="user__modal__cross__card">
               <span>Edit Your Details</span>
               <RxCross1 onClick={onOpenEditUserDetailsModal} size={20} />

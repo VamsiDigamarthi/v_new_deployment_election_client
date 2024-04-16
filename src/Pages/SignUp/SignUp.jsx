@@ -86,7 +86,7 @@ const SignUp = ({ onSwitchRegistor }) => {
   // validated all users information before there submitted data
   const validate = (values) => {
     const errors = {};
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    // const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 
     const name = /^[a-zA-Z\s]*$/;
 
@@ -254,8 +254,12 @@ const SignUp = ({ onSwitchRegistor }) => {
     //   setUser({ ...user, assembly: filterAssembly[0]?.assembly[0]?.name });
     // }
 
+    // const filterAssembly = allPsStore.filter(
+    //   (item) => item.District?.trim() === user.dist?.trim()
+    // );
+
     const filterAssembly = allPsStore.filter(
-      (item) => item.District?.trim() === user.dist?.trim()
+      (item) => item.District === user.dist
     );
     // console.log(filterAssembly);
     const uniqueAssembly = [

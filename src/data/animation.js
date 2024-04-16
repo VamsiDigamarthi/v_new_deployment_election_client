@@ -1,11 +1,11 @@
 export const containerVariants = (delay = 0) => ({
   offscreen: {
     opacity: 0,
-    y: 10,
+    x: 10,
   },
   onscreen: {
     opacity: 1,
-    y: 0,
+    x: 0,
     transition: {
       type: "spring",
       duration: 2,

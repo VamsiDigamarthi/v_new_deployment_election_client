@@ -40,6 +40,7 @@ import UserData from "./Pages/UserData/UserData";
 import PDFUser from "./Pages/PDFUser/PDFUser";
 import PDF from "./Pages/PDF/PDF";
 import NewPDF from "./Pages/NewPDF/NewPDF";
+import Majuli from "./Pages/Majuli/Majuli";
 function App() {
   const UUU = useSelector((state) => state.authReducer.authData);
   // console.log(UUU);
@@ -189,6 +190,21 @@ function App() {
                 UUU ? (
                   UUU?.role === "4" ? (
                     <NewPDF />
+                  ) : (
+                    <NotAccess />
+                  )
+                ) : (
+                  <Navigate to="/register" />
+                )
+              }
+            />
+
+            <Route
+              path="/user/all/majuli/pdf"
+              element={
+                UUU ? (
+                  UUU?.role === "4" ? (
+                    <Majuli />
                   ) : (
                     <NotAccess />
                   )

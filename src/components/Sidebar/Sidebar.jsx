@@ -70,7 +70,8 @@ export const Sidebar = ({ children, taskAssignAdminModalOpen }) => {
       <div className="main__side__bar">
         {pathValue !== "/register" &&
           pathValue !== "/certificate" &&
-          pathValue !== "/user/all/assembly/pdf" && (
+          pathValue !== "/user/all/assembly/pdf" &&
+          pathValue !== "/user/all/majuli/pdf" && (
             <div style={sideLeftContainer} className="left__side__bar">
               <div className="logo__imgh__card">
                 <img
@@ -696,18 +697,21 @@ export const Sidebar = ({ children, taskAssignAdminModalOpen }) => {
             background:
               (pathValue === "/register" ||
                 pathValue === "/certificate" ||
-                pathValue === "/user/all/assembly/pdf") &&
+                pathValue === "/user/all/assembly/pdf" ||
+                pathValue === "/user/all/majuli/pdf") &&
               "transparent",
             padding:
               (pathValue === "/register" ||
                 pathValue === "/certificate" ||
-                pathValue === "/user/all/assembly/pdf") &&
+                pathValue === "/user/all/assembly/pdf" ||
+                pathValue === "/user/all/majuli/pdf") &&
               "0px",
             // padding: (pathValue === "/register" || pathValue === "/learning") && "0px",
             width:
               (pathValue === "/register" ||
                 pathValue === "/certificate" ||
-                pathValue === "/user/all/assembly/pdf") &&
+                pathValue === "/user/all/assembly/pdf" ||
+                pathValue === "/user/all/majuli/pdf") &&
               "100%",
           }}
           className="right__side__bar"

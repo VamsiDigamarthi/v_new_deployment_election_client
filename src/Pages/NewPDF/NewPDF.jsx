@@ -12,9 +12,9 @@ const NewPDF = () => {
   const onFetchAssemblyWiseData = () => {
     // setApiFilterDataLoader(true);
     APIS.get(
-      `own/fetch/pdf/data/assembly/${data?.assembly?.trim()}/district/${
-        data?.district
-      }`,
+      `own/fetch/pdf/data/assembly/${
+        data?.assembly
+      }/district/${data?.district.trim()}`,
 
       {
         headers: headers,
@@ -60,6 +60,8 @@ const NewPDF = () => {
   const printerDownload = () => {
     window.print();
   };
+
+  console.log(apiFilterData);
 
   return (
     <>
