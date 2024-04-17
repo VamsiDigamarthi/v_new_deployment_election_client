@@ -17,6 +17,11 @@ const PDF = () => {
   const [district, setDistrict] = useState("");
   const [assembly, setAssembly] = useState("");
 
+  const [
+    userProfileDownloadDistrictState,
+    setUserProfileDownloadDistrictState,
+  ] = useState("");
+
   const [apiFilterData, setApiFilterData] = useState([]);
 
   const [apiFilterDataLoader, setApiFilterDataLoader] = useState(null);
@@ -132,6 +137,14 @@ const PDF = () => {
     });
   };
 
+  const userProfileDownloadDistrict = (e) => {
+    setUserProfileDownloadDistrictState(e.target.value);
+  };
+
+  console.log(userProfileDownloadDistrictState);
+  console.log(
+    userProfileDownloadDistrictState === "" ? "not-allowed" : "pointer"
+  );
   return (
     <div className="download--user--pdfs-main--card">
       {loading ? (
@@ -171,25 +184,83 @@ const PDF = () => {
               ))}
             </select>
             <button>
-              <Link to="/user/all/assembly/pdf" state={{ assembly, district }}>
+              <Link
+                style={{
+                  textDecoration: "none",
+                  color: "#fff",
+                }}
+                to="/user/all/assembly/pdf"
+                state={{ assembly, district }}
+              >
                 Submit
               </Link>
               {/* {apiFilterDataLoader ? "Loading ..!" : "Submit"} */}
             </button>
           </div>
           <div className="majuli-card-main">
-            <button>
-              <Link
-                style={{
-                  textDecoration: "none",
-                  color: "#fff",
-                }}
-                to="/user/all/majuli/pdf"
-                state={{ assembly, district }}
-              >
-                Download Majuli pdf
-              </Link>
-            </button>
+            <h2>User Profile Download</h2>
+            <div>
+              <select onChange={userProfileDownloadDistrict}>
+                <option disabled selected hidden>
+                  SELECT DISTRICT
+                </option>
+                {uniqueDistrict.map((each, key) => (
+                  <option key={key}>{each}</option>
+                ))}
+              </select>
+              {/* <button>
+                <Link
+                  style={{
+                    textDecoration: "none",
+                    color: "#fff",
+                  }}
+                  to="/user/all/majuli/pdf"
+                  state={{ userProfileDownloadDistrictState }}
+                >
+                  Download Users pdf
+                </Link>
+              </button> */}
+              {userProfileDownloadDistrictState !== "" ? (
+                <Link
+                  style={{
+                    textDecoration: "none",
+                    color: "#fff",
+                    cursor: "pointer",
+                  }}
+                  to="/user/all/majuli/pdf"
+                  state={userProfileDownloadDistrictState}
+                  // to={{
+                  //   pathname: "/user/all/majuli/pdf",
+                  //   state: { userProfileDownloadDistrictState },
+                  // }}
+                >
+                  <button
+                    style={{
+                      width: "200px",
+                      padding: "10px",
+                      background: "orangered",
+                      border: "none",
+                      outline: "none",
+                      color: "#fff",
+                      borderRadius: "9px",
+                      height: "40px",
+                      cursor: "pointer",
+                    }}
+                  >
+                    Download Users pdf
+                  </button>
+                </Link>
+              ) : (
+                <button
+                  style={{
+                    cursor: "not-allowed",
+                  }}
+                  disabled
+                >
+                  Download Users pdf
+                </button>
+              )}
+            </div>
           </div>
         </>
       )}

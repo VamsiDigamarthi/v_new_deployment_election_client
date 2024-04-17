@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./ChangeRole.css";
 import { APIS, headers } from "../../data/header";
 import { ToastContainer } from "react-toastify";
+import * as XLSX from "xlsx";
 import {
   allpsAddedtoUser,
   taskAddedAlredyRegis,
@@ -12,6 +13,8 @@ const ChangeRole = () => {
   const [role, setRole] = useState("");
 
   const [errors, setErrors] = useState({});
+  // new
+  const [userData, setUserData] = useState([]);
 
   const validator = (user) => {
     let errors = {};
@@ -51,6 +54,25 @@ const ChangeRole = () => {
         });
     }
   };
+  // new
+  // useEffect(() => {
+  //   APIS.get("/own/download/user/some/count", {
+  //     headers: headers,
+  //   })
+  //     .then((res) => {
+  //       console.log(res);
+  //       setUserData(res.data);
+  //     })
+  //     .catch((e) => {
+  //       console.log(e);
+  //     });
+  // }, []);
+  // const onDownloadUserExleIncludesImages = () => {
+  //   const ws = XLSX.utils.json_to_sheet(userData);
+  //   const wb = XLSX.utils.book_new();
+  //   XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+  //   XLSX.writeFile(wb, "imageWithUser" + ".xlsx");
+  // };
 
   return (
     <div className="change-role-main">
@@ -103,6 +125,11 @@ const ChangeRole = () => {
         </select>
         <button onClick={onChangeRoleFun}>Updated</button>
       </div>
+      {/* <div>
+        <button onClick={onDownloadUserExleIncludesImages}>
+          Download users excel includes images
+        </button>
+      </div> */}
     </div>
   );
 };

@@ -7,6 +7,26 @@
   gap: 1rem;
 }
 
+.user-pdf-button-with-dist {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.user-pdf-button-with-dist > h2 {
+  color: orangered;
+}
+
+.user-pdf-button-with-dist > button {
+  width: 170px;
+  height: 35px;
+  border: none;
+  outline: none;
+  background-color: orangered;
+  color: #fff;
+}
+
 .second-majuli-card {
   width: 100%;
   display: flex;
