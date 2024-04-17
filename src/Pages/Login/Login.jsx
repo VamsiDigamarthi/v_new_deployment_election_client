@@ -57,13 +57,13 @@ const Login = ({ phoneAndName }) => {
       // dispatch(LogIns(user, navigate));
       APIS.post("/auth/new-login", user, { headers: headers })
         .then(() => {
-          setLoading(true);
+          setLoading(false);
           setIsSubmit(false);
           setSendOtpUiDesign(true);
           seonOtp();
         })
         .catch((e) => {
-          setLoading(true);
+          setLoading(false);
           console.log(e?.response?.data?.msg);
           errorMsgApi(e?.response?.data?.msg);
         });
@@ -143,8 +143,9 @@ const Login = ({ phoneAndName }) => {
             <button
               onClick={onLoginDetailsFun}
               style={{
-                cursor: "pointer",
+                cursor: loading ? "not-allowed" : "pointer",
               }}
+              disabled={loading}
             >
               {loading ? "Loading ...!" : "Submit"}
             </button>

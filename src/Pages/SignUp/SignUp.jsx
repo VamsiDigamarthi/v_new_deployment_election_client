@@ -271,7 +271,7 @@ const SignUp = ({ onSwitchRegistor }) => {
       ...user,
       assembly: uniqueAssembly[0],
     });
-    console.log("ghm");
+    // console.log("ghm");
     setUniqueAssembly(uniqueAssembly);
     // console.log(uniqueAssembly);
   }, [user.dist]);
@@ -1057,8 +1057,9 @@ const SignUp = ({ onSwitchRegistor }) => {
           {/* SUBMITED THERE FORM */}
           <button
             style={{
-              cursor: "pointer",
+              cursor: loading ? "not-allowed" : "pointer",
             }}
+            disabled={loading}
             onClick={onSubmitRegisterDataFn}
           >
             {loading ? "Loading ...!" : "Submit"}
