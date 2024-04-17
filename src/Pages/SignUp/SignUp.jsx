@@ -271,14 +271,15 @@ const SignUp = ({ onSwitchRegistor }) => {
       ...user,
       assembly: uniqueAssembly[0],
     });
-
+    console.log("ghm");
     setUniqueAssembly(uniqueAssembly);
     // console.log(uniqueAssembly);
   }, [user.dist]);
 
   useEffect(() => {
     // console.log("ghj");
-    console.log(formErrors);
+    // console.log(formErrors);
+    // console.log(user);
     if (Object.keys(formErrors).length === 0 && gg) {
       setLoading(true);
       // APIS.post(
